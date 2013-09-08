@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eseményvezérelt alkalmazások fejlesztése 2 - Szabó Tamás &#169;</title>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/shCore.js"></script>
+  <script src="js/shBrushCSharp.js"></script>
+  <script src="js/lecture.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  <link href="css/shCore.css" rel="stylesheet" type="text/css"/>
+  <link href="css/shCoreDefault.css" rel="stylesheet" type="text/css"/>
+  <link href="css/slides.css" rel="stylesheet" type="text/css" />
+
+  <script type="slide-template" id="main">
+    <div class="step slide main" data-x="$index*1500$">
+      $content$
+      <div class="logo" />
+    </div>
+  </script>
+
+  <script type="slide-template" id="standard">
+    <div class="step slide" data-x="$index*1500$">
+      <div class="title">
+        <div>$title$</div>
+      </div>
+      <div class="content">$content$</div>
+      <div class="logo" />
+    </div>
+  </script>
+
+</head>
+<body id="impress">
+  <div class="slide" data-template="main">
+    <div class="centered">
+      <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
+      <h2>1. gyakorlat - Bevezetés</h2>
+      <h3>Szabó Tamás (<a href="sztrabi@inf.elte.hu">sztrabi@inf.elte.hu</a>)</h3>
+    </div>
+  </div>
+  <div class="slide" data-title="Órai követelmények">
+    <ul>
+      <li>A gyakorlatra járás nem kötelező (o.O)</li>
+      <li>A félév során 3 beadandót kell elkészíteni és 1 zárthelyi dolgozatot kell megírni</li>
+    </ul>
+  </div>
+  <div class="slide" data-title="Mire lesz szükségünk?" data-template="standard">
+      <ul>
+        <li>Visual Studio 2012/2013 Professional (vagy Ultimate)</li>
+        <li>és egy kis kitartásra ... ;)</li>
+      </ul>
+  </div>
+
+  <div class="slide" data-title="C# és a .NET Framework története">
+  </div>
+
+  <div class="slide" data-title=".NET framework-öt támogató nyelvek">
+    <ul>
+      <li><a href="http://msdn.microsoft.com/en-us/library/618ayhy6.aspx">C#</a></li>
+      <li><a href="http://msdn.microsoft.com/en-us/library/vstudio/2x7h1hfk.aspx">Visual Basic.NET</a></li>
+      <li><a href="http://fsharp.org/about/index.html">F#</a></li>
+      <li>Managed C++</li>
+      <li>IronPython/IronRuby</li>
+    </ul>
+  </div>
+
+  <div class="slide" data-title="Demo - Hello World">
+    <pre class="brush:csharp; highlight: 6">
+      //Definiálunk egy új osztályt
+      class Program {
+        //A statikus Main metódus lesz a belépési pontja a programunknak
+        public static void Main(params string[] args) {
+          //Kiírjuk a console-ra a "Hello World" szöveget
+          Console.WriteLine("Hello World!");
+        }
+      }
+    </pre>
+
+  </div>
+
+  <div class="slide" data-title="Vezérlési szerkezetek">
+    <ul>
+      <li>Szekvencia
+        <pre class="brush:csharp">
+          Method_1();
+          Method_2();
+          ...
+          Method_n();
+        </pre>
+      </li>
+
+      <li>Elágazás
+        <pre class="brush:csharp">
+          if (/* feltétel */) {
+            //igaz ág
+          }
+          else if (/* feltétel */) {
+            //hamis ág
+          }
+          else {
+            //hamis ág
+          }
+        </pre>
+      </li>
+
+      <li>Többszörös elágazás
+        <pre class="brush:csharp">
+          switch (/*felsorolható típusú vagy diszkrét értékű objektum*/) {
+            case pattern_0:
+              method_0();
+              break;
+            ...
+            case pattern_n:
+              method_n();
+              break;
+            default:
+              method_default();
+              break;
+          }
+        </pre>
+      </li>
+    </ul>
+  </div>
+
+  <div class="slide" data-title="Ajánlott szakirodalom">
+    <h1>Angol nyelvű könyvek</h1>
+    <ul>
+      <li>Andrew Troelsen - Pro C# 5.0 and the .NET 4.5 Framework (<a href="http://www.apress.com/microsoft/c/9781430242338">link</a>)</li>
+      <li>Matthew MacDonald - Pro WPF 4.5 in C# (<a href="http://www.apress.com/microsoft/c/9781430243656">link</a>)</li>
+      <li>Mohammad Rahman - Expert C# 5.0 with the .NET 4.5 Framework (<a href="http://www.apress.com/microsoft/c/9781430248606">link</a>)</li>
+    </ul>
+    <h1>Magyar nyelvű könyv(ek)</h1>
+    <ul>
+      <li>Reiter István - C# jegyzet (<a href="https://devportal.hu/Fajlok/Download.ashx?shareid=1&path=Konyvek%5ccsharp+jegzyet%5ccsharp.pdf">link</a>)</li>
+    </ul>
+  </div>
+  <script src="js/impress.js"></script>
+</body>
+</html>

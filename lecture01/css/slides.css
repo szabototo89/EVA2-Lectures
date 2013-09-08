@@ -1,0 +1,107 @@
+* {
+    padding:0px;
+    margin: 0px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
+
+@font-face {
+    font-family: Futura;
+    src: url("../fonts/FuturaLight.ttf")
+}
+
+@font-face {
+    font-family: Futura-Light;
+    src: url("../fonts/Futura_Light2.ttf")
+}
+
+@font-face {
+    font-family: Futura-Oblique;
+    src: url("../fonts/Futura_Oblique.ttf")
+}
+
+.alt1 {
+    background-color: white;
+}
+
+.alt2 {
+    background-color: black;
+}
+
+.slide {
+    width: 1024px;
+    height: 768px;
+    border: 1px solid black;
+}
+
+.centered {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.centered h1 {
+    margin-top: 25%;
+    font-size: 45px;
+    font-family: Futura-Oblique;
+}
+
+.centered h2 {
+    font-size: 35px;
+    margin-top: 40px;
+    font-family: Futura-Oblique;
+}
+
+.centered h3 {
+    margin-top: 60px;
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+/*.slide .title {
+    width: 100%;
+    background: blue;
+    font-size: 30px;
+    font-weight: bold;
+    color:white;
+} */
+
+.slide .content {
+    margin: 100px 30px 20px;
+}
+
+.slide .title {
+    width: 100%;
+    top: 0px;
+    position: absolute;
+    background: green;
+    color: white;
+}
+
+.slide .title > div {
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 35px;
+}
+
+.logo {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    background-image: url("../img/logo_elte_ik.jpg");
+    width: 100px;
+    height: 100px;
+}
+
+.syntaxhighlighter {
+    font-size: 17px !important;
+}
