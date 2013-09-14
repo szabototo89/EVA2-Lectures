@@ -1,0 +1,7 @@
+C:\Users\Tamas\AppData\Local\Temporary Projects\ELTE.EVA2.Lecture01\bin\Debug\ELTE.EVA2.Lecture01.exe.config
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\bin\Debug\ELTE.EVA2.Lecture01.exe.config
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\obj\Debug\ELTE.EVA2.Lecture01.csprojResolveAssemblyReference.cache
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\bin\Debug\ELTE.EVA2.Lecture01.exe
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\bin\Debug\ELTE.EVA2.Lecture01.pdb
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\obj\Debug\ELTE.EVA2.Lecture01.exe
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\obj\Debug\ELTE.EVA2.Lecture01.pdb
