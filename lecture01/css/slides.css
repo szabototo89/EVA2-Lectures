@@ -203,7 +203,7 @@ a {
     border-radius: 5px;
     bottom: 26px;
     color: #fff;
-    content: attr(title);
+    content: attr(data-tooltip);
     left: 20%;
     padding: 5px 15px;
     position: absolute;
@@ -239,6 +239,11 @@ a {
     bottom: 10px;
 }
 
+.main a {
+    color: white;
+    border: none;
+}
+
 .user-interface a {
     font-size: 15px;
     border: none;
@@ -260,3 +265,16 @@ a {
 #menu-items li {
     font-size: 15px;
 }
+
+.impress-enabled .step {
+    margin: 0;
+    opacity: 0.3;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
+}
+
+.impress-enabled .step.active { opacity: 1 }
