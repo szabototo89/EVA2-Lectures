@@ -36,36 +36,36 @@
       <div class="centered">
         <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
         <h2>2. gyakorlat - A C# programozási nyelv alapjai</h2>
-        <!--<h3><a href="mailto:sztrabi@inf.elte.hu" class="tooltip" title="sztrabi@inf.elte.hu">Szabó Tamás</a></h3>-->
+        <!--<h3><a href="mailto:sztrabi@inf.elte.hu" class="tooltip" data-tooltip="sztrabi@inf.elte.hu">Szabó Tamás</a></h3>-->
       </div>
     </div>
 
     <div class="slide" data-title="C# nyelv jellemzői">
       <ul>
-        <li>Microsoft több mint 10 éve aktívan fejleszti a .NET Framework keretrendszerrel együtt: jelenleg a <a class="tooltip" title="most szeptemberben jön a 4.5.1" href="#">.NET Framework 4.5</a>-ös és a C# 5.0-ás verziójánál tartunk</li>
+        <li>Microsoft több mint 10 éve aktívan fejleszti a .NET Framework keretrendszerrel együtt: jelenleg a <a class="tooltip" data-tooltip="most szeptemberben jön a 4.5.1" href="#">.NET Framework 4.5</a>-ös és a C# 5.0-ás verziójánál tartunk</li>
         <li>A nyelv fejlesztését az a <strong>Anders Hejlsberg</strong> vezeti, aki a <strong>Turbo Pascal</strong> és a
-          <strong><a href="http://www.typescriptlang.org/">TypeScript</a></strong> nyelv tervezője is egyben.
+          <strong><a class="tooltip" data-tooltip="A nyelvről annyit érdemes tudni, hogy a JavaScript nyelv objektum-orientált kiterjesztése, illetve a JS-től eltérően statikus típusrendszert használ" href="http://www.typescriptlang.org/">TypeScript</a></strong> nyelv tervezője is egyben.
         </li>
         <li>
           Tisztán objektum-orientált programozási nyelv. Szintaxisának alapjául a <strong>Java</strong> és a <strong>C++</strong> szolgált. Minden osztály közös őse a
-          <strong>System.Object</strong> osztály.
+          <a href="http://msdn.microsoft.com/en-us/library/system.object.aspx">System.Object</a> osztály.
         </li>
         <li>Fejlesztőknek lehetősége van eseményvezérelt, sablonvezérelt és funkcionális programozásra is</li>
-        <li>Szigorúan típusos nyelv, <a class="tooltip" title="angolul: garbage collector" href="#">automatikus szemétgyűjtés</a></li>
+        <li>Szigorúan típusos nyelv, <a class="tooltip" data-tooltip="angolul: garbage collector" href="#">automatikus szemétgyűjtés</a></li>
       </ul>
     </div>
 
     <div class="slide" data-title=".NET framework-öt támogató nyelvek">
       <ul>
-        <li>Rengeteg programozási nyelv <a class="tooltip" title="katt ide egy kisebb listáért" href="http://en.wikipedia.org/wiki/List_of_CLI_languages">támogatja</a> magát a .NET Framework-öt, de azok közül is ezeket a nyelveket érdemes megismerni:
+        <li>Rengeteg programozási nyelv <a class="tooltip" data-tooltip="katt ide egy kisebb listáért" href="http://en.wikipedia.org/wiki/List_of_CLI_languages">támogatja</a> magát a .NET Framework-öt, de azok közül is ezeket a nyelveket érdemes megismerni:
           <ul>
-            <li><a href="http://msdn.microsoft.com/en-us/library/618ayhy6.aspx" class="tooltip" title="Kicsivel több infóért katt ide ;)">C#</a></li>
-            <li><a href="http://msdn.microsoft.com/en-us/library/vstudio/2x7h1hfk.aspx" class="tooltip" title="Ne használd, csak akkor ha az életed múlik rajta!">Visual Basic.NET</a></li>
-            <li><a href="http://fsharp.org/about/index.html" class="tooltip" title="A Microsoft funkcionális nyelve, de a Scala sokkal szebb ...">F#</a></li>
-            <li><a href="http://msdn.microsoft.com/en-us/library/aa712574(v=vs.71).aspx" class="tooltip" title="Kitartóaknak és elszántaknak ajánlom">Managed C++</a></li>
+            <li><a href="http://msdn.microsoft.com/en-us/library/618ayhy6.aspx" class="tooltip" data-tooltip="Kicsivel több infóért katt ide ;)">C#</a></li>
+            <li><a href="http://msdn.microsoft.com/en-us/library/vstudio/2x7h1hfk.aspx" class="tooltip" data-tooltip="Ne használd, csak akkor ha az életed múlik rajta!">Visual Basic.NET</a></li>
+            <li><a href="http://fsharp.org/about/index.html" class="tooltip" data-tooltip="A Microsoft funkcionális nyelve, de a Scala sokkal szebb ...">F#</a></li>
+            <li><a href="http://msdn.microsoft.com/en-us/library/aa712574(v=vs.71).aspx" class="tooltip" data-tooltip="Kitartóaknak és elszántaknak ajánlom">Managed C++</a></li>
             <li>
-                <a href="http://ironpython.net/" class="tooltip" title="Remek lehetőség, ha script-elési lehetőséggel akarjuk felvértezni a programunkat">IronPython</a> /
-                <a href="http://ironruby.codeplex.com/" class="tooltip" title="Sajnos a Microsoft abbahagyta a fejlesztését :(">IronRuby</a>
+                <a href="http://ironpython.net/" class="tooltip" data-tooltip="Remek lehetőség, ha script-elési lehetőséggel akarjuk felvértezni a programunkat">IronPython</a> /
+                <a href="http://ironruby.codeplex.com/" class="tooltip" data-tooltip="Sajnos a Microsoft abbahagyta a fejlesztését :(">IronRuby</a>
             </li>
             <li>... és még persze lehetne sorolni a támogatott nyelveket ...</li>
           </ul>
@@ -88,8 +88,8 @@
             }
           </pre>
         </li>
-        <li>Mivel a nyelv tisztán objektum-orientált, ezért a programunk fő belépési pontját is (a <a href="#" class="tooltip" title="C# programoknak csak egy fő belépési pontjuk lehet, az pedig kivétel nélkül mindig a statikus Main metódus">Main</a> metódust)</li>
-        <li>A nyelv szintaxisa nagyon hasonló a <a href="#" class="tooltip" title="illetve a Java-hoz">C++</a>-hoz, ezért nem meglepő, hogy az osztályok deklarálása szinte megegyezik a másik nyelvben látottakkal. Az egyetlen különbség, hogy itt már kötelezően minden metódus és <a href="#" class="tooltip" title="a későbbiekben lesz még róla szó">tulajdonság</a> elé ki kell tenni explicite a láthatóságot. Ha ezt nem tesszük meg, akkor a fordító program <strong>private</strong>-ként fogja értelmezni.</li>
+        <li>Mivel a nyelv tisztán objektum-orientált, ezért a programunk fő belépési pontját is (a <a href="#" class="tooltip" data-tooltip="C# programoknak csak egy fő belépési pontjuk lehet, az pedig kivétel nélkül mindig a statikus Main metódus">Main</a> metódust)</li>
+        <li>A nyelv szintaxisa nagyon hasonló a <a href="#" class="tooltip" data-tooltip="illetve a Java-hoz">C++</a>-hoz, ezért nem meglepő, hogy az osztályok deklarálása szinte megegyezik a másik nyelvben látottakkal. Az egyetlen különbség, hogy itt már kötelezően minden metódus és <a href="#" class="tooltip" data-tooltip="a későbbiekben lesz még róla szó">tulajdonság</a> elé ki kell tenni explicite a láthatóságot. Ha ezt nem tesszük meg, akkor a fordító program <strong>private</strong>-ként fogja értelmezni.</li>
         <li>A "csoda" a hatodik sorban történik, ott hívjuk meg a statikus <strong>Console</strong> osztály <strong>WriteLine</strong> metódusát, ami kiírja a konzolra, hogy "<em>Hello World</em>".</li>
       </ul>
     </div>
@@ -173,10 +173,75 @@
       </ul>
     </div>
 
+    <div class="slide" data-title="foreach ciklus">
+      <ul>
+        <li>
+          Megjelent egy új vezérlési szerkezet is a nyelvben, ami az iterálható objektumok bejárásában és azok feldolgozásában segít:
+          <strong>foreach</strong> ciklus.
+        </li>
+        <li>
+          A <strong>for</strong> ciklustól eltérően, itt nem lehet megváltoztatni a ciklusmagban a bejárt objektum tartalmát (azaz
+          <strong>nem</strong> lehet hozzáadni vagy törölni elemeket a kollekcióból)! Erre a
+          <a class="tooltip" data-tooltip="mellékhatások (?)">side-effect</a>-ek elkerülésére van szükség, így biztonságosabb és megbízhatóbb programot tudunk írni.
+        </li>
+        <li>Csak olyan típusú objektumokon hívhatjuk meg a <strong>foreach</strong>-et, amik megvalósítják az <a href="http://msdn.microsoft.com/en-us/library/system.collections.ienumerable.aspx">IEnumerable</a> vagy az
+          <a href="http://msdn.microsoft.com/en-us/library/9eekhta0.aspx">IEnumerable&lt;T&gt;</a> interfészeket. Használata:
+          <pre class="brush:csharp; highlight: 2">
+            string[] words = new string[] { "Hello", " ", "World", "!" };
+            foreach (string word in words)
+            {
+              //ToUpperCase() metódus az string csupa nagybetűs változatával tér vissza
+              //Fontos megjegyezni, hogy a string-ek immutable típusúak
+              Console.Write(word.ToUpper());
+            } //Output: HELLO WORLD!
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="(+) IEnumerable és a foreach kapcsolata">
+      <ul>
+        <li>
+          Miért fontos, hogy az iterálható objektumunk megvalósítsa az <strong>IEnumerable</strong> interfészünket?
+          <pre class="brush:csharp">
+            namespace System.Collection {
+              public interface IEnumerator {
+                //Visszatér az éppen aktuális elemmel
+                object Current { get; }
+                //Igazzal tér vissza, ha még nem értünk az iteráció végére,
+                //illetve beállítja a Current tulajdonságunkat, az aktuális értékre
+                bool MoveNext();
+                //Visszaállítjuk az iterációt az eredeti állapotára
+                void Reset();
+              }
+
+              public interface IEnumerable {
+                //Visszaadja az objektumunknak az enumerátorát
+                IEnumerator GetEnumerator();
+              }
+            }
+          </pre>
+        </li>
+        <li>
+          <a class="tooltip" data-tooltip="Valljuk be őszintén, nem igazán kényelmes és elegáns módja ...">Bejárhatjuk</a> az <strong>IEnumerable</strong> objektumainkat, <strong>foreach</strong> segítsége nélkül is (lásd az előző példát):
+          <pre class="brush:csharp">
+            string[] words = new string[] { "Hello", " ", "World", "!" };
+            IEnumerable enumerator = words.GetEnumerator();
+            enumerator.Reset();
+            while (enumerator.MoveNext()) {
+              string current = (string)enumerator.Current;
+              Console.Write(current.ToUpper());
+            }
+          </pre>
+        </li>
+
+      </ul>
+    </div>
+
     <div class="slide" data-title="Metódusok">
       <ul>
         <li>
-          Mivel a nyelv tisztán objektum-orientált, ezért a névterekben nem definiálhatunk magukban <a class="tooltip" title="közös néven: metódusokat" href="#">eljárásokat/függvényeket</a>,
+          Mivel a nyelv tisztán objektum-orientált, ezért a névterekben nem definiálhatunk magukban <a class="tooltip" data-tooltip="közös néven: metódusokat" href="#">eljárásokat/függvényeket</a>,
           kötelezően az osztályokon belül kell őket megadni:
           <pre class="brush:csharp">
             class Person {
@@ -196,7 +261,7 @@
           </pre>
         </li>
         <li>Ugyanúgy, mint <strong>C++</strong> esetében is, itt sem különböztetjük meg szintaktikailag az eljárások a függvényektől. Ha eljárást akarunk írni, akkor egyszerűen a
-          <a href="http://msdn.microsoft.com/en-us/library/system.void.aspx">System.Void</a> típussal kell visszatérnünk.</li>
+          <a class="tooltip" data-tooltip="vagy röviden csak void" href="http://msdn.microsoft.com/en-us/library/system.void.aspx">System.Void</a> típussal kell visszatérnünk.</li>
       </ul>
     </div>
 
@@ -221,7 +286,7 @@
               //a category paraméter csak az értékadás bal oldalán jelenhet meg!
               //ha megsértjük ezt a megkötést, akkor a fordító hibát fog dobni
               //(ez azt is jelenti, hogy a bemenő érték nem számít: azaz csak változót adhatunk át neki,
-              //kifejezést NEM!
+              //kifejezést NEM!)
               if (age < 18) {
                 category = "teenager";
                 return true;
@@ -273,8 +338,233 @@
             //metódus meghívás szempontjából nem különbözik semmitől se
             //ugyanúgy vesszővel elválasztva, több paramétert adunk át neki
             LogMessage("Http error!", "Logging error ...");
+            LogMessage("Http error!"); //ugyanazt a metódust hívtuk meg és nem egy túlterhelt változatát
           </pre>
         </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="(+) Változó számú paraméterek">
+      <ul>
+        <li>Tegyük fel, hogy van egy túlterhelt eljárásunk:
+          <pre class="brush:csharp">
+            void LogMessage(string message) {
+              Console.WriteLine(message);
+            }
+
+            void LogMessage(string msg1, string msg2) {
+              LogMessage(msg1 + ", " + msg2);
+            }
+
+            void LogMessage(params string[] messages) {
+              foreach (string message in messages)
+                Console.Write(message + "; ");
+            }
+
+            //Az elsőnek definiált eljárás hívódik meg
+            LogMessage("Hello World");         //Output: Hello World
+            //A másodiknak definiált eljárás hívódik meg
+            LogMessage("Hello", "World");      //Output: Hello, World
+            //A harmadiknak definiált eljárás hívódik meg
+            LogMessage("Hello", "World", "!"); //Output: Hello; World; !;
+          </pre>
+        </li>
+        <li>
+          Az első kettő esetben miért nem kapunk fordítási hibát? Azért, mert a harmadik eljárásunk paraméterül egy tömböt vár (<strong>string[]</strong>), nem pedig karakterláncot (<strong>string</strong>)! Így mindig a túlterhelteljárások fognak meghívódni előbb, és csak utána a változó paraméterlistájú:
+          <pre class="brush:csharp">
+            LogMessage(new string[] { "Hello" }); //Output: Hello;
+            LogMessage(new string[] { "Hello", "World" }); //Output: Hello; World;
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Mezők használata">
+      <ul>
+        <li>Ugyanúgy, mint a <strong>C++</strong>-ban (vagy akár <strong>Java</strong>-ban), itt is lehetőség van az osztályokon belül <a class="tooltip" data-tooltip="angolul: field (ahol lehet, inkább az angol kifejezéseket használjuk)" href="#">mezőket</a> definiálni.</li>
+        <li>
+          Szintaktikai különbség, hogy a láthatóságot minden mezőnél explicite meg kell adni!
+          <pre class="brush:csharp; highlight: [2,3]">
+            public class Person {
+              public string Name; //A személyünk neve
+              public int Age; //A személyünk életkora
+            }
+          </pre>
+        </li>
+        <li>
+          A mezők definiálásakor a kezdőértéket is adhatunk nekik:
+          <pre class="brush:csharp; highlight: [2,3]">
+            public class Person {
+              public string Name = "Gipsz Jakab"; //A személyünk neve
+              public int Age = 30; //A személyünk életkora
+            }
+          </pre>
+        </li>
+        <li>
+          Illetve lehetnek statikus mezői is az osztályoknak:
+          <pre class="brush:csharp; highlight: 2">
+            public class Person {
+              public static int Count = 0; //Példányosított személyek száma
+              public string Name = "Gipsz Jakab"; //A személyünk neve
+              public int Age = 30; //A személyünk életkora
+            }
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Mezők hiányosságai">
+      <ul>
+        <li>
+          Van egy kis gond a mezőkkel: nem szeretjük őket közvetlenül használni, ugyanis a felhasználó (vagyis a mi esetünkben az osztályunkat használó programozó), úgy megváltoztathatja az objektumunkat,
+          hogy azzal a példányunk inkonzisztens, érvénytelen állapotba kerülhet, anélkül, hogy értesülnénk a hibáról (elmarad a validáció). Mi a helyzet, ebben az esetben?
+          <pre class="brush:csharp">
+            Person person = new Person();
+            //Érvénytelen állapotba kerül az objektumunk,
+            //mert szemantikailag mi nem szeretnénk olyan személyt, aki -10 éves!
+            person.Age = -10;
+          </pre>
+        </li>
+        <li>Erre megoldást <a href="#" class="tooltip" data-tooltip="értéklekérdező / értékbeállító">getter/setter</a> függvények jelentik. Ilyenekkel leginkább
+          <strong>Java</strong>-ban lehet találkozni:
+          <pre class="brush:csharp">
+            public class Person {
+              //Elrejtjük a felhasználótól a mezőket, így kívülről nem tudják használni
+              private string _Name; //Névkonvenció, hogy _ prefixxel kezdődjenek a mezők nevei
+              private int _Age;
+
+              public void SetName(string value) { _Name = value; }
+              public string GetName() { return _Name; }
+
+              public void SetAge(int value) {
+                //Ebben az esetben validálni is tudunk, ezzel próbáljuk megőrizni a mezők érvényességét
+                if (value >= 0) _Age = value;
+              }
+              public int GetAge() { return _Age; }
+            }
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Tulajdonságok használata">
+      <ul>
+        <li>
+          Az előző megoldásunk egy nagyon jó megoldás, hiszen elegánsan tudunk validálni, illetve ha kell akár transzformálni is adatokat, olyan formába, amire nekünk szükségünk van. Két baj van vele:
+          <a href="#" class="tooltip" data-tooltip="ezt persze a Java készítőit nem zavarta, helyette inkább felokosították az IDE-ket, hogy egy billentyűkombinációra legenerálja a megfelelő függvényeket ...">sokat kell gépelni és ronda</a>.
+          <pre class="brush:csharp">
+            Person person = new Person();
+            person.SetAge(-10);
+            bool isInvalid = person.GetAge() == -10; //false lesz a kifejezés értéke
+          </pre>
+        </li>
+        <li>Erre a megoldásra a nyelv készítői egy szintaktikai elemet emeltek a nyelvbe: a <a class="tooltip" data-tooltip="angolul: property">tulajdonságokat</a>:
+          <pre class="brush:csharp; highlight: [6, 12]">
+            public class Person {
+              private string _Name; //úgynevezett backfield-eknek nevezzük ezeket a mezőket
+              private int _Age;
+
+              //Névhez tartozó tulajdonság
+              public string Name {
+                set { _Name = value; }  //setter metódus
+                get { return _Name; }   //getter metódus
+              }
+
+              //Életkorhoz tartozó tulajdonság
+              public int Age {
+                set {
+                  if (value >= 0) _Age = value; //ugyanígy megtörténik a validáció
+                }
+                get { return _Age; }
+              }
+            }
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Tulajdonságok használata">
+      <ul>
+        <li>
+          Habár úgy viselkednek, mint a metódusok, használni mégis úgy kell őket, mint egyszerű mezőket. De fontos megjegyezni, hogy a nyelv
+          <strong>property</strong>-ként tartja számon, szóval se nem metódusok, se nem mezők!
+          <pre class="brush:csharp">
+            Person person = new Person();
+            person.Age = -10; //ilyenkor meghívódik a Person.Age tulajdonság set ága
+
+            //false lesz megint az értéke, mert nem közvetlenül a mezőt állítjuk be
+            //hanem egy setter eljáráson keresztül állítjuk be a személy életkorát,
+            //ennek köszönhetően lefut a saját validációnk
+            bool isInvalid = person.Age == -10;
+          </pre>
+        </li>
+        <li>A tulajdonságok használatának segítségével, kódunk olvashatóbb marad, illetve kevesebb kódot is kell írnunk (<a href="http://en.wikipedia.org/wiki/Boilerplate_code">boilerplate code</a>).
+          <strong>WPF</strong>-nél még fontosabb jelentőségük lesz.
+        </li>
+        <li>Lehetőségünk van arra is, hogy a getter/setter metódusok láthatóságát külön-külön megadhassuk az egyes tulajdonságoknak, illetve nem is kötelező mindkettő metódust definiálni: lehet csak read-only (csak
+          <strong>get</strong> ág van), write-only (csak <strong>set</strong> ág van), illetve mindkettő (megvan a <strong>get</strong> és <strong>set</strong> ág is).
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Tulajdonságok használata">
+      <ul>
+        <li>
+          Szóval a láthatóságra még visszatérve: alakítsuk át a <strong>Person</strong> osztályunkat <strong>immutable</strong>-re:
+          <pre class="brush:csharp; highlight: [12, 17]">
+            public class Person {
+              private string _Name;
+              private int _Age;
+
+              //Person osztály konstruktora
+              public Person(string name, int age) {
+                Name = name;  //viszont az osztályon belül még látjuk a tulajdonságok setter metódusát!
+                Age = age;
+              }
+
+              public string Name {
+                private set { _Name = value; } //mostmár csak lekérdezni lehet, beállítani nem
+                get { return _Name; }
+              }
+
+              public int Age {
+                private set { _Age = value; }
+                get { return _Age; }
+              }
+            }
+
+            Person p = new Person("Gipsz Jakab", 24);
+            p.Age = -10; //fordítási hiba, az Age setter metódusa private láthatóságú!
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Automatikus tulajdonságok">
+      <ul>
+        <li>
+          Mégis van itt egy kisebb probléma: még mindig sokat kell gépelnünk ... Ezt a nyelv készítői is észrevehették, ugyanis bevezették az
+          <a href="#" data-tooltip="angolul: automatic properties" class="tooltip">automatikus tulajdonságokat</a>: célja, hogy a
+          privát <strong>backfield</strong>-eket a fordító majd automatikusan generálja nekünk.
+          <pre class="brush:csharp; highlight: [9,11]">
+            public class Person {
+
+              public Person(string name, int age) {
+                Name = name;  //viszont az osztályon belül még látjuk a tulajdonságok setter metódusát!
+                Age = age;
+              }
+
+              //a fordító automatikusan kigenerálja a tulajdonságokhoz a megfelelő mezőket
+              public string Name { private set; get; }
+
+              public int Age { private set; get; }
+            }
+
+            Person p = new Person("Gipsz Jakab", 24);
+            p.Age = -10; //Használatában semmi változást nem lehet megfigyelni kívülről!
+          </pre>
+        </li>
+        <li>Ezzel a megoldással már tényleg sokkal olvashatóbb és áttekinthetőbb lesz a kód.</li>
       </ul>
     </div>
     

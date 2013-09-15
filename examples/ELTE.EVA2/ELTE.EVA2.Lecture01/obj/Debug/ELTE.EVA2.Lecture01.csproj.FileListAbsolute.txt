@@ -5,3 +5,9 @@ E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\
 E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\bin\Debug\ELTE.EVA2.Lecture01.pdb
 E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\obj\Debug\ELTE.EVA2.Lecture01.exe
 E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\obj\Debug\ELTE.EVA2.Lecture01.pdb
+e:\Development\Projects\Web\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\bin\Debug\ELTE.EVA2.Lecture01.exe.config
+e:\Development\Projects\Web\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\obj\Debug\ELTE.EVA2.Lecture01.exe
+e:\Development\Projects\Web\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\obj\Debug\ELTE.EVA2.Lecture01.pdb
+e:\Development\Projects\Web\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\bin\Debug\ELTE.EVA2.Lecture01.exe
+e:\Development\Projects\Web\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\bin\Debug\ELTE.EVA2.Lecture01.pdb
+e:\Development\Projects\Web\EVA2-Lectures\examples\ELTE.EVA2\ELTE.EVA2.Lecture01\obj\Debug\ELTE.EVA2.Lecture01.csprojResolveAssemblyReference.cache
