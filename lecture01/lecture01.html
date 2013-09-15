@@ -14,7 +14,6 @@
   <script type="slide-template" id="main">
     <div class="step slide main" data-x="$index*1500$">
       $content$
-      <div class="logo" />
     </div>
   </script>
 
@@ -23,115 +22,294 @@
       <div class="title">
         <div>$title$</div>
       </div>
+      <div class="subtitle">
+        <div>2 - Nyelvi alapok</div>
+      </div>
       <div class="content">$content$</div>
-      <div class="logo" />
     </div>
   </script>
 
 </head>
-<body id="impress">
-  <div class="slide" data-template="main">
-    <div class="centered">
-      <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
-      <h2>1. gyakorlat - Bevezetés</h2>
-      <h3>Szabó Tamás (<a href="sztrabi@inf.elte.hu">sztrabi@inf.elte.hu</a>)</h3>
+<body>
+  <div id="impress">
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
+        <h2>2. gyakorlat - A C# programozási nyelv alapjai</h2>
+        <!--<h3><a href="mailto:sztrabi@inf.elte.hu" class="tooltip" title="sztrabi@inf.elte.hu">Szabó Tamás</a></h3>-->
+      </div>
     </div>
-  </div>
-  <div class="slide" data-title="Órai követelmények">
-    <ul>
-      <li>A gyakorlatra járás nem kötelező (o.O)</li>
-      <li>A félév során 3 beadandót kell elkészíteni és 1 zárthelyi dolgozatot kell megírni</li>
-    </ul>
-  </div>
-  <div class="slide" data-title="Mire lesz szükségünk?" data-template="standard">
+
+    <div class="slide" data-title="C# nyelv jellemzői">
       <ul>
-        <li>Visual Studio 2012/2013 Professional (vagy Ultimate)</li>
-        <li>és egy kis kitartásra ... ;)</li>
+        <li>Microsoft több mint 10 éve aktívan fejleszti a .NET Framework keretrendszerrel együtt: jelenleg a <a class="tooltip" title="most szeptemberben jön a 4.5.1" href="#">.NET Framework 4.5</a>-ös és a C# 5.0-ás verziójánál tartunk</li>
+        <li>A nyelv fejlesztését az a <strong>Anders Hejlsberg</strong> vezeti, aki a <strong>Turbo Pascal</strong> és a
+          <strong><a href="http://www.typescriptlang.org/">TypeScript</a></strong> nyelv tervezője is egyben.
+        </li>
+        <li>
+          Tisztán objektum-orientált programozási nyelv. Szintaxisának alapjául a <strong>Java</strong> és a <strong>C++</strong> szolgált. Minden osztály közös őse a
+          <strong>System.Object</strong> osztály.
+        </li>
+        <li>Fejlesztőknek lehetősége van eseményvezérelt, sablonvezérelt és funkcionális programozásra is</li>
+        <li>Szigorúan típusos nyelv, <a class="tooltip" title="angolul: garbage collector" href="#">automatikus szemétgyűjtés</a></li>
       </ul>
-  </div>
+    </div>
 
-  <div class="slide" data-title="C# és a .NET Framework története">
-  </div>
+    <div class="slide" data-title=".NET framework-öt támogató nyelvek">
+      <ul>
+        <li>Rengeteg programozási nyelv <a class="tooltip" title="katt ide egy kisebb listáért" href="http://en.wikipedia.org/wiki/List_of_CLI_languages">támogatja</a> magát a .NET Framework-öt, de azok közül is ezeket a nyelveket érdemes megismerni:
+          <ul>
+            <li><a href="http://msdn.microsoft.com/en-us/library/618ayhy6.aspx" class="tooltip" title="Kicsivel több infóért katt ide ;)">C#</a></li>
+            <li><a href="http://msdn.microsoft.com/en-us/library/vstudio/2x7h1hfk.aspx" class="tooltip" title="Ne használd, csak akkor ha az életed múlik rajta!">Visual Basic.NET</a></li>
+            <li><a href="http://fsharp.org/about/index.html" class="tooltip" title="A Microsoft funkcionális nyelve, de a Scala sokkal szebb ...">F#</a></li>
+            <li><a href="http://msdn.microsoft.com/en-us/library/aa712574(v=vs.71).aspx" class="tooltip" title="Kitartóaknak és elszántaknak ajánlom">Managed C++</a></li>
+            <li>
+                <a href="http://ironpython.net/" class="tooltip" title="Remek lehetőség, ha script-elési lehetőséggel akarjuk felvértezni a programunkat">IronPython</a> /
+                <a href="http://ironruby.codeplex.com/" class="tooltip" title="Sajnos a Microsoft abbahagyta a fejlesztését :(">IronRuby</a>
+            </li>
+            <li>... és még persze lehetne sorolni a támogatott nyelveket ...</li>
+          </ul>
+        </li>
 
-  <div class="slide" data-title=".NET framework-öt támogató nyelvek">
-    <ul>
-      <li><a href="http://msdn.microsoft.com/en-us/library/618ayhy6.aspx">C#</a></li>
-      <li><a href="http://msdn.microsoft.com/en-us/library/vstudio/2x7h1hfk.aspx">Visual Basic.NET</a></li>
-      <li><a href="http://fsharp.org/about/index.html">F#</a></li>
-      <li>Managed C++</li>
-      <li>IronPython/IronRuby</li>
-    </ul>
-  </div>
+      </ul>
+    </div>
 
-  <div class="slide" data-title="Demo - Hello World">
-    <pre class="brush:csharp; highlight: 6">
-      //Definiálunk egy új osztályt
-      class Program {
-        //A statikus Main metódus lesz a belépési pontja a programunknak
-        public static void Main(params string[] args) {
-          //Kiírjuk a console-ra a "Hello World" szöveget
-          Console.WriteLine("Hello World!");
-        }
-      }
-    </pre>
+    <div class="slide" data-title="Demo - Hello World">
+      <ul>
+        <li>Készítsük el gyorsan a kötelező <strong>Hello World</strong> programunkat:
+          <pre class="brush:csharp; highlight: 6">
+            //Definiálunk egy új osztályt
+            class Program {
+              //A statikus Main metódus lesz a belépési pontja a programunknak
+              public static void Main(string[] args) {
+                //Kiírjuk a console-ra a "Hello World" szöveget
+                Console.WriteLine("Hello World!");
+              }
+            }
+          </pre>
+        </li>
+        <li>Mivel a nyelv tisztán objektum-orientált, ezért a programunk fő belépési pontját is (a <a href="#" class="tooltip" title="C# programoknak csak egy fő belépési pontjuk lehet, az pedig kivétel nélkül mindig a statikus Main metódus">Main</a> metódust)</li>
+        <li>A nyelv szintaxisa nagyon hasonló a <a href="#" class="tooltip" title="illetve a Java-hoz">C++</a>-hoz, ezért nem meglepő, hogy az osztályok deklarálása szinte megegyezik a másik nyelvben látottakkal. Az egyetlen különbség, hogy itt már kötelezően minden metódus és <a href="#" class="tooltip" title="a későbbiekben lesz még róla szó">tulajdonság</a> elé ki kell tenni explicite a láthatóságot. Ha ezt nem tesszük meg, akkor a fordító program <strong>private</strong>-ként fogja értelmezni.</li>
+        <li>A "csoda" a hatodik sorban történik, ott hívjuk meg a statikus <strong>Console</strong> osztály <strong>WriteLine</strong> metódusát, ami kiírja a konzolra, hogy "<em>Hello World</em>".</li>
+      </ul>
+    </div>
 
-  </div>
-
-  <div class="slide" data-title="Vezérlési szerkezetek">
-    <ul>
-      <li>Szekvencia
-        <pre class="brush:csharp">
-          Method_1();
-          Method_2();
-          ...
-          Method_n();
-        </pre>
-      </li>
-
-      <li>Elágazás
-        <pre class="brush:csharp">
-          if (/* feltétel */) {
-            //igaz ág
-          }
-          else if (/* feltétel */) {
-            //hamis ág
-          }
-          else {
-            //hamis ág
-          }
-        </pre>
-      </li>
-
-      <li>Többszörös elágazás
-        <pre class="brush:csharp">
-          switch (/*felsorolható típusú vagy diszkrét értékű objektum*/) {
-            case pattern_0:
-              method_0();
-              break;
+    <div class="slide" data-title="Vezérlési szerkezetek">
+      <ul>
+        <li>Szekvencia:
+          <pre class="brush:csharp">
+            Method_1();
             ...
-            case pattern_n:
-              method_n();
-              break;
-            default:
-              method_default();
-              break;
-          }
-        </pre>
-      </li>
-    </ul>
+            Method_n();
+          </pre>
+        </li>
+
+        <li>Elágazás:
+          <pre class="brush:csharp">
+            if (/* feltétel */) {
+              //igaz ág
+            }
+            else if (/* feltétel */) {
+              //hamis ág
+            }
+            else {
+              //hamis ág
+            }
+          </pre>
+        </li>
+
+        <li>Többszörös elágazás:
+          <pre class="brush:csharp">
+            switch (/*felsorolható típusú vagy diszkrét értékű objektum*/) {
+              case pattern_0:
+                method_0();
+                break;
+              ...
+              case pattern_n:
+                method_n();
+                break;
+              default:
+                method_default();
+                break;
+            }
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Vezérlési szerkezetek">
+      <ul>
+        <li>Előltesztelő ciklus (<strong>while</strong>):
+          <pre class="brush:csharp">
+            while (/* feltétel */) {
+              /* ... ciklusmag ... */
+            }
+          </pre>
+        </li>
+
+        <li>Hátultesztelő ciklus (<strong>do-while</strong>):
+          <pre class="brush:csharp">
+            do {
+              /* ... ciklusmag ... */
+            } while (/* feltétel */);
+          </pre>
+        </li>
+
+        <li><strong>for</strong> ciklus:
+          <pre class="brush:csharp">
+            for (/* inicializációs rész */; /* */; /* */) {
+              /* ... ciklusmag ... */
+            }
+          </pre>
+        </li>
+
+        <li><strong>foreach</strong> ciklus:
+          <pre class="brush:csharp">
+            foreach (/*ciklusváltozó típusa*/ /*ciklusváltozó neve*/ in /*iterálandó kifejezés*/) {
+              /* ... ciklusmag ... */
+            }
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Metódusok">
+      <ul>
+        <li>
+          Mivel a nyelv tisztán objektum-orientált, ezért a névterekben nem definiálhatunk magukban <a class="tooltip" title="közös néven: metódusokat" href="#">eljárásokat/függvényeket</a>,
+          kötelezően az osztályokon belül kell őket megadni:
+          <pre class="brush:csharp">
+            class Person {
+              //a láthatóságot (ha csak nem private), mindig meg kell adni!
+              public void Foo(/* paraméterlista */) {
+                /* a metódus törzse ... */
+              }
+
+              public int Foo2() {
+                /* a függvény törzse ... */
+                //függvényeknél minden esetben meg kell hívni a return-t,
+                //ha ezt nem tesszük meg, akkor fordítási hibát kapunk: a cél,
+                //hogy minél biztonságosabb kódot írjunk
+                return 0;
+              }
+            }
+          </pre>
+        </li>
+        <li>Ugyanúgy, mint <strong>C++</strong> esetében is, itt sem különböztetjük meg szintaktikailag az eljárások a függvényektől. Ha eljárást akarunk írni, akkor egyszerűen a
+          <a href="http://msdn.microsoft.com/en-us/library/system.void.aspx">System.Void</a> típussal kell visszatérnünk.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Paraméterátadási lehetőségek">
+      <ul>
+        <li>Alapértelmezett paraméterátadás:
+          <pre class="brush:csharp; highlight: [6, 9]">
+            void PrintData(string name, int age) {
+              Console.WriteLine("Name: " + name + "(" + age + ")");
+              //Console.WriteLine("Name: {0} ({1})", name, age);
+            }
+
+            PrintData("Gipsz Jakab", 10);
+            //lehetőség van név szerinti paraméterátadásra is
+            //(amit az ADA már elég régóta támogat, míg a C++ nem ...)
+            PrintData(age: 10, name: "Gipsz Jakab");
+          </pre>
+        </li>
+        <li>Kimenő érték szerinti (<strong>out</strong>):
+          <pre class="brush:csharp; highlight: 19">
+            bool TryGetCategoryByAge(int age, out string category) {
+              //a category paraméter csak az értékadás bal oldalán jelenhet meg!
+              //ha megsértjük ezt a megkötést, akkor a fordító hibát fog dobni
+              //(ez azt is jelenti, hogy a bemenő érték nem számít: azaz csak változót adhatunk át neki,
+              //kifejezést NEM!
+              if (age < 18) {
+                category = "teenager";
+                return true;
+              }
+              else if (age >= 18) {
+                category = "adult";
+                return true;
+              }
+              return false;
+            }
+
+            string category = string.Empty; //lehet használni a category = ""; is
+            //a nyelv szintaxisa megköveteli, hogy explicite kiírjuk metódushíváskor az out kulcsszót
+            if (TryGetCategoryByAge(12, out category))
+              Console.WriteLine("Category: " + category);
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Paraméterátadási lehetőségek">
+      <ul>
+        <li>Cím szerinti paraméterátadás (<strong>ref</strong>):
+          <pre class="brush:csharp; highlight: 10">
+           //klasszikus példa a cím szerinti paraméterátadásra
+           void Swap(ref string obj1, ref string obj2) {
+             string temp = obj1;
+             obj1 = obj2;
+             obj2 = temp;
+           }
+
+           string a = "Hello";
+           string b = "World";
+           Swap(ref a, ref b);  //ugyanúgy mint az out-nál, itt is kötelező kitenni a ref kulcsszót
+           Console.WriteLine(a, b); //Output: World Hello
+          </pre>
+        </li>
+        <li>Változó számú paraméter átadása (<strong>params</strong>):
+          <pre class="brush:csharp; highlight: 12">
+            //a fordító a paramétereket egy tömbbe gyűjti, majd ezt a tömböt adja át
+            //a metódusnak: ezzel a technikával egyszerűen és elegánsan lehet feldolgozni
+            //a bemenő adatokat
+            public void LogMessage(params string[] messages) {
+              foreach (string message in messages) {
+                Console.WriteLine("Logged: " + message);
+              }
+            }
+
+            //metódus meghívás szempontjából nem különbözik semmitől se
+            //ugyanúgy vesszővel elválasztva, több paramétert adunk át neki
+            LogMessage("Http error!", "Logging error ...");
+          </pre>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="slide" data-title="Ajánlott szakirodalom">
+      <ul>
+        <li><h1>Angol nyelvű könyvek</h1>
+          <ul>
+            <li>Andrew Troelsen - Pro C# 5.0 and the .NET 4.5 Framework (<a href="http://www.apress.com/microsoft/c/9781430242338">link</a>)</li>
+            <li>Matthew MacDonald - Pro WPF 4.5 in C# (<a href="http://www.apress.com/microsoft/c/9781430243656">link</a>)</li>
+            <li>Mohammad Rahman - Expert C# 5.0 with the .NET 4.5 Framework (<a href="http://www.apress.com/microsoft/c/9781430248606">link</a>)</li>
+          </ul>
+        </li>
+        <li><h1>Magyar nyelvű könyv(ek)</h1>
+          <ul>
+            <li>Reiter István - C# jegyzet (<a href="https://devportal.hu/Fajlok/Download.ashx?shareid=1&path=Konyvek%5ccsharp+jegzyet%5ccsharp.pdf">link</a>)</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>Köszönöm a figyelmet!</h1>
+      </div>
+    </div>
+
   </div>
 
-  <div class="slide" data-title="Ajánlott szakirodalom">
-    <h1>Angol nyelvű könyvek</h1>
-    <ul>
-      <li>Andrew Troelsen - Pro C# 5.0 and the .NET 4.5 Framework (<a href="http://www.apress.com/microsoft/c/9781430242338">link</a>)</li>
-      <li>Matthew MacDonald - Pro WPF 4.5 in C# (<a href="http://www.apress.com/microsoft/c/9781430243656">link</a>)</li>
-      <li>Mohammad Rahman - Expert C# 5.0 with the .NET 4.5 Framework (<a href="http://www.apress.com/microsoft/c/9781430248606">link</a>)</li>
-    </ul>
-    <h1>Magyar nyelvű könyv(ek)</h1>
-    <ul>
-      <li>Reiter István - C# jegyzet (<a href="https://devportal.hu/Fajlok/Download.ashx?shareid=1&path=Konyvek%5ccsharp+jegzyet%5ccsharp.pdf">link</a>)</li>
-    </ul>
+  <div class="user-interface" id="info">
+    <a href="http://sztrabi.web.elte.hu">Szabó Tamás</a> © <a href="http://people.inf.elte.hu/groberto/elte_eva1/index.html">Eseményvezérelt alkalmazások fejlesztése 2</a>
+  </div>
+
+  <div class="user-interface">
+    <div id="show-menu">Tartalomjegyzék ></div>
+    <ol id="menu-items" />
   </div>
   <script src="js/impress.js"></script>
 </body>
