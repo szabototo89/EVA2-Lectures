@@ -36,7 +36,7 @@ namespace ELTE.EVA2.Lecture01
 			LogMessage(new[] { "Hello" });
 			LogMessage(new[] { "Hello", "World" });
 
-			string[] words = new string[] { "Hello", " ", "World", "!" };
+			var words = new []{ "Hello", " ", "World", "!" };
 	        IEnumerator enumerator = words.GetEnumerator();
 			enumerator.Reset();
 	        while (enumerator.MoveNext())

@@ -1,0 +1,7 @@
+2. gyakorlat: 
+	- Enums
+	- Abstract, sealed, partial class
+	- Generic type
+	- Delegates, events
+	- Lambda functions
+	- var, dynamic, object

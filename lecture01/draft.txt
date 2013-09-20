@@ -1,0 +1,6 @@
+C# nyelv alapjai 
+	- Vezérlési szerkezetek (szekvencia, elágazás (if, switch), ciklus (elől-/hátultesztelős, for, foreach))
+	- Alap típusok (osztályhiearchia), referenciatípus, értéktípus
+	- Metódusok (paraméterátadás módja)
+	- Interfész, osztály, enumeráció (interface, class/struct, enum), névterek
+	- Osztályokról bővebben: láthatóság, öröklődés, tulajdonságok (properties), absztrakt (abstract), lezárt (sealed), parciális (partial)
