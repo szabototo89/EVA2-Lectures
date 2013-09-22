@@ -36,25 +36,37 @@
       <div class="centered">
         <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
         <h2>3. gyakorlat - Objektumorientált programozás eszközei a C# nyelvben</h2>
-        <!--<h3><a href="mailto:sztrabi@inf.elte.hu" class="tooltip" data-tooltip="sztrabi@inf.elte.hu">Szabó Tamás</a></h3>-->
       </div>
     </div>
 
-    <div class="slide" data-title="Óra tematika - Miről is lesz szó?">
+    <div class="slide" data-title="Mai óra tematikája - Miről is lesz szó?">
       <ul>
         <li>Ezen az órán elkezdjük körbejárni a <a href="#" class="tooltip" data-tooltip="persze ezzel még csak a felszínt kapargattuk ...">megmaradt</a> nyelvi elemeket.</li>
         <li>Felsorolható típusok - <a href="#" class="tooltip" data-tooltip="enumeration">enumerációk</a></li>
         <li>Objektumorientált programozást támogató újabb nyelvi elemek: <a href="#" class="tooltip" data-tooltip="abstract class">absztrakt osztályok</a>, <a href="#" class="tooltip" data-tooltip="sealed class">lezárt osztályok</a>, <a href="#" class="tooltip" data-tooltip="partial class">parciális osztályok</a>, illetve <a href="#" class="tooltip" data-tooltip="static class">statikus osztályok</a>.</li>
         <li>Szót ejtünk még a <a href="#" class="tooltip" data-tooltip="generic">generikus</a> típusokról, metódusokról és arról, hogy miért érdemes őket használni</li>
         <li>Tömbök, <a href="#" class="tooltip" data-tooltip="collections">gyűjtemények</a> használata: <strong>List&lt;T&gt;</strong>, <strong>Dictionary&lt;TKey, TValue&gt;</strong> stb.</li>
-        <li><a href="#" class="tooltip" data-tooltip="Language-Integrated Query">LINQ</a> használata - miért jó? miért szeretjük használni?</li>
+        <li><a href="#" class="tooltip" data-tooltip="Language-Integrated Query">LINQ</a> alapjai - miért jó? miért szeretjük használni?</li>
         <li><a href="#" class="tooltip" data-tooltip="delegates">Delegáltak</a>, <a href="#" class="tooltip" data-tooltip="events">események</a> és &lambda;-függvények</li>
       </ul>
     </div>
 
     <div class="slide" data-title="Felsorolható típusok - Enumerációk">
       <ul>
-        <li>A</li>
+        <li>
+          <pre class="brush:csharp">
+            enum EmployeeType {
+              Intern,
+              Graduated,
+              Manager,
+              VicePresident
+            }
+
+            //Használata nagyon egyszerű: 
+            EmployeeType employee = EmployeeType.Manager;
+            //NEM: employee = Manager; - fordítási hibát kapunk!
+          </pre>
+        </li>
       </ul>
     </div>
 

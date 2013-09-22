@@ -5,3 +5,5 @@
 	- Delegates, events
 	- Lambda functions
 	- var, dynamic, object
+	- extensions methods
+	- LINQ
