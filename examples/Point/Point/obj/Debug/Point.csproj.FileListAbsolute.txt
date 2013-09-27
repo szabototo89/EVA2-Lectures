@@ -1,0 +1,6 @@
+E:\Development\Projects\C#\EVA2-Lectures\examples\Point\Point\bin\Debug\Point.exe.config
+E:\Development\Projects\C#\EVA2-Lectures\examples\Point\Point\obj\Debug\Point.csprojResolveAssemblyReference.cache
+E:\Development\Projects\C#\EVA2-Lectures\examples\Point\Point\bin\Debug\Point.exe
+E:\Development\Projects\C#\EVA2-Lectures\examples\Point\Point\bin\Debug\Point.pdb
+E:\Development\Projects\C#\EVA2-Lectures\examples\Point\Point\obj\Debug\Point.exe
+E:\Development\Projects\C#\EVA2-Lectures\examples\Point\Point\obj\Debug\Point.pdb
