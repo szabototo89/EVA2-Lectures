@@ -301,4 +301,12 @@ a {
     transition:         opacity 1s;
 }
 
+.slide svg {
+    margin-left: 65px;
+}
+
+.slide svg tspan {
+    font-size: 7px;
+}
+
 .impress-enabled .step.active { opacity: 1 }

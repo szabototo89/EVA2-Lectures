@@ -35,396 +35,633 @@
     <div class="slide" data-template="main">
       <div class="centered">
         <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
-        <h2>3. gyakorlat - Objektumorientált programozás eszközei a C# nyelvben</h2>
+        <h2>4. gyakorlat - LINQ és WinForms alapok</h2>
       </div>
     </div>
 
 
     <div class="slide" data-title="Mai óra tematikája - Miről is lesz szó?">
       <ul>
-        <li>Ezen az órán elkezdjük körbejárni a <a href="#" class="tooltip" data-tooltip="persze ezzel még csak a felszínt kapargattuk ...">megmaradt</a> nyelvi elemeket.</li>
-        <li>Felsorolható típusok - <a href="#" class="tooltip" data-tooltip="enumeration">enumerációk</a></li>
-        <li>Objektumorientált programozást támogató újabb nyelvi elemek: <a href="#" class="tooltip" data-tooltip="abstract class">absztrakt osztályok</a>, <a href="#" class="tooltip" data-tooltip="sealed class">lezárt osztályok</a>, <a href="#" class="tooltip" data-tooltip="partial class">parciális osztályok</a>, illetve <a href="#" class="tooltip" data-tooltip="static class">statikus osztályok</a>.</li>
-        <li>Szót ejtünk még a <a href="#" class="tooltip" data-tooltip="generic">generikus</a> típusokról, metódusokról és arról, hogy miért érdemes őket használni</li>
-        <li>Tömbök használata (a gyűjtemények egy másik órára)</li>
-        <li><a href="#" class="tooltip" data-tooltip="delegates">Delegáltak</a>, <a href="#" class="tooltip" data-tooltip="events">események</a> és &lambda;-függvények</li>
-        <li>Ha valaki nagyon unatkozik, az megpróbálhatja elérni a 6900 pontot: <a href="http://helloworldquiz.com/">http://helloworldquiz.com/</a></li>
+        <li>Még mindig maradtak nyelvi elemek, amikről nem volt szó, pedig jó tudni róluk: <strong>var</strong>, anonim osztályok, gyűjteményekről még pár szó ...</li>
+        <li>Meg fogunk ismerkedni a LINQ-val is és remélem választ kapunk a következő kérdésekre: mire való? miért jó használni? hogyan működik?</li>
+        <li>Megismerkedünk a <a href="http://msdn.microsoft.com/en-us/library/dd30h2yb.aspx">Microsoft WinForms</a> technológiájával, illetve a mögötte húzódó alapelvekkel: hogyan kellene szépen és elegánsan használni?</li>
+        <li>Ha marad idő, akkor pedig a gyakorlat második felében összedobunk egy "egyszerű" nyilvántartó alkalmazást követve az alapelveket ...</li>
       </ul>
     </div>
 
-    <div class="slide" data-title="Tömbök">
-      <ul>
-        <li>Munkánk során (az esetek nagy részében adatokat) fogunk manipulálni, transzformálni valamilyen módon. Ezeket az adatokat, valamilyen módon tárolnunk kell a memóriában úgy, hogy azokat egyszerűen el tudjuk érni és használni. </li>
-        <li>
-          Egyszerű a helyzetünk, ha az értékeinket valamilyen tömbben tároljuk. C++-tól eltérően a <a href="#" class="tooltip" data-tooltip="pff... nem igazán magyaros: managed">menedzselt</a> nyelvekben sokkal elegánsabban tudjuk kezelni a tömböket: 
-          <pre class="brush:csharp">
-            //amikor példányosítjuk, akkor már inicializálhatjuk is, hogy milyen elemek kerüljenek bele
-            int[] a = new int[] { 1, 2, 3, 4 }; 
-            int[] b = new int[10]; //egy 10-elemű tömböt szeretnénkű
-            //ha a fordító ki tudja következtetni, hogy milyen típusú 
-            //a tömbünk, akkor még a típust sem kell megadnunk a példányosításnál
-            int[] c = new[] { 1, 2, 3, 4 };
-            Console.WriteLine(a[0]);
-            foreach (int number in a) {
-              Console.WriteLine("number: {0}", number);  
-            }
-            int[][] identicalMatrix = new int[][]  //ezt úgy nevezzük, hogy jagged array
-            {
-                new[] {1, 0, 0},
-                new[] {0, 1, 0},
-                new[] {0, 0, 1},
-            };  
-
-            Console.WriteLine(idencticalMatrix[0][1]); //Output: 0
-
-            int[,] matrix = new int[3,3]; //multi-dimensional matrix
-            Console.WriteLine(matrix[0, 1]); //Output: 0
-          </pre> 
-        </li>
-      </ul>
+    <div class="slide" data-title="Pár szót a pozicionálásról">
+       <span>
+        <svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+             xmlns:cc="http://creativecommons.org/ns#"
+             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+             xmlns:svg="http://www.w3.org/2000/svg"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+             xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+             width="700"
+             height="516.30054"
+             id="control"
+             version="1.1"
+             inkscape:version="0.48.4 r9939"
+             sodipodi:docname="control-margin_plain.svg">
+            <sodipodi:namedview
+               id="base"
+               pagecolor="#ffffff"
+               bordercolor="#666666"
+               borderopacity="1.0"
+               inkscape:pageopacity="0.0"
+               inkscape:pageshadow="2"
+               inkscape:zoom="0.5"
+               inkscape:cx="945.43978"
+               inkscape:cy="245.25869"
+               inkscape:document-units="px"
+               inkscape:current-layer="layer1"
+               showgrid="false"
+               inkscape:window-width="1920"
+               inkscape:window-height="1017"
+               inkscape:window-x="-8"
+               inkscape:window-y="-8"
+               inkscape:window-maximized="1"
+               fit-margin-top="0"
+               fit-margin-left="0"
+               fit-margin-right="0"
+               fit-margin-bottom="0" />
+            <defs
+               id="defs4">
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mend"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mend">
+                <path
+                   transform="scale(-0.6,-0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+                   id="path3802"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mstart"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mstart">
+                <path
+                   transform="scale(0.6,0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+                   id="path3799"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Lstart"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Lstart">
+                <path
+                   transform="matrix(1.1,0,0,1.1,1.1,0)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+                   id="path3793"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mstart-1"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mstart">
+                <path
+                   transform="scale(0.6,0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+                   id="path3799-7"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mend-4"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mend">
+                <path
+                   transform="scale(-0.6,-0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+                   id="path3802-0"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mstart-4"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mstart">
+                <path
+                   transform="scale(0.6,0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+                   id="path3799-8"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mend-8"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mend">
+                <path
+                   transform="scale(-0.6,-0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+                   id="path3802-2"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mstart6"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mstart6">
+                <path
+                   transform="scale(0.6,0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4769"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2MendI"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2MendI">
+                <path
+                   transform="scale(-0.6,-0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4772"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mstarty"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mstarty">
+                <path
+                   transform="scale(0.6,0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4775"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mendl"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mendl">
+                <path
+                   transform="scale(-0.6,-0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4778"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mstartz"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mstartz">
+                <path
+                   transform="scale(0.6,0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4781"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2MendW"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2MendW">
+                <path
+                   transform="scale(-0.6,-0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4784"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mstarto"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mstarto">
+                <path
+                   transform="scale(0.6,0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4787"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2MendO"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2MendO">
+                <path
+                   transform="scale(-0.6,-0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4790"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mstartr"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mstartr">
+                <path
+                   transform="scale(0.6,0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4793"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2MendV"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2MendV">
+                <path
+                   transform="scale(-0.6,-0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4796"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mstart6N"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mstart6N">
+                <path
+                   transform="scale(0.6,0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4799"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2MendOT"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2MendOT">
+                <path
+                   transform="scale(-0.6,-0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4802"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mstarta"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mstarta">
+                <path
+                   transform="scale(0.6,0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4805"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2Mend3"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2Mend3">
+                <path
+                   transform="scale(-0.6,-0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4808"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2MstartI"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2MstartI">
+                <path
+                   transform="scale(0.6,0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4811"
+                   inkscape:connector-curvature="0" />
+              </marker>
+              <marker
+                 style="overflow:visible"
+                 id="Arrow2MendL"
+                 refX="0"
+                 refY="0"
+                 orient="auto"
+                 inkscape:stockid="Arrow2MendL">
+                <path
+                   transform="scale(-0.6,-0.6)"
+                   d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round"
+                   id="path4814"
+                   inkscape:connector-curvature="0" />
+              </marker>
+            </defs>
+            <metadata
+               id="metadata7">
+              <rdf:RDF>
+                <cc:Work
+                   rdf:about="">
+                  <dc:format>image/svg+xml</dc:format>
+                  <dc:type
+                     rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                  <dc:title></dc:title>
+                </cc:Work>
+              </rdf:RDF>
+            </metadata>
+            <g
+               id="layer1"
+               inkscape:groupmode="layer"
+               inkscape:label="Layer 1"
+               transform="translate(-1.0000078,-535.35769)">
+              <g
+                 id="g4946"
+                 transform="matrix(2.6217229,0,0,2.6217229,-213.98127,426.04959)">
+                <rect
+                   style="opacity:0.5;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.8191753;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+                   id="rect2985"
+                   width="266.18082"
+                   height="195.93083"
+                   x="82.409584"
+                   y="42.27177" />
+                <rect
+                   y="60.428352"
+                   x="102.03809"
+                   height="147.36766"
+                   width="226.92381"
+                   id="rect3759"
+                   style="opacity:0.5;fill:#006e3e;fill-opacity:1;stroke:#000000;stroke-width:0.65596128;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+                <rect
+                   style="opacity:0.5;fill:#45ff00;fill-opacity:1;stroke:#000000;stroke-width:0.44595331;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+                   id="rect3763"
+                   width="135.35641"
+                   height="114.18939"
+                   x="139.9155"
+                   y="75.39753"
+                   transform="matrix(1,0,0.00872716,0.99996192,0,0)" />
+                <path
+                   style="fill:#ffffff;stroke:#ffffff;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.4375;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstarty);marker-end:url(#Arrow2Mendl)"
+                   d="m 83.84245,94.862182 17.0651,0"
+                   id="path3769"
+                   inkscape:connector-curvature="0" />
+                <path
+                   style="fill:#ffffff;stroke:#ffffff;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.4375;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstartr);marker-end:url(#Arrow2MendV)"
+                   d="m 104.32973,129.61218 34.34054,0"
+                   id="path3769-9"
+                   inkscape:connector-curvature="0" />
+                <path
+                   style="fill:#ffffff;stroke:#ffffff;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.4375;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstartz);marker-end:url(#Arrow2MendW)"
+                   d="m 278.49194,107.11218 49.01612,0"
+                   id="path3769-4"
+                   inkscape:connector-curvature="0" />
+                <path
+                   inkscape:connector-curvature="0"
+                   id="path4634"
+                   d="m 207.75,58.941621 0,-16.115989"
+                   style="fill:#ffffff;stroke:#ffffff;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.4375;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstarta);marker-end:url(#Arrow2Mend3)" />
+                <text
+                   xml:space="preserve"
+                   style="font-size:19.73614693px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+                   x="208.51871"
+                   y="126.80267"
+                   id="text4636"
+                   sodipodi:linespacing="125%"><tspan
+                     sodipodi:role="line"
+                     id="tspan4638"
+                     x="208.51871"
+                     y="126.80267"
+                     style="text-align:center;text-anchor:middle">vezérlő</tspan><tspan
+                     sodipodi:role="line"
+                     x="208.51871"
+                     y="151.47285"
+                     id="tspan4712"
+                     style="text-align:center;text-anchor:middle">(control)</tspan></text>
+                <text
+                   xml:space="preserve"
+                   style="font-size:7.43061018px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+                   x="303.57135"
+                   y="114.49479"
+                   id="text4636-5"
+                   sodipodi:linespacing="125%"><tspan
+                     sodipodi:role="line"
+                     id="tspan4638-5"
+                     x="304.60178"
+                     y="114.49479"
+                     style="text-align:center;text-anchor:middle;fill:#ffffff">jobb margó </tspan><tspan
+                     sodipodi:role="line"
+                     x="303.57135"
+                     y="123.78305"
+                     id="tspan4661"
+                     style="text-align:center;text-anchor:middle;fill:#ffffff">(right margin)</tspan></text>
+                <text
+                   sodipodi:linespacing="125%"
+                   id="text4676"
+                   y="137.95949"
+                   x="121.50511"
+                   style="font-size:5.29744053px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+                   xml:space="preserve"><tspan
+                     style="text-align:center;text-anchor:middle;fill:#ffffff"
+                     y="137.95949"
+                     x="122.23972"
+                     id="tspan4678"
+                     sodipodi:role="line">bal margó </tspan><tspan
+                     style="text-align:center;text-anchor:middle;fill:#ffffff"
+                     id="tspan4680"
+                     y="144.58128"
+                     x="121.50511"
+                     sodipodi:role="line">(left margin)</tspan></text>
+                <text
+                   sodipodi:linespacing="125%"
+                   id="text4682"
+                   y="193.51614"
+                   x="309.2536"
+                   style="font-size:7.98766851px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+                   xml:space="preserve"><tspan
+                     y="193.51614"
+                     x="309.2536"
+                     id="tspan4684"
+                     sodipodi:role="line"
+                     style="text-align:center;text-anchor:middle;fill:#ffffff">tartalom</tspan><tspan
+                     y="203.50073"
+                     x="309.2536"
+                     sodipodi:role="line"
+                     id="tspan4686"
+                     style="text-align:center;text-anchor:middle;fill:#ffffff">(content)</tspan></text>
+                <text
+                   xml:space="preserve"
+                   style="font-size:7.98766851px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+                   x="319.7536"
+                   y="223.51614"
+                   id="text4706"
+                   sodipodi:linespacing="125%"><tspan
+                     style="text-align:center;text-anchor:middle;fill:#ffffff"
+                     sodipodi:role="line"
+                     id="tspan4708"
+                     x="319.7536"
+                     y="223.51614">szülő vezérlő</tspan><tspan
+                     style="text-align:center;text-anchor:middle;fill:#ffffff"
+                     id="tspan4710"
+                     sodipodi:role="line"
+                     x="319.7536"
+                     y="233.50073">(parent control)</tspan></text>
+                <text
+                   sodipodi:linespacing="125%"
+                   id="text4714"
+                   y="53.494789"
+                   x="232.57135"
+                   style="font-size:7.43061018px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+                   xml:space="preserve"><tspan
+                     style="text-align:center;text-anchor:middle;fill:#ffffff"
+                     id="tspan4718"
+                     y="53.494789"
+                     x="232.57135"
+                     sodipodi:role="line">top padding</tspan></text>
+                <path
+                   style="fill:#ffffff;stroke:#ffffff;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.4375;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart6);marker-end:url(#Arrow2MendI)"
+                   d="m 162.5,236.4263 0,-26.62824"
+                   id="path4722"
+                   inkscape:connector-curvature="0" />
+                <path
+                   inkscape:connector-curvature="0"
+                   id="path4724"
+                   d="m 330.34245,153.86218 17.0651,0"
+                   style="fill:#ffffff;stroke:#ffffff;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.4375;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2MstartI);marker-end:url(#Arrow2MendL)" />
+                <path
+                   style="fill:#ffffff;stroke:#ffffff;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.4375;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstarto);marker-end:url(#Arrow2MendO)"
+                   d="m 179,74.581744 0,-13.189128"
+                   id="path4726"
+                   inkscape:connector-curvature="0" />
+                <path
+                   inkscape:connector-curvature="0"
+                   id="path4728"
+                   d="m 182.75,206.5982 0,-16.22204"
+                   style="fill:#ffffff;stroke:#ffffff;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.4375;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart6N);marker-end:url(#Arrow2MendOT)" />
+                <text
+                   xml:space="preserve"
+                   style="font-size:7.43061018px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+                   x="223.57135"
+                   y="70.494789"
+                   id="text4730"
+                   sodipodi:linespacing="125%"><tspan
+                     sodipodi:role="line"
+                     x="223.57135"
+                     y="70.494789"
+                     id="tspan4732"
+                     style="text-align:center;text-anchor:middle;fill:#ffffff">felső margó (top margin)</tspan></text>
+                <text
+                   sodipodi:linespacing="125%"
+                   id="text4734"
+                   y="200.4948"
+                   x="233.82135"
+                   style="font-size:7.43061018px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+                   xml:space="preserve"><tspan
+                     style="text-align:center;text-anchor:middle;fill:#ffffff"
+                     id="tspan4736"
+                     y="200.4948"
+                     x="233.82135"
+                     sodipodi:role="line">alsó margó (bottom margin)</tspan></text>
+                <text
+                   xml:space="preserve"
+                   style="font-size:7.43061018px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+                   x="-70.559128"
+                   y="94.731613"
+                   id="text4738"
+                   sodipodi:linespacing="125%"
+                   transform="matrix(0,-1,1,0,0,0)"><tspan
+                     sodipodi:role="line"
+                     x="-70.559128"
+                     y="94.731613"
+                     id="tspan4740"
+                     style="text-align:center;text-anchor:middle;fill:#ffffff">left padding</tspan></text>
+                <text
+                   transform="matrix(0,-1,1,0,0,0)"
+                   sodipodi:linespacing="125%"
+                   id="text4742"
+                   y="341.23163"
+                   x="-129.30913"
+                   style="font-size:7.43061018px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+                   xml:space="preserve"><tspan
+                     style="text-align:center;text-anchor:middle;fill:#ffffff"
+                     id="tspan4744"
+                     y="341.23163"
+                     x="-129.30913"
+                     sodipodi:role="line">right padding</tspan></text>
+                <text
+                   xml:space="preserve"
+                   style="font-size:7.43061018px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+                   x="181.32135"
+                   y="220.2448"
+                   id="text4746"
+                   sodipodi:linespacing="125%"><tspan
+                     sodipodi:role="line"
+                     x="182.35176"
+                     y="220.2448"
+                     id="tspan4748"
+                     style="text-align:center;text-anchor:middle;fill:#ffffff">bottom </tspan><tspan
+                     sodipodi:role="line"
+                     x="181.32135"
+                     y="229.53307"
+                     style="text-align:center;text-anchor:middle;fill:#ffffff"
+                     id="tspan4750">padding</tspan></text>
+              </g>
+            </g>
+          </svg>
+       </span>
     </div>
-
-    <div class="slide" data-title="Felsorolható típusok - Enumerációk">
-      <ul>
-        <li>Lehetőségünk van a nyelvben felsorolható típusokat is definiálnunk. </li>
-        <li>Bármennyire is meglepő, de a háttérben ugyanúgy egy osztályt készít nekünk a fordító, amit közvetlenül a <a href="http://msdn.microsoft.com/en-us/library/system.enum.aspx">System.Enum</a> osztályból származik. Mivel a <strong>System.Enum</strong> pedig értéktípus, ezért minden általunk definiált felsorolható típus is értéktípusnak fog számítani. </li>
-        <li> Íme egy példa a használatukra: 
-          <pre class="brush:csharp">
-            enum EmployeeType { Intern, Graduated, Manager, VicePresident }
-
-            //Használata nagyon egyszerű: 
-            EmployeeType employee = EmployeeType.Manager;
-            //NEM: employee = Manager; - fordítási hibát kapunk!
-          </pre>
-        </li>
-        <li>Megadhatunk alapértelmezetten konstans értékeket (<strong>csak</strong> egész számokat) a felsorolható típus elemeinek, amik a későbbiekben reprezentálni fogják, majd azokat. Illetve beállíthatjuk, hogy <a href="#" class="tooltip" data-tooltip="tipikusan a memóriafoglalás szempontjából tud hasznos lenni">milyen típusú értékként</a> (csak a következők jöhetnek szóba: <strong>byte</strong>, <strong>sbyte</strong>, <strong>short</strong>, <strong>ushort</strong>, <strong>int</strong>, <strong>uint</strong>, <strong>long</strong>, <strong>ulong</strong>) reprezentálja őket.
-          <pre class="brush:csharp">
-            enum EmployeeType : byte /* byte típusú elemeink lesznek */ {
-              Intern = 1,   Graduated = 2,
-              Manager = 4,  VicePresident = 8  
-            }
-          </pre>
-        </li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Absztrakt osztályok (1/2)">
-      <ul>
-        <li>Vannak olyan helyzetek (kódújrafelhasználás szempontjából), hogy szeretnénk egy olyan típust készíteni, aminek egyes részei már meg vannak valósítva, viszont még nem áll készen a tényleges használatra. Az interfészekkel az a baj, hogy csak egy sablont adnak arra vonatkozóan, hogy egy osztálynak "hogyan kellene kinéznie", míg maguk a konkrét osztályokat már használatra készre írjuk meg. Ilyen esetekben az <strong>absztrakt osztályok</strong> jelenthetik a megoldást a programozónak, amelyek valahol az interfészek és a konkrét típusok között foglalnak helyet.</li>
-        <li>Az <strong>absztrakt osztályokat</strong> nem lehet példányosítani, egyetlen ősosztálya lehet csak (ha explicite nem adjuk meg, akkor automatikusan a <strong>System.Object</strong>-ből származik), de bármennyi interfészt megvalósíthat. </li>
-        <li>Ha egy osztály ősosztálya absztrakt, akkor vagy kötelezően deklarálni kell az absztrakt metódusokat vagy magát az osztályt is absztraktként kell megjelölni.</li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Absztrakt osztályok (2/2)">
-      <ul>
-        <li>Egy egyszerű példa:
-          <pre class="brush:csharp; highlight: [8,12,18]">
-            public interface IPerson { 
-              string Name { get; set; } 
-              void Greeting(); 
-            }
-            //az absztrakt osztályokat kötelezően meg kell jelölnünk az abstract kulcsszóval
-            public abstract class PersonBase : IPerson {
-              public string Name { get; set; }  
-              //de ez nem elég a fordítónak, az absztrakt metódusokat is ugyanúgy meg kell jelölni
-              //kódolvashatóság szempontjából is előnyös ez a fajta szintaxis
-              //fontos, hogy a metódus törzsét, már nem kell megadnunk, elég csak egyszerűen lezárni egy pontosvesszővel
-              public abstract void Greeting();
-
-              //ez nem azt jelenti, hogy nem lehet konstruktora!
-              //protected PersonBase() { /* ... ide jön valami kód ... */ }
-            }
-
-            public class Woman : PersonBase {
-              //override kulcsszóval jelöljük meg, hogy az absztrakt metódust felüldefiniáltuk
-              public override void Greeting() {
-                Console.WriteLine("Hi, Miss/Mrs. {0}", Name);  
-              }  
-            }
-
-            public class Man : PersonBase {
-              public override void Greeting() {
-                Console.WriteLine("Hi, Mr. {0}", Name);  
-              }  
-            }
-
-            //ez a sor fordítási hibát dob
-            //PersonBase person = new PersonBase();
-            PersonBase person = new Woman(); 
-          </pre>
-        </li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Lezárt osztályok (sealed) (1/2)">
-      <ul>
-        <li>Mi történik akkor, amikor azt az igényünket szeretnénk megvalósítani, hogy ne lehessen tovább örököltetni egy adott osztályt?</li>
-        <li>Egyik megoldásunk lehet az, hogy az összes konstruktorát elrejtjük: probléma, hogy akkor már kívülről nem is tudjuk példányosítani. Ezt könnyen ki lehet kerülni azzal, hogy csinálunk egy statikus metódust, ami visszatér az osztályunk egy példányával (lényegében egy <a class="tooltip" href="http://en.wikipedia.org/wiki/Factory_method_pattern" data-tooltip="Kattints ;)">factory pattern</a>-ről van szó). 
-        </li>
-        <li>Ez szép megoldás, de nem minden esetben egyértelmű: kell valamennyi <a href="#" class="tooltip" data-tooltip="pff... de senki nem szeret dokumentálni :S">dokumentáció</a> (vagy teszteset), hogy a programozó tudja, hogyan kell használni.</li>
-        <li>Másik megoldásunk, hogy nyelvi szinten támogassuk! Erre vezették be a <strong>sealed</strong> kulcsszót a nyelvben: ugyanúgy példányosíthatjuk mint bármelyik más osztályunkat, viszont az öröklésben nem jelenhet ősosztályként.</li>
-        <li>Nem csak osztályokat, hanem metódusokat is meg lehet jelölni a <a class="tooltip" data-tooltip="Több infóért katt ..." href="http://msdn.microsoft.com/en-us/library/aa645769(v=vs.71).aspx">sealed</a> kulcsszóval.</li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Lezárt osztályok (sealed) (2/2)">
-      <ul>
-        <li>Lássunk ehhez is egy példát:
-          <pre class="brush:csharp; highlight: [13,24]">
-            public interface IPerson { 
-              string Name { get; set; } 
-              void Greeting(); 
-            }
-
-            //az absztrakt osztályokat kötelezően meg kell jelölnünk az abstract kulcsszóval
-            public abstract class PersonBase : IPerson {
-              public string Name { get; set; }  
-              public abstract void Greeting();
-            }
-
-            //lezártuk az osztályt, nem lehet ősosztályként megadni
-            public sealed class SuperiorPerson : PersonBase {
-              public override void Greeting() {
-                  Console.WriteLine("Behold the Superior Person!");
-              }  
-            }
-
-            //Nincs szuperebb a legszuperebb embernél ... ezért (is) kapunk fordítási hibát
-            public class MostSuperiorPerson : SuperiorPerson { 
-              //ha lezárjuk a metódusokat, akkor az alosztálya ennek az osztálynak, nem tudja 
-              //majd felüldefiniálni a Greeting() metódust. Ezzel a megoldással nagyon szépen
-              //lehet finomhangolni a metódusainkat
-              public sealed override void Greeting() {
-                  Console.WriteLine("Behold The Most Superior Person!");
-              }  
-            }
-          </pre>
-        </li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Parciális osztályok (partial)">
-      <ul>
-        <li>Egy-egy osztályunk (tipikusan a generált kódoknál) elérheti a több ezer sort ... vagy olyan sok interfészt implementálunk az osztályunkba, hogy egyszerűbb lenne az interfészek alapján külön-külön fájlban tárolni az implementációkat: ezekre a problémákra kínál nekünk megoldást a <strong>C#</strong> a parciális osztályok (<a href="http://msdn.microsoft.com/en-us/library/wa80x488(v=vs.90).aspx" class="tooltip" data-tooltip="katt katt több infóért ...">partial</a>) képében.</li>
-        <li>Mire is jó? Egyszerűen arra, hogy az osztályunkat több fájlban tudjuk tárolni és ennek segítségével a kódunk sokkal áttekinthetőbb tud maradni. Előnyös logikailag különválasztani (partícionálni!) a nagyobb osztályunkat.
-        <pre class="brush:csharp; highlight: [2, 14]">
-          //SuperiorPerson.cs
-          sealed partial class SuperiorPerson : PersonBase {
-              public override void Greeting() {
-                  DoSomethingAwesome();
-                  Console.WriteLine("Behold the Superior Person!");
-              }
-          }
-
-          //SuperiorPerson.ISuperior.cs
-          interface ISuperior { void DoSomethingAwesome(); }
-
-          //Minden implementációnál kötelező megjelölni, hogy az adott osztály parciális!
-          //Miért is jó ez megint? Hát persze, hogy a kódolvashatóság szempontjából ...
-          partial class SuperiorPerson : ISuperior {
-              public void DoSomethingAwesome() {
-                  Console.WriteLine("Okay dockey karaoke ;)");
-              }
-          }
-        </pre>
-        </li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Statikus osztályok (static)">
-      <ul>
-        <li>Lehetőségünk van a nyelvben tisztán statikus osztályt (<strong>static class</strong>) is készíteni. Ez azt jelenti, hogy minden adattagjának kötelezően statikusnak kell lennie.</li>
-        <li>A statikus osztályokat nem lehet példányosítani, de ettől függően megadhatunk neki egy privát paraméterek nélküli konstruktort.</li>
-        <li>Örököltetni sem lehet ezeket az osztályokat, illetve ők sem örökölhetnek (azaz nem lehet interfészt vagy ősosztályt megadni neki).</li>
-        <li>Az öröklés miatt <strong>protected</strong> láthatóságot sem lehet használni (ami teljesen jogos, mivel nem lenne semmi értelme).
-        <pre class="brush:csharp; highlight:[2, 5, 14]">
-          //készítünk egy statikus Ensure osztályt
-          static class Ensure
-          {
-              //És egy statikus NotNull metódust
-              public static void NotNull(object obj, string message)
-              {
-                  if (obj == null)
-                      throw new ArgumentNullException(message);
-              }
-          }
-
-          //Az adattagokat az osztály nevén keresztül tudjuk elérni:
-          void DummyFunction(string text) {
-            Ensure.NotNull(text, "'text' cannot be null!");
-            /* ... */
-          }
-        </pre>
-        </li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Generikus típusok (generic)">
-      <ul>
-        <li>Nem szeretjük a kód duplikációkat ... minél több a duplikált kód, annál nehezebb karbantartani a kódunkat, illetve fejleszteni azt. Klasszikus állatorvosi ló esete: válasszuk ki két elem közül a maximumot.</li>
-        <li>Ilyen esetekben szeretnénk minél általánosabb megvalósítást találni: adjunk az osztályainkhoz (vagy metódusainkhoz) típusparamétert!</li>
-        <li>Miért nem lehetne egyszerűen a paraméterátadásoknál az <strong>object</strong>-et használni? Lehet, viszont csúnya megoldás, nem beszélve arról, hogy elveszítjük fordítási időben a típusinformációt. Ennél elegánsabb megoldás a <strong>generikus típusok</strong> használata.
-        <pre class="brush:csharp; hightlight: 3">
-          //Sokkal egyszerűbb a szintaxis, mint a C++-ban. Egyszerűen csak &lt;..&gt; kell írni
-          //az osztály neve után
-          public class MyCollection&lt;TType&gt; : ICollection&lt;TType&gt;
-          {
-              //és valamit implementálunk
-          }
-        </pre>
-        </li>
-        <li>Ha nem adunk meg semmilyen megszorítás a típusparaméterre vonatkozóan, akkor túl sok lehetőségünk nincs a használatánál: csak annyit tudhatunk biztosan, hogy az <strong>object</strong>-ből származik és kész. A <strong>MyCollection</strong> esetében még azt sem tudjuk, hogy a <strong>TType</strong> értéktípusú vagy referencia típusú-e. </li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Megszorítások a típusparaméterekre (1/2)">
-      <ul>
-        <li>Adhatunk plusz információkat a fordítónak a típusparaméterre nézve: értéktípus-e vagy sem, milyen interfészeket valósít meg, milyen őosztálya van, van-e default konstruktora vagy sem ... Rengeteg lehetőségünk van, de azért vannak hátrányai is ennek a megoldásnak ...</li>
-        <li>Egy-egy típusparaméterre vonatkozó megszorításokat a <strong>where</strong> kulcszó után kell felsorolnunk:
-        <pre class="brush:csharp">
-          public TType Max&lt;TType&gt;(TType a, TType b)
-            where TType: IComparable 
-            //where TType_2: ... stb.
-          {
-            return a.CompareTo(b) &gt; 0 ? a : b;
-          }
-        </pre>
-        </li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Megszorítások a típusparaméterekre (2/2)">
-      <ul>
-        <li>Ezek a lehetőségeink vannak:
-        <table>
-          <tr>
-            <th>Kulcsszó</th>
-            <th>Leírás</th>
-            <th>Használata</th>
-          </tr>
-          <tr>
-            <td>class</td>
-            <td>Referencia típusú osztályokat vár paraméterül ... Miért fontos? Azért, mert nélküle egy egyszerű null referencia ellenőrzést sem tudunk elvégezni.</td>
-            <td><strong>where</strong> TType: <strong>class</strong></td>
-          </tr>
-          <tr>
-            <td>struct</td>
-            <td>Ha van referencia típusú, akkor van értéktípusú osztály is. Ugyanaz a megfontolás, mint a class-nál</td>
-            <td><strong>where</strong> TType: <strong>struct</strong></td>
-          </tr>
-          <tr>
-            <td>Osztálynév</td>
-            <td>Explicite megadhatjuk, hogy mely osztályból öröklődjön a típusunk</td>
-            <td><strong>where</strong> TType: <strong>PersonBase</strong></td>
-          </tr>
-          <tr>
-            <td>Interfészek (itt többet is megadhatunk)</td>
-            <td>Explicite megadhatjuk, hogy mely interfészeinkből öröklődjön a típusunk</td>
-            <td><strong>where</strong> TType: <strong>IComparable, ISuperior</strong></td>
-          </tr>
-          <tr>
-            <td>new()</td>
-            <td>Feltesszük, hogy az osztályunknak van default konstruktora. Ezután már példányosíthatjuk is.</td>
-            <td><strong>where</strong> TType: <strong>new()</strong></td>
-          </tr>
-        </table>
-        </li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Delegáltak (delegate)">
-      <ul>
-        <li>Nemcsak generikus típusokkal általánosíthatunk, hanem úgyis, hogy az alprogramokat (eljárások és függvények) <a href="#" class="tooltip" data-tooltip="first-class citizen">értékekként</a> kezeljük. </li>
-        <li>Definiálhatunk delegáltakat (<strong>delegate</strong>) azaz függvénytípusokat. Segítségükkel, a metódusainkat általánosíthatjuk és paraméterekként alprogramokat adhatunk át értékként.
-        <pre class="brush:csharp">
-          //Névterekben, illetve osztályokon belül is definiálhatjuk őket
-          delegate void Action();
-
-          //Lehetőségünk "túlterhelni" is őket, azaz több változatot készíteni
-          delegate void Action&lt;TParameter&gt;(TParameter parameter);
-
-          public void ForEach&lt;T&gt;(IEnumerable&lt;T&gt; enumerable, Action&lt;T&gt; method) {
-            foreach (var item in enumerable) {
-              method(item);
-            }
-          }
-
-          ForEach(new String[] { "Hello", "World" }, 
-            //Használata egyszerű, egyszerűen csak a delegate-t kell használnunk
-            //utána pedig megadni, hogy milyen paramétert akarunk átadni
-            delegate(string parameter) {
-              Console.WriteLine(parameter);
-            }
-          );
-
-          //Ha megegyezik a metódusunk típusa a delegálttal, akkor
-          //egyszerűen paraméterként is átadhatjuk
-          ForEach(new String[] { "Hello", "World" }, Console.WriteLine);          
-        </pre>
-        </li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Események (event) (1/2)">
-      <ul>
-        <li>Elérkeztünk az eseményvezérelt programozáshoz. Mit is kell ezalatt érteni? Mi történik akkor, amikor szeretnénk valamilyen eseményről (valami példányosult, a felhasználó kattintott egyet a gombunkon stb.) értesülni?</li>
-        <li>Ennek örömére a <strong>C#</strong> bevezette az eseményeket (<strong>event</strong>). 
-        <pre class="brush:csharp">
-          event Action DoSomethingEvent;
-
-          //Event invocator -  ezt a metódust kell meghívnunk, ha azt akarjuk,
-          //hogy tüzeljen az eseményünk
-          void OnDoSomethingEvent()
-          {
-              Action handler = DoSomethingEvent;
-              if (handler != null) handler();
-          }
-
-          //+= operátorral lehet feliratkozni és 
-          //-= operátorral lehet leiratkozni az eseményről
-          DoSomethingEvent += delegate() { Console.WriteLine("Event is fired"); };
-          OnDoSomethingEvent(); //tüzelni fog az eseményünk
-        </pre>
-        </li>
-        <li>Az esemény típusának kötelezően valamilyen delegáltnak kell lennie. A tulajdonságokhoz hasonlóan, itt is megadhatjuk, hogy mi történjen ha valaki felirakozott (vagy esetleg leiratkozott) az eseményünkről.</li>
-      </ul>
-    </div>
-
-    <div class="slide" data-title="Események (event) (2/2)">
-      <ul>
-        <pre class="brush:csharp">
-          private static event Action _DoSomethingEvent;
-
-          //egyszerűen csak az add és remove kulcsszavakat kell használnunk
-          //szintaxisa nagyon hasonlít a tulajdonságokra
-          public static event Action DoSomethingEvent
-          {
-              //az add ág fut le akkor, amikor valaki feliratkozik az eseményünkre
-              add
-              {
-                  _DoSomethingEvent += value;
-                  Console.WriteLine("Adding ...");
-              }
-              //és a remove ág fut le, amikor leiratkoztunk róla
-              remove
-              {
-                  _DoSomethingEvent -= value;
-                  Console.WriteLine("Removing ...");
-              }
-          }
-
-          protected static void OnDoSomethingEvent()
-          {
-              //viszont használni már csak a privát eseményünket tudjuk használni
-              Action handler = _DoSomethingEvent;
-              if (handler != null) handler();
-          }
-        </pre>
-        <li>A <strong>Windows Forms</strong>, de a <strong>WPF</strong> is erősen támaszkodik az eseményvezérelt programozásra. De ha <a href="#" class="tooltip" data-tooltip="márpedig azok leszünk ;)">ügyesek vagyunk</a>, akkor a felhasználói felületen történt események nagyrészét ki tudjuk majd kerülni egy kicsit más módszerrel ...</li>
-      </ul>
-    </div>
-  
     
     <div class="slide" data-template="main">
       <div class="centered">
