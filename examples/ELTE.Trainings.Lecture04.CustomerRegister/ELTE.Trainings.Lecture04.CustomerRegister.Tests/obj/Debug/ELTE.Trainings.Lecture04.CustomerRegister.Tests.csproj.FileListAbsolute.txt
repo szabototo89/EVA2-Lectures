@@ -1,0 +1,11 @@
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister.Tests\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Tests.dll
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister.Tests\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Tests.pdb
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister.Tests\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister.Tests\bin\Debug\nunit.framework.dll
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister.Tests\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.pdb
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister.Tests\bin\Debug\nunit.framework.xml
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister.Tests\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Tests.csprojResolveAssemblyReference.cache
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister.Tests\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Tests.dll
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister.Tests\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Tests.pdb
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister.Tests\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Tests.Utils.UserControlTestForm.resources
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister.Tests\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Tests.csproj.GenerateResource.Cache
