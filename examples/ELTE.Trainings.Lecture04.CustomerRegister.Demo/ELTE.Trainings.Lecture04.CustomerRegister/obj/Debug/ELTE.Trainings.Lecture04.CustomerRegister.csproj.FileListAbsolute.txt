@@ -1,0 +1,52 @@
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe.config
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.pdb
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.csprojResolveAssemblyReference.cache
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Properties.Resources.resources
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.csproj.GenerateResource.Cache
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.pdb
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.MainForm.resources
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.CustomerListView.resources
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.CustomerDetailsView.resources
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.AddressDetailsView.resources
+C:\Users\szabototo89\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.JobDetailsView.resources
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe.config
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.pdb
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.pdb
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.csprojResolveAssemblyReference.cache
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.AddressDetailsView.resources
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.CustomerDetailsView.resources
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.JobDetailsView.resources
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.MainForm.resources
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Properties.Resources.resources
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.csproj.GenerateResource.Cache
+E:\Development\Projects\C#\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.CustomerListView.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe.config
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.pdb
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.pdb
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.csprojResolveAssemblyReference.cache
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.AddressDetailsView.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.CustomerDetailsView.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.CustomerListView.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.JobDetailsView.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.MainForm.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Properties.Resources.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.csproj.GenerateResource.Cache
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe.config
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.pdb
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.csprojResolveAssemblyReference.cache
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.AddressDetailsView.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.CustomerDetailsView.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.CustomerListView.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.JobDetailsView.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Views.MainForm.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.Properties.Resources.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\obj\Debug\ELTE.Trainings.Lecture04.CustomerRegister.csproj.GenerateResource.Cache
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.exe
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture04.CustomerRegister.Demo\ELTE.Trainings.Lecture04.CustomerRegister\bin\Debug\ELTE.Trainings.Lecture04.CustomerRegister.pdb

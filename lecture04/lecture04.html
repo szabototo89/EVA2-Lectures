@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eseményvezérelt alkalmazások fejlesztése 2 - Szabó Tamás &#169;</title>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/shCore.js"></script>
+  <script src="js/shBrushCSharp.js"></script>
+  <script src="js/lecture.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  <link href="css/shCore.css" rel="stylesheet" type="text/css"/>
+  <link href="css/shCoreDefault.css" rel="stylesheet" type="text/css"/>
+  <link href="css/slides-800x600.css" rel="stylesheet" type="text/css" />
+
+  <script type="slide-template" id="main">
+    <div class="step slide main" data-x="$index*1500$">
+      $content$
+    </div>
+  </script>
+
+  <script type="slide-template" id="standard">
+    <div class="step slide" data-x="$index*1500$">
+      <div class="title">
+        <div>$title$</div>
+      </div>
+      <div class="subtitle">
+        <div>5 - Saját vezérlõk</div>
+      </div>
+      <div class="content">$content$</div>
+    </div>
+  </script>
+
+</head>
+<!-- õû -->
+<body>
+  <div id="impress">
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
+        <h2>5. gyakorlat - Saját vezérlõk készítése (WinForms)</h2>
+      </div>
+    </div>
+
+    <div class="slide" data-title="Mai óra tematikája - Mirõl is lesz szó?">
+      <ul>
+        <li>Elõzõ órán megismerkedtünk a WinForms adta alapvetõ lehetõségeivel: mostmár tudjuk a tervezõ (designer) nézetet használni, külön részelemekre tudjuk bontani a vezérlõket, ami abban segít nekünk, hogy újrafelhasználó elemei legyenek az alkalmazásainknak. Viszont ez még távolról <a href="#" class="tooltip" data-tooltip="és a beadandóhoz sem">sem elég</a>, ezért elkezdjük körbejárni a különbözõ vezérlõket és azzal is megismerkedünk, hogy hogyan lehet újakat létrehozni a semmibõl, amiknek esetleg saját kinézetük is van.</li> 
+        <li>Megnézzük, hogy mire is való a <strong>Timer</strong> osztály ...</li>
+        <li>Elkezdünk saját vezérlõket készíteni, saját megjelenéssel: azaz megismerkedünk a <strong>Graphics</strong> osztállyal.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Dinamikusan létrehozás">
+      <ul>
+        <li>Az ügyfelek/felhasználók sokszor szeretik megnehezíteni a programozók életét, amiért mi horribilis (de teljesen reális) pénzeket szoktunk elkérni. Gyakran elõfordul, hogy ezeket a problémákat úgy tudjuk megoldani hogy valamilyen dinamikusságot kell implementálnunk a programjainkba. Futás közben kell generálnunk és megjeleníteni különbözõ vezérlõket, azokat pozicionálni stb.</li>
+        <li>Ahogy arról már szó esett a vezérlõk egymás között gyerek-szülõ kapcsolatban állnak. A gyerekeket a <strong>Controls</strong> tulajdonságon keresztük lehet elérni, illetve annak segítségével lehet megsemmísiteni a meglévõket, újakat létrehozni. </li>
+        <pre class="brush:csharp">
+          Button button = new Button();     //létrehozunk bármilyen vezérlõt
+          button.Text = "Hello World!";     //beállítjuk a szükséges tulajdonságait
+          button.Dock = DockPanel.Fill;
+
+          //és a legvégén hozzáadjuk a meglévõ vezérlõkhöz
+          Controls.Add(button);             
+        </pre>
+        <li>A <strong>Clear</strong> metódussal ki lehet törölni a meglévõ gyerekeket, míg a <strong>Remove</strong>-al specifikusabban tudjuk ezt megtenni.</li>
+      </ul>
+    </div>
+  
+    <div class="slide" data-title="Események">
+      <ul>
+        <li>A vezérlõkkel csakis eseményeken keresztül tudunk kommunikálni, illetve a felhasználói interakciókra ezeken keresztül tudunk reagálni. Már magának a <strong>Control</strong> osztálynak is rengeteg eseménye van és ezeket csak kiegészítik a leszármazottjai. Sajnos ezek a vezérlõk már nem támogatják az érintõképernyõn történt felhasználói beavatkozások eseményeit. </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.controladded.aspx">ControlAdded</a>: Akkor hívódik meg, amikor dinamikusan hozzáadunk egy új gyerekvezérlõt, a vezérlõnkhöz.</li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.controlremoved.aspx">ControlRemoved</a>: Hasonlóan a <strong>ControlAdded</strong>-hoz, ez is akkor hívódik meg, amikor a gyerekvezérlõknek a gyûjteménye megváltozott, csak éppen akkor, amikor egy már meglévõt törlünk ki. </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.component.disposed.aspx">Disposed</a>: Akkor fut le, amikor meghívódik a vezérlõn a <strong>Disposed</strong> metódus. </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.gotfocus.aspx">GotFocus</a>: Akkor fut le az esemény, amikor a vezérlõ megkapja a fókuszt.</li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.lostfocus.aspx">LostFocus</a>: A <strong>GotFocus</strong> ellentettje, akkor fut le, amikor leveszítette a fókuszt a vezérlõ. </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.locationchanged.aspx">LocationChanged</a>: Akkor fut le ez az esemény, amikor megváltozik az esemény pozicíója. </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Események - egér (1/2)">
+      <ul>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.click.aspx">Click</a>: Akkor fut le, ha a felhasználó rákattintott az adott vezérlõre.</li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.doubleclick.aspx">DoubleClick</a>: Duplakattintás esetén fut le az esemény.</li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.mousecapturechanged.aspx">MouseCaptureChanged</a>: Amikor hívódik meg, amikor a vezérlõ elveszti az "egér fókuszát".</li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.mouseclick.aspx">MouseClick</a>: Az egérrel való rákattintás esetén hívódik meg.</li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.mousedoubleclick.aspx">MouseDoubleClick</a>: Hasonlóan ha a felhasználó az egérrel duplán kattint a vezérlõre, akkor ez az esemény hívódik meg. </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.mousedown.aspx">MouseDown</a>: Ha az egérnek valamelyik gombja lenyomódik, akkor ez az esemény fut le.</li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.mouseenter.aspx">MouseEnter</a>: Akkor hívódik meg, amikor az egér kurzorja belép a vezérlõt kirajzoló területre. Jellemzõen ilyenkor szoktuk kicsit átrajzolni a gombunkat, hogy a felhasználó valamilyen interakciót lásson a képernyõn. </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.mousehover.aspx">MouseHover</a>: Amikor a kurzor a vezérlõ felett van és "megpihen", akkor fut le az esemény. </li>
+      </ul> 
+    </div>
+
+    <div class="slide" data-title="Események - egér (2/2)">
+      <ul>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.mouseleave.aspx">MouseLeave</a>: A <strong>MouseEnter</strong> ellentettje. Akkor fut le az esemény, amikor a kurzor elhagyja a vezérlõt.</li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.mousemove.aspx">MouseMove</a>: Akkor fut le, amikor az egér kurzorja megmozdul a vezérlõn. </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.mouseup.aspx">MouseUp</a>: Akkor hívódik meg, amikor a felhasználó felengedte az egérnek valamelyik gombját.</li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.mousewheel.aspx">MouseWheel</a>: Ha a felhasználó megmozdította az egér görgõjét, akkor ezen az eseményen keresztül reagálhatunk rá. </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.pointtoclient.aspx">Control.PointToClient</a>: Kicsit kilóg a sorból, de hasznos metódus tud lenni. Segítségével transzformálni lehet egy képernyõ koordinátáját a kliens koordinátájára. </li>
+      </ul> 
+    </div>
+
+    <div class="slide" data-title="Egyedi kinézetû vezérlõk">
+      <ul>
+        <li>Mielõtt bármilyen egyenest, kört vagy téglalapot rajzolni tudnánk, ahhoz, szükségünk lesz egy Graphics típusú objektumra, ugyanis ezen keresztül érhetjük el az adott vezérlõnk megjelenítéséért felelõs metódusokat. </li>
+        <li>Ezzel a megoldással a vezérlõinknek egyedi megjelenítést definiálhatunk eléggé alacsony szinten. A probléma innen is adódik, mert legtöbb esetben nem elég magasszíntûek ezek a megoldások (láthattuk a <strong>Qt</strong>-nál is), ezért a látványos dolgokért sokat kell dolgoznunk. </li>
+
+        <li>Háromféleképpen tudunk a <strong>Graphics</strong> objektumhoz hozzáférni:</li>
+
+        <li>A <strong>PaintEventArgs</strong> objektumból lekérdezhetjük a <strong>Graphics</strong> nevû tulajdonságát és azon keresztül tudjuk magát a vezérlõnek az egyedi kinézetét változtatni.</li>
+        <li>Meghívhatjuk az objektum <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.creategraphics.aspx" class="tooltip" data-tooltip="katt katt ...">CreateGraphics</a> nevû metódusát, ami egy <strong>Graphics</strong> objektummal fog visszatérni.  </li>
+        <li>Harmadik lehetõségként pedig ha az osztályunk az <a href="http://msdn.microsoft.com/en-us/library/system.drawing.image.aspx" class="tooltip" data-tooltip="katt ...">Image</a>-bõl származik, akkor lehetõségünk van az <strong>Image</strong> statikus metódusán keresztül lekérni a Graphics objektumot.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Graphics objektum">
+      <ul>
+        <li>De miért is jó nekünk, ha valami objektumon keresztül próbálunk rajzolgatni? Talán azért is, mert nem közvetlenül a belsõ reprezentációt (adatokat) manipuláljuk, hanem függvényeken keresztül próbálunk meg elérni valamit. Ezzel kicsit magasabb szintre emeltük magát a rajzolást. </li>
+        <li>Hátránya, hogy még mindig nem elég magasszintû és ez hosszútávon problémákat eredményezhet. A másik, hogy raszteres rajzolásról van szó, vagyis pixeleket transzformálunk. Ezért is jobb megközelítés a <strong>WPF</strong>-ben látott módszer, ahol vektorgrafikához hasonlóan lehet rajzolni.</li>
+        <li>Az effektezéseket (mint pl.: vetett árnyék, elmosódás stb.) is ezen a <strong>Graphics</strong> objektumon keresztül kell megoldanunk, ami nem minden esetben szerencsés megoldás. </li>
+        <li>Tehát ha tehetjük, akkor próbáljuk meg kiegészíteni a Graphics objektum adta lehetõségeket (mivel lezárt osztály, ezért csak <strong>extension method</strong>-okkal lehet megoldani vagy <strong>factory</strong> tervezési minta segítségével). Különbözõ trükkökkel kezelhetõbbé lehet tenni a rajzolásokat.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Graphics metódusai és tulajdonságai">
+      <ul>
+        <li>Milyen lehetõségek is állnak rendelkezésünkre?</li>
+        <li>Az <a href="http://msdn.microsoft.com/en-us/library/system.drawing.graphics.interpolationmode.aspx">InterpolationMode</a> tulajdonságon keresztül tudjuk beállítani, hogy a rajzolás milyen minõségben jelenjen meg a képernyõn. Rengeteg lehetõségünk van: <strong>Bicubic</strong>, <strong>Bilinear</strong>, <strong>High</strong> stb. <a href="http://msdn.microsoft.com/en-us/library/system.drawing.drawing2d.interpolationmode.aspx">Itt</a> meg lehet nézni az összes lehetõséget.</li>
+        <li>A <a href="http://msdn.microsoft.com/en-us/library/system.drawing.graphics.clear.aspx">Clear</a> metódussal egy adott színnel tudjuk kitölteni a rendelkezésre álló területet. </li>
+        <li>A rajzolásokat két kategóriába tudjuk sorolni: <strong>Draw-</strong> és <strong>Fill-</strong> metódusok. Az elõbbivel az alakzatok körvonalát lehet kirajzolni, míg az <a href="#" class="tooltip" data-tooltip="surprise surprise ...">utóbbival</a> az alakzatokat lehet kitölteni valamilyen színnel. </li>
+        <li>Lehetõségünk van <a href="#" class="tooltip" data-tooltip="DrawBezier/DrawBeziers">bezier görbét</a>, <a href="#" class="tooltip" data-tooltip="DrawArc">íveket</a>, <a href="#" class="tooltip" data-tooltip="DrawCurve">görbéket</a>, <a href="#" class="tooltip" data-tooltip="DrawEllipse">ellipszist</a>, <a href="#" class="tooltip" data-tooltip="DrawIcon">ikont</a>, <a href="#" class="tooltip" data-tooltip="DrawImage">képeket</a>, <a href="#" class="tooltip" data-tooltip="DrawLine/DrawLines">vonalakat</a>, <a href="#" class="tooltip" data-tooltip="DrawPolygon">polygont</a>, illetve <a href="#" class="tooltip" data-tooltip="DrawRectangle/DrawRectangles">téglalapokat</a>.</li>
+        <li>Szövegeket a <strong>DrawString</strong> metódussal tudunk megjeleníteni, de még mielõtt kirajzolnánk a szöveget, sokszor jó lenne tudni, hogy mekkora helyet is fog foglalni az magában. Erre való a <strong>MeasureString</strong> nevezetû metódusunk, ami a megadott paraméterek alapján egy mérettel tér vissza.</li>
+      </ul>  
+     </div>
+
+    <div class="slide" data-title="Timer osztály">
+      <ul>
+        <li>Sajnos a <strong>WinForms</strong> nem támogatja magasszinten az animációkat (lényegében sehogy sem támogatja), ezért magunknak kell megoldani ezt a problémát. De nem csak erre való maga a <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.timer.aspx">Timer</a> osztályunk.</li>
+        <li>Egy egészen egyszerû objektumról van szó, ami garantálja nekünk, hogy a neki megadott idõközönként lefuttat egy metódust nekünk. </li>
+        <li>Ezért is fontos, hogy ezekbe a metódusokba ne tegyünk hosszú ideig futó kódokat, hiszen azzal nem tudja biztosítani az idõzítõnk, hogy az adott idõközönként fognak lefutni. </li>
+        <li>A <strong>Start/Stop</strong> metódusokkal lehet elindítani, illetve megállítani az idõzítõnket. De szünetelteni az <strong>Enabled</strong> logikai tulajdonsággal is, ami nagyon hasznos tud lenni sok esetben.</li>
+        <li>Az <strong>Interval</strong> tulajdonsággal az idõt lehet beállítani: az 1000 jelenti a másodpercenként lefutó eseményt. </li>
+        <li>A <strong>Tick</strong> eseményre feliratkozva tudjuk lefuttatni a megfelelõ metódusainkat. </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>[ Demo ]</h1>
+        <h2>Képnézegetõ program készítése</h2>
+      </div>
+    </div>
+
+    <div class="slide" data-title="Képnézegetõ - Feladat">
+      <ul>
+        <li>
+          Következõ a feladatunk: Szeretnénk készíteni egy <a href="examples/ELTE.Trainings.Lecture05.ImageViewer.zip" class="tooltip" data-tooltip="a teljes program">képnézegetõ programot</a> (<a href="ELTE.Trainings.Lecture05.ImageViewer.Skeleton.zip" class="tooltip" data-tooltip="gyakorláshoz a forráskód">skeleton</a>), ami képes megjeleníteni egy <strong>TabControl</strong> segítségével akár több képet is. A program elkészítésénél törekedjünk a Model-View architektúra betartására.           
+        </li>
+        <img src="img/image_viewer.png" style="margin-left: 5%">
+      </ul>
+    </div>
+
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>[ Köszönöm a figyelmet! ]</h1>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="user-interface" id="info">
+    <a href="http://sztrabi.web.elte.hu">Szabó Tamás</a> (<a href="mailto:sztrabi@inf.elte.hu">sztrabi@inf.elte.hu</a>) © <a href="http://people.inf.elte.hu/groberto/elte_eva2/index.html">Eseményvezérelt alkalmazások fejlesztése 2</a>
+  </div>
+
+  <div class="user-interface">
+    <div id="show-menu">Tartalomjegyzék ></div>
+    <ol id="menu-items" />
+  </div>
+  <script src="js/impress.js"></script>
+</body>
+</html>

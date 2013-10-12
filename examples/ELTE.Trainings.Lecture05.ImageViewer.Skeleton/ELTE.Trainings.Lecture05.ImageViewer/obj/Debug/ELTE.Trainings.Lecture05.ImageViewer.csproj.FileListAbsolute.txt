@@ -1,0 +1,28 @@
+C:\Users\Tamas\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture05\bin\Debug\ELTE.Trainings.Lecture05.ImageViewer.exe.config
+C:\Users\Tamas\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture05\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.csprojResolveAssemblyReference.cache
+C:\Users\Tamas\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture05\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.MainForm.resources
+C:\Users\Tamas\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture05\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.Properties.Resources.resources
+C:\Users\Tamas\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture05\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.csproj.GenerateResource.Cache
+C:\Users\Tamas\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture05\bin\Debug\ELTE.Trainings.Lecture05.ImageViewer.exe
+C:\Users\Tamas\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture05\bin\Debug\ELTE.Trainings.Lecture05.ImageViewer.pdb
+C:\Users\Tamas\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture05\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.exe
+C:\Users\Tamas\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture05\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.pdb
+C:\Users\Tamas\AppData\Local\Temporary Projects\ELTE.Trainings.Lecture05\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.Views.ImageViewerBox.resources
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer\ELTE.Trainings.Lecture05.ImageViewer\bin\Debug\ELTE.Trainings.Lecture05.ImageViewer.exe.config
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.exe
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.pdb
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer\ELTE.Trainings.Lecture05.ImageViewer\bin\Debug\ELTE.Trainings.Lecture05.ImageViewer.exe
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer\ELTE.Trainings.Lecture05.ImageViewer\bin\Debug\ELTE.Trainings.Lecture05.ImageViewer.pdb
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.csprojResolveAssemblyReference.cache
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.Views.ImageViewerBox.resources
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.MainForm.resources
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.Properties.Resources.resources
+E:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.csproj.GenerateResource.Cache
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer.Skeleton\ELTE.Trainings.Lecture05.ImageViewer\bin\Debug\ELTE.Trainings.Lecture05.ImageViewer.exe.config
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer.Skeleton\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.exe
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer.Skeleton\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.pdb
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer.Skeleton\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.csprojResolveAssemblyReference.cache
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer.Skeleton\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.Views.ImageViewerBox.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer.Skeleton\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.MainForm.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer.Skeleton\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.Properties.Resources.resources
+e:\Development\Projects\C#\EVA2-Lectures\examples\ELTE.Trainings.Lecture05.ImageViewer.Skeleton\ELTE.Trainings.Lecture05.ImageViewer\obj\Debug\ELTE.Trainings.Lecture05.ImageViewer.csproj.GenerateResource.Cache

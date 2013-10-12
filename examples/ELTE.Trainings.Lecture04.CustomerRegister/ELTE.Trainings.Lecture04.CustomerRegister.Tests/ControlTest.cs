@@ -58,6 +58,7 @@ namespace ELTE.Trainings.Lecture04.CustomerRegister.Tests
 		}
 
 		[Test]
+        [STAThread]
 		public void CustomerListViewTest()
 		{
 			var customerListView = new CustomerListView();
@@ -70,6 +71,7 @@ namespace ELTE.Trainings.Lecture04.CustomerRegister.Tests
 		}
 
 		[Test]
+        [STAThread]
 		public void AddressListViewTest()
 		{
 			var addressDetailsView = new AddressDetailsView();
@@ -87,6 +89,7 @@ namespace ELTE.Trainings.Lecture04.CustomerRegister.Tests
 		}
 
 		[Test]
+        [STAThread]
 		public void JobDetailsViewTest()
 		{
 			var jobDetailsView = new JobDetailsView();
@@ -100,6 +103,7 @@ namespace ELTE.Trainings.Lecture04.CustomerRegister.Tests
 		}
 		
 		[Test]
+        [STAThread]
 		public void CustomerRegisterTest()
 		{
 			using (var customerRegister = new MainForm())

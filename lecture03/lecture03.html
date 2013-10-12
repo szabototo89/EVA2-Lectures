@@ -23,7 +23,7 @@
         <div>$title$</div>
       </div>
       <div class="subtitle">
-        <div>2 - Nyelvi alapok</div>
+        <div>4 - Windows Forms</div>
       </div>
       <div class="content">$content$</div>
     </div>
@@ -35,20 +35,238 @@
     <div class="slide" data-template="main">
       <div class="centered">
         <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
-        <h2>4. gyakorlat - LINQ és WinForms alapok</h2>
+        <h2>4. gyakorlat - Windows Forms alapok</h2>
       </div>
     </div>
 
-    <div class="slide" data-title="Mai óra tematikája - Miről is lesz szó?">
+    <div class="slide" data-title="Mai óra tematikája - Mirõl is lesz szó?">
       <ul>
-        <li>Még mindig maradtak nyelvi elemek, amikről nem volt szó, pedig jó tudni róluk: <strong>var</strong>, anonim osztályok, gyűjteményekről még pár szó ...</li>
-        <li>Meg fogunk ismerkedni a LINQ-val is és remélem választ kapunk a következő kérdésekre: mire való? miért jó használni? hogyan működik?</li>
-        <li>Megismerkedünk a <a href="http://msdn.microsoft.com/en-us/library/dd30h2yb.aspx">Microsoft WinForms</a> technológiájával, illetve a mögötte húzódó alapelvekkel: hogyan kellene szépen és elegánsan használni?</li>
-        <li>Ha marad idő, akkor pedig a gyakorlat második felében összedobunk egy "egyszerű" nyilvántartó alkalmazást követve az alapelveket ...</li>
+        <li>Megismerkedünk a <a href="http://msdn.microsoft.com/en-us/library/dd30h2yb.aspx">Microsoft Windows Forms</a> technológiájával, illetve a mögötte húzódó alapelvekkel: hogyan kellene szépen és elegánsan használni?</li>
+        <li>A gyakorlat második felében összedobunk egy "egyszerû" nyilvántartó alkalmazást követve az alapelveket ...</li>
       </ul>
     </div>
 
-    <div class="slide" data-title="Pár szót a pozicionálásról">
+    <div class="slide" data-title="Modell-Nézet architektúra">
+      <svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+           xmlns:cc="http://creativecommons.org/ns#"
+           xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+           xmlns:svg="http://www.w3.org/2000/svg"
+           xmlns="http://www.w3.org/2000/svg"
+           version="1.1"
+           width="478.58868"
+           height="132.47263"
+           id="model-view-graph">
+          <defs
+             id="defs4">
+            <marker
+               refX="0"
+               refY="0"
+               orient="auto"
+               id="Arrow2Mstart"
+               style="overflow:visible">
+              <path
+                 d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                 transform="scale(0.6,0.6)"
+                 id="path3981"
+                 style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round" />
+            </marker>
+            <marker
+               refX="0"
+               refY="0"
+               orient="auto"
+               id="Arrow2Lend"
+               style="overflow:visible">
+              <path
+                 d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+                 transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+                 id="path3978"
+                 style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round" />
+            </marker>
+          </defs>
+          <metadata
+             id="metadata7">
+            <rdf:RDF>
+              <cc:Work
+                 rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type
+                   rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <dc:title></dc:title>
+              </cc:Work>
+            </rdf:RDF>
+          </metadata>
+          <g
+             transform="translate(0.013023,-919.88955)"
+             id="layer1">
+            <g
+               transform="translate(-15.941093,832.94384)"
+               id="g5233">
+              <g
+                 transform="translate(7.7431848,39.202399)"
+                 id="g4409">
+                <rect
+                   width="98.725464"
+                   height="98.725456"
+                   x="198.12759"
+                   y="64.611008"
+                   id="rect2985"
+                   style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1.27454031px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+                <text
+                   x="247.23309"
+                   y="105.80138"
+                   id="text3755"
+                   xml:space="preserve"
+                   style="font-size:21.95013237px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+                     x="247.23309"
+                     y="105.80138"
+                     id="tspan3757">Modell</tspan><tspan
+                     x="247.23309"
+                     y="133.23904"
+                     id="tspan3769">(Model)</tspan></text>
+              </g>
+              <g
+                 transform="translate(0.98551041,86.995672)"
+                 id="g4403">
+                <g
+                   id="g5227">
+                  <rect
+                     width="98.725464"
+                     height="98.725456"
+                     x="394.1777"
+                     y="16.817736"
+                     id="rect3759"
+                     style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1.27454031px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+                  <text
+                     x="443.2832"
+                     y="58.050983"
+                     id="text3761"
+                     xml:space="preserve"
+                     style="font-size:21.95013237px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+                       x="443.2832"
+                       y="58.050983"
+                       id="tspan3763">Nézet</tspan><tspan
+                       x="443.2832"
+                       y="85.488647"
+                       id="tspan3767">(View)</tspan></text>
+                </g>
+              </g>
+              <path
+                 d="m 304.59624,153.17613 90.56697,0"
+                 id="path4601"
+                 style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend);display:inline" />
+              <g
+                 transform="translate(-51.428571,-45)"
+                 id="g4994">
+                <g
+                   transform="translate(-20.714286,-11.428571)"
+                   id="g5026">
+                  <g
+                     transform="translate(34.642858,-2.1428571)"
+                     id="g5013"
+                     style="fill:#7fff1b;fill-opacity:1">
+                    <rect
+                       width="93.214287"
+                       height="68.571426"
+                       x="54.285713"
+                       y="163.43361"
+                       id="rect4977"
+                       style="fill:#7fff1b;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+                    <path
+                       d="m 162.63456,149.28581 a 46.467018,17.172594 0 1 1 -92.934037,0"
+                       transform="translate(-15.509431,81.784997)"
+                       id="path4975"
+                       style="fill:#7fff1b;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+                    <path
+                       d="m 162.63456,149.28581 a 46.467018,17.172594 0 1 1 -92.934037,0"
+                       transform="translate(-15.152288,59.47543)"
+                       id="path5001"
+                       style="fill:#7fff1b;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+                    <path
+                       d="m 162.63456,149.28581 a 46.467018,17.172594 0 1 1 -92.934037,0"
+                       transform="translate(-15.152288,36.808785)"
+                       id="path4999"
+                       style="fill:#7fff1b;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+                    <path
+                       d="m 162.63456,149.28581 a 46.467018,17.172594 0 1 1 -92.934037,0 46.467018,17.172594 0 1 1 92.934037,0 z"
+                       transform="translate(-15.152288,14.14214)"
+                       id="path4973"
+                       style="fill:#7fff1b;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+                  </g>
+                  <text
+                     x="135.35332"
+                     y="259.01227"
+                     id="text5020"
+                     xml:space="preserve"
+                     style="font-size:11.52703094px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+                       x="135.35332"
+                       y="268.01227"
+                       id="tspan5022">adatbázis</tspan></text>
+                </g>
+                <path
+                   d="m 150,199.60471 95.87078,0"
+                   transform="translate(11.428571,-1.428571)"
+                   id="path5037"
+                   style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3, 1.5;stroke-dashoffset:0;marker-end:url(#Arrow2Lend)" />
+              </g>
+            </g>
+          </g>
+        </svg>
+        <ul>
+          <li>Ha jobban belegondolunk, akkor a grafikus alkalmazásainkat felfoghatjuk az objektumaink (vagy entitásaink) vizuális reprezentációjaként is. Ezt az érzést erõsíti bennünk a <a href="#" class="tooltip" data-tooltip="hogy angolosok legyünk: model-view">modell-nézet</a> architektúra. </li>
+          <li>De miért is jó? Programozók egyik alapelve: <strong>KISS (Keep it simple, stupid!)</strong>, azaz oldjunk meg mindent egyszerûen! Minél kisebb egységekre szeparáljuk a szoftverrendszerünket, annál könnyebb ezeket az egységeket karbantartani, tesztelni és fejleszteni. Nem beszélve arról, ha ezek az egységek <a href="http://en.wikipedia.org/wiki/Loose_coupling" class="tooltip" data-tooltip="katt katt ...">lazán kapcsolódnak</a> egymáshoz, akkor könnyen cserélhetõek az egyes komponensek.</li>
+          <li>A modell és a nézet réteg szigorú különválasztásával, megkímélhetjük magunkat a monolitikus kódtól, külön tesztelhetjük a vezérlõket, az adatbázis elérést stb., illetve a változtatások esetén is kevesebb módosítást kell elvégeznünk (persze ha jól van megtervezve a rendszerünk).</li>
+        </ul>
+    </div>
+
+    <div class="slide" data-title="Technológiák a nagyvilágban">
+      <ul>
+        <li>Szinte minden programozási nyelven lehet grafikus alkalmazást <a href="#" class="tooltip" data-tooltip="több-kevesebb szenvedéssel">készíteni</a>, de jelenleg ezekrõl a technológiákról érdemes tudni:
+          <ul>
+            <li><a href="http://msdn.microsoft.com/en-us/library/dd30h2yb.aspx">WinForms</a> - .NET Framework</li>
+            <li><a href="http://msdn.microsoft.com/en-us/library/ms754130.aspx">Windows Presentation Foundation</a> - .NET Framework</li>
+            <li><a href="http://winrt.codeplex.com/">WinRT</a> - .NET Framework</li>
+            <li><a href="http://www.mono-project.com/GtkSharp">Gtk#</a> -Mono</li>
+            <li><a href="http://qt.digia.com/">Qt</a> - C++</li>
+            <li><a href="http://msdn.microsoft.com/en-us/library/d06h2x6e.aspx">Microsoft Foundation Class (MFC)</a> - C++</li>
+            <li><a href="http://en.wikipedia.org/wiki/Swing_(Java)">Swing</a> - Java, Scala</li>
+            <li><a href="http://www.oracle.com/technetwork/java/javafx/overview/index.html">JavaFX 2.0</a> - Java, Scala</li>
+            <li><a href="http://docwiki.embarcadero.com/RADStudio/XE5/en/FireMonkey_Application_Platform">FireMonkey</a> - Delphi, C++</li>
+            <li>Mobil technológiák (iOS, Android, Windows Phone ... stb.)</li>
+            <li>HTML5, CSS (bármelyik nyelvbõl elérhetõ)</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Windows Forms (WinForms)">
+      <ul>
+        <li>A <strong>Windows Forms</strong> (késõbbiekben csak <strong>WinForms</strong>) a Microsoft fejlesztette ki, annak érdekében, hogy a .NET platformmal egyszerûen és gyorsan lehessen grafikus üzleti alkalmazásokat készíteni. Az <strong>MFC</strong> technológiát volt hivatott lecserélni, amivel sikerrel is jártak. </li>
+        <li>Raszteres grafikára épül (GDI+) és teljes mértékben szoftveresen renderelt (azaz egyáltalán nem használja ki a grafikus processzort). </li>
+        <li>Régi technológiáról van szó, amit a Microsoft már hivatalosan nem is támogat. Ettõl függetlenül viszont, vannak még olyan több éve futó projektek, amik ezt a technológiát használják, illetve a Mono is támogatja (ellentétben a WPF-el), így alkalmas alternatíva lehet arra is. </li>
+        <li>Felépítése talán a Qt-hoz hasonlít a legjobban, abszolút pozicionálást használ (vagyis ez a jellemzõ), a "vastag" vezérlõi vannak, illetve teljesen eseményvezérelt. Ennek megfelelõen a modell-nézet architektúránál magasabb szintût megoldást nehéz használni.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="WinForms vezérlõk">
+      <ul>
+        <li>
+          Minden WinForms vezérlõ a <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.aspx">System.Windows.Forms.Control</a> osztályból származik. Ez az osztály (és így minden leszármazottja is), szülõ-gyerek kapcsolatot definiál a vezérlõk között. Ezzel lényegében a <strong>HTML</strong>-hez hasonló fát épít fel, azzal a különbséggel, hogy ezek a vezérlõk sokkal magasabbszintûek (bár a <a class="tooltip" data-tooltip="érdekes elõadás, érdemes megnézni ;)" href="https://developers.google.com/events/io/sessions/318907648">web component</a>-ek után már talán ez nem lesz igaz).
+        </li>
+        <li>Ahogyan a Qt-nél, így itt sem válik ketté a vezérlõk funkcionalitása a megjelenítéstõl, ezért ha egyedi kinézetû vezérlõket szeretnénk készíteni, akkor kötelezõen felül kell definiálnunk a megjelenítésért felelõs <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.onpaint.aspx" class="tooltip" data-tooltip="OnPaint(...) metódus">metódusokat</a>.</li>
+        <li>Vezérlõket funkcionalitásuk alapján a következõkbe sorolhatjuk: ablak (<a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.form.aspx">Form</a>), <a href="#" class="tooltip" data-tooltip="nem tudom, hogy mi lehet a magyar megfelelõje ...">layout</a> elemek (<a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.tablelayoutpanel.aspx">TableLayoutPanel</a>, <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.splitcontainer.aspx">SplitContainer</a>, <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.groupbox.aspx">GroupBox</a> stb.), felületi elemek (<a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.button.aspx">Button</a>, <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.label.aspx">Label</a>, <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.radiobutton.aspx">RadionButton</a>, <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.checkbox.aspx">CheckBox</a>, <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.usercontrol.aspx">UserControl</a> stb.), segédelemek (<a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.tooltip.aspx">ToolTip</a>, <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.help.aspx">Help</a> stb.) és még lehetne további csoportokra bontani õket. </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Pár szót a pozicionálásról (1/2)">
+      <ul>
+        <li>Jöjjön néhány jó tanács a pozicionálással kapcsolatban!</li>
+        <li>Mind a Qt, mind pedig a WinForms az abszolút pozicionálást használja elõszeretettel. Ez azt jelenti, hogy az ablakunk (formunk) koordinátarendszere alapján adjuk meg a vezérlõknek a poziciójukat (<a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.location.aspx">Location</a>). Ez egyszerû megoldásnak tûnik, de sajnos rengeteg hátránya van ... </li>
+        <li>A legnagyobb probléma, hogy a felhasználó különbözõ képernyõfelbontásban használhatja a szoftverünket. Ennek megfelelõen (és teljesen természetes módon), igényt tarthat arra, hogy átméretezze az ablakot, aminek az lesz a következménye, hogy a vezérlõinknek a pozicióját és a méretét is dinamikusan kellene alakítani az ablak méretéhez képest. </li>
+        <li>Abszolút pozicionálás helyett használjunk különbözõ layout-okat, amik majd automatikusan (és dinamikusan) eldöntik, hogy az õáltal felügyelt vezérlõknek hol kell lennie és mekkorának kell lennie! Illetve használjuk a dokkolást (<a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.dock.aspx">Dock</a> tulajdonság), igazítást (<a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.anchor.aspx">Anchor</a> tulajdonság), illetve a <strong>Location</strong> tulajdonság helyett a vezérlõk közötti távolságokat (<a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.margin.aspx">Margin</a>, <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.control.padding.aspx">Padding</a> tulajdonságok) használjuk pozicionáláshoz.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Pár szót a pozicionálásról (2/2)">
        <span>
         <svg xmlns:dc="http://purl.org/dc/elements/1.1/"
              xmlns:cc="http://creativecommons.org/ns#"
@@ -483,7 +701,7 @@
                      id="tspan4638"
                      x="208.51871"
                      y="126.80267"
-                     style="text-align:center;text-anchor:middle">vezérlő</tspan><tspan
+                     style="text-align:center;text-anchor:middle">vezérlõ</tspan><tspan
                      sodipodi:role="line"
                      x="208.51871"
                      y="151.47285"
@@ -551,7 +769,7 @@
                      sodipodi:role="line"
                      id="tspan4708"
                      x="319.7536"
-                     y="223.51614">szülő vezérlő</tspan><tspan
+                     y="223.51614">szülõ vezérlõ</tspan><tspan
                      style="text-align:center;text-anchor:middle;fill:#ffffff"
                      id="tspan4710"
                      sodipodi:role="line"
@@ -600,7 +818,7 @@
                      x="223.57135"
                      y="70.494789"
                      id="tspan4732"
-                     style="text-align:center;text-anchor:middle;fill:#ffffff">felső margó (top margin)</tspan></text>
+                     style="text-align:center;text-anchor:middle;fill:#ffffff">felsõ margó (top margin)</tspan></text>
                 <text
                    sodipodi:linespacing="125%"
                    id="text4734"
@@ -662,19 +880,13 @@
        </span>
     </div>
 
-    <div class="slide" data-title="Fontosabb WinForms vezérlők">
-      <ul>
-        <li></li>
-      </ul>
-    </div>
-
     <div class="slide" data-title="Pár tanács GUI tervezéshez">
       <ul>
-        <li>Először mérjük fel az igényeket, hogy mit is akarunk megjeleníteni a felhasználónak</li>
+        <li>Elõször <strong>mérjük fel az igényeket</strong>, hogy mit is akarunk megjeleníteni a felhasználónak</li>
         <li>Készítsünk <strong>prototípust</strong> (wireframe-t), ami ad egy kisebb rálátást arra vonatkozóan, hogy milyen elemei lesznek a grafikus felületünknek és körülbelül milyen elrendezésre számíthatunk. Fontos, hogy itt csak logikailag tervezzük meg a GUI-t, azzal még nem szabad foglalkoznunk, hogy hogyan fognak kinézni az egyes részei!</li>
-        <li>Készítsük el, tervezzük meg a programunk látványvilágát: itt még mindig nem implementációról van szó, csupán arról, hogy valamilyen képszerkesztő alkalmazással elkészítjük a látványtervét a GUI-nknak.</li>
-        <li>Ha mindezekkel készen vagyunk, aki nekifoghatunk magának az implementációnak</li>
-        <li>Végül, de nem legutolsó sorban ne feledkezzünk meg magáról a tesztelésről sem! Egy sikeres alkalmazás legtöbbször a <a href="#" class="tooltip" data-tooltip="angolul: user experience">felhasználó élmény</a> bosszantó hibáin vérzik el, attól függetlenül, hogy mennyire hasznos az adott program. Ezt a tényt ismerte fel <a href="http://hu.wikipedia.org/wiki/Steve_Jobs">Steve Jobs</a> is annakidején. 
+        <li>Készítsük el, <strong>tervezzük meg</strong> a programunk látványvilágát: itt még mindig nem implementációról van szó, csupán arról, hogy valamilyen képszerkesztõ alkalmazással elkészítjük a látványtervét a GUI-nknak.</li>
+        <li>Ha mindezekkel készen vagyunk, aki nekifoghatunk magának az <strong>implementációnak</strong>.</li>
+        <li>Végül, de nem legutolsó sorban ne feledkezzünk meg magáról a <strong>tesztelésrõl</strong> sem! Egy sikeres alkalmazás legtöbbször a <a href="#" class="tooltip" data-tooltip="angolul: user experience">felhasználó élmény</a> bosszantó hibáin vérzik el, attól függetlenül, hogy mennyire hasznos az adott program. Ezt a tényt ismerte fel <a href="http://hu.wikipedia.org/wiki/Steve_Jobs">Steve Jobs</a> is annakidején. 
         </li>
       </ul>
     </div>
@@ -682,8 +894,33 @@
     <div class="slide" data-template="main">
       <div class="centered">
         <h1>&lt;Demo&gt;</h1>
-        <h2>Matematikai vektor reprezentációja (refactoring, debugging stb.)</h2>
+        <h2>Céges nyilvántartó program készítése <br/> WinForms technológia segítségével</h2>
       </div>
+    </div>
+
+    <div class="slide" data-title="Céges nyilvántartó - Feladat">
+      <ul>
+        <li>Egyszerû a feladatunk: készítsünk egy <a href="examples/CustomerRegister.Demo.zip">nyilvántartó alkalmazást</a> (<a href="examples/CustomerRegister.zip">teljes</a>), ami kilistázza a cégünk ügyfeleit és azoknak az adatait szabadon szerkeszthetjük!</li>
+        <li>Tároljuk az ügyfelekrõl (<strong>Customer</strong>) a következõ adatokat: név (<strong>Name</strong>), születési dátum (<strong>Birth date</strong>), cím (<strong>Address</strong> - <strong>Country</strong>, <strong>City</strong>, <strong>Post code</strong>, <strong>Street</strong>), munkahely (<strong>Job</strong> - <strong>Employee type</strong>, <strong>Address</strong>)</li>
+      </ul>
+      <a class="image-link" href="img/CustomerRegister.png"><img id="customer-register-img" src="img/CustomerRegister.png" alt="a leendõ programunk"></a>
+    </div>
+
+    <div class="slide" data-title="Céges nyilvántartó - Megvalósítás">
+      <ul>
+        <li>Még mielõtt ész nélkül nekilátnánk a feladatnak, gondoljuk át, hogy mit is akarunk csinálni!</li>
+        <li>Tervezzük meg, hogy hogyan is fog kinézni: <a href="http://lumzy.com/app/">http://lumzy.com/app/</a>
+        </li>
+      </ul>
+      <a class="image-link" href="img/Customer_Register_mockup.jpg"><img id="mockup" src="img/Customer_Register_mockup.jpg" alt=""></a>
+      <ul>
+        <li>Használjunk <strong>layout</strong>-okat! Próbáljuk meg betartani a <strong>modell-nézet</strong> architektúrát!</li>
+        <li>Az újrafelhasználhatóság jegyében azonosítsuk a vezérlõket és próbáljuk meg õket <strong>UserControl</strong>-okból elkészíteni!</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Céges nyilvántartó - Felület">
+      <img id="customer-register-plus-img" src="img/CustomerRegisterPlus.png">
     </div>
 
     <div class="slide" data-template="main">
