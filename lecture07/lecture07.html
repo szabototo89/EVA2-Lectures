@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eseményvezérelt alkalmazások fejlesztése 2 - Szabó Tamás &#169;</title>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/shCore.js"></script>
+  <script src="js/shBrushCSharp.js"></script>
+  <script src="js/shBrushXml.js"></script>
+  <script src="js/lecture.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  <link href="css/shCore.css" rel="stylesheet" type="text/css"/>
+  <link href="css/shCoreDefault.css" rel="stylesheet" type="text/css"/>
+  <link href="css/slides-800x600.css" rel="stylesheet" type="text/css" />
+
+  <script type="slide-template" id="main">
+    <div class="step slide main" data-x="$index*1500$">
+      $content$
+    </div>
+  </script>
+
+  <script type="slide-template" id="standard">
+    <div class="step slide" data-x="$index*1500$">
+      <div class="title">
+        <div>$title$</div>
+      </div>
+      <div class="subtitle">
+        <div>8 - Windows Presentation Foundation</div>
+      </div>
+      <div class="content">$content$</div>
+    </div>
+  </script>
+
+</head>
+<!-- õû -->
+<body>
+  <div id="impress">
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
+        <h2>8. gyakorlat - Windows Presentation Foundation alapjai 2.</h2>
+      </div>
+    </div>
+
+    <div class="slide" data-title="Mai óra tematikája - Mirõl is lesz szó?">
+      <ul>
+        <li>Ezen az órán megismerkedünk a <strong>Windows Presentation Foundation</strong> alapjaival, illetve egy kicsit a szemléletmódjával.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Stílusok">
+      <ul>
+        <li>A <strong>WPF</strong> lehetőséget nyújt a felhasználónak arra, hogy a különböző vezérlőknek stílusokat definiálhasson. Ezzel a módszerrel az ugyanolyan típusú vezérlőknek közös tulajdonságokat állíthatunk be egységesen anélkül, hogy azokat külön-külön nekünk kellene beállítani. Így a kódbázisunkat sokkal könnyebben lehet karbantartani, nem beszélve arról, hogy kevesebb kódot kell felügyelnünk. </li>
+        <li>A stílusokkal szinte bármit be tudunk állítani: <a href="#" class="tooltip" data-tooltip="trigger">kapcsolókat</a>, <a href="#" class="tooltip" data-tooltip="setter-eken keresztül">tulajdonságokat</a>, eseményeket, így kellően nagy szabadságot élvezünk a használatuknál.</li>
+        <pre class="brush:xml">
+        &lt;Style TargetType="Button"&gt;
+          &lt;Setter Property="Cursor" Value="Hand" /&gt;
+          &lt;Setter Property="Foreground" Value="Blue" /&gt;
+          &lt;Setter Property="Template"&gt;
+            &lt;Setter.Value&gt;
+              &lt;ControlTemplate TargetType="Button"&gt;
+                &lt;ControlTemplate.Resources&gt;
+                  &lt;Style TargetType="TextBlock"&gt;
+                    &lt;Setter Property="VerticalAlignment" Value="Center" /&gt;
+                    &lt;Setter Property="HorizontalAlignment" Value="Center" /&gt;
+                    &lt;Setter Property="TextDecorations" Value="Underline" /&gt;
+                  &lt;/Style&gt;
+                &lt;/ControlTemplate.Resources&gt;
+              &lt;TextBlock Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"/&gt;
+              &lt;/ControlTemplate&gt;
+            &lt;/Setter.Value&gt;
+          &lt;/Setter&gt;
+        &lt;/Style&gt;
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Stílusok használata">
+      <ul>
+        <li>Stílusokat a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.aspx">Style</a> osztály példányosítával lehet definiálni. A stílusoknak meg kell adni a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.targettype.aspx">TargetType</a> tulajdonságon keresztül, hogy milyen típusú vezérlőkre szeretnénk alkalmazni azt. </li>
+        <li>Minden <a href="#" class="tooltip" data-tooltip="FrameworkElement osztály definiálja">vezérlőnek</a> van egy <a href="http://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.style.aspx">Style</a> nevű tulajdonsága, aminek ha értéket adunk, akkor a rendszer figyelembe veszi a stílusoknál megadott értékeket is.</li>
+        <li>Másik lehetőség, hogy nem explicite adjuk meg a stílusokat, hanem valamelyik szülőelem <strong>Resources</strong> erőforrásai között példányosítjuk. Ezenbelül is két lehetőségünk van: ha nem adunk meg kulcsot az stílusnak (mint erőforrásnak), akkor minden azonos típusú vezérlőre automatikusan érvényes lesz az adott stílus a fa gyermekei között (kivéve ha explicite nem állítottunk be neki egy másik stílust). Ha viszont megadunk, akkor csak a <strong>StaticResource/DynamicResource</strong> segítségével tudjuk elérni explicite. </li>
+        <li>Hogy minél kevesebb legyen a kód duplikáció, ezért lehetőség van arra, hogy a már meglévő stílusból örököltessünk tulajdonságokat, majd a meglévőket megváltoztassuk, illetve új tulajdonságértékeket állítsunk be. Ezt a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.basedon.aspx">BasedOn</a> tulajdonságon keresztül tudjuk megtenni.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Setter/EventSetter osztály (1/2)">
+      <ul>
+        <li>A tulajdonságokat és eseményeket különböző <a href="http://msdn.microsoft.com/en-us/library/system.windows.setterbase.aspx">SetterBase</a> osztály leszármazottjaival lehet megadni a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.setters.aspx">Style.Setters</a> tulajdonságon keresztül.</li>
+        <pre class="brush:xml">
+          &lt;Style TargetType="TextBlock"&gt;
+            &lt;Style.Setters&gt; 
+              &lt;Setter Property="Background" Value="Red" /&gt;
+            &lt;/Style.Setters&gt;
+          &lt;/Style&gt;
+        </pre>
+        <li>A könnyebb használhatóság miatt, a <strong>Setters</strong> tag-eket el lehet hagyni:</li>
+        <pre class="brush:xml">
+          &lt;Style TargetType="TextBlock"&gt;
+            &lt;Setter Property="Background" Value="Red" /&gt;
+          &lt;/Style&gt;
+        </pre>
+        <li>A tulajdonságokat a <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.aspx">Setter</a> objektummokkal lehet beállítani. A <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.property.aspx">Property</a>-n keresztül kell megadni, hogy vezérlő mely tulajdonságát szeretnénk beállítani, míg a <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.value(v=vs.110).aspx">Value</a>-n keresztül tudjuk megadni a pontos értékét. Ha egy elnevezett vezérlőnek kell pontosan megadni az értéket, akkor a <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.targetname(v=vs.110).aspx">TargetName</a> tulajdonságnak kell értéket adni. Ez viszont csak a <strong>trigger</strong>-eknél használható, stílusoknál nem.</li>
+        <li>Az <a href="http://msdn.microsoft.com/en-us/library/system.windows.eventsetter.aspx">EventSetter</a>-eken keresztül pedig az adott eseményekre iratkozhatunk fel. </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Setter/EventSetter osztály (2/2)">
+      <ul>
+        <li></li>
+      </ul>
+    </div>
+
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>[ Köszönöm a figyelmet! ]</h1>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="user-interface" id="info">
+    <a href="http://sztrabi.web.elte.hu">Szabó Tamás</a> (<a href="mailto:sztrabi@inf.elte.hu">sztrabi@inf.elte.hu</a>) © <a href="http://people.inf.elte.hu/groberto/elte_eva2/index.html">Eseményvezérelt alkalmazások fejlesztése 2</a>
+  </div>
+
+  <div class="user-interface">
+    <div id="show-menu">Tartalomjegyzék ></div>
+    <ol id="menu-items" />
+  </div>
+  <script src="js/impress.js"></script>
+</body>
+</html>
