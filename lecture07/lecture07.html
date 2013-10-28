@@ -24,7 +24,7 @@
         <div>$title$</div>
       </div>
       <div class="subtitle">
-        <div>8 - Windows Presentation Foundation</div>
+        <div>8 - WPF alapjai</div>
       </div>
       <div class="content">$content$</div>
     </div>
@@ -44,6 +44,18 @@
     <div class="slide" data-title="Mai óra tematikája - Mirõl is lesz szó?">
       <ul>
         <li>Ezen az órán megismerkedünk a <strong>Windows Presentation Foundation</strong> alapjaival, illetve egy kicsit a szemléletmódjával.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Rétegek használata">
+      <ul>
+        <li>  </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Trigger-ek használata">
+      <ul>
+        <li></li>
       </ul>
     </div>
 
@@ -105,6 +117,46 @@
     </div>
 
     <div class="slide" data-title="Setter/EventSetter osztály (2/2)">
+      <ul>
+        <li>Lássunk néhány példát a használatukhoz (<strong>MainWindow.xaml</strong>):</li>
+        <pre class="brush:xml">
+          &lt;Style TargetType="TextBlock" x:Key="TextBlockStyle"&gt;
+              &lt;Style.Setters&gt;
+              &lt;EventSetter Event="MouseDown" Handler="TextBlockMouseDown" /&gt;
+              &lt;Setter Property="Foreground" Value="White" /&gt;
+              &lt;Setter Property="Background"&gt;
+                &lt;Setter.Value&gt;
+                  &lt;SolidColorBrush Color="Blue" Opacity="0.5" /&gt;
+                &lt;/Setter.Value&gt;
+              &lt;/Setter&gt;
+            &lt;/Style.Setters&gt;
+          &lt;/Style&gt;
+        </pre>
+        <li>A mögöttes kód (<strong>MainWindow.xaml.cs</strong>)</li>
+        <pre class="brush:csharp">
+          //Az EventSetter-el beállított tulajdonság, amivel a MouseDown eseményre iratkoztunk fel
+          private void TextBlockMouseDown(object sender, MouseButtonEventArgs e)
+          {
+            var textBlock = sender as TextBlock;
+            if (textBlock != null) 
+              MessageBox.Show(textBlock.Text);
+          }
+        </pre>
+        <li>Ezekután már csak annyi a dolgunk hogy használjuk a stílusunkat az <a href="#" class="tooltip" data-tooltip="ebben az esetben a TextBlock-on">adott vezérlőn</a>. Ha a felhasználó rákattint a szövegre, akkor felbukkan egy ablak a <strong>Hello World</strong> szöveggel:</li>
+        <pre class="brush:xml">
+          &lt;!-- Ahogy látható kívülről szinte nem látszik semmi se: --&gt;
+          &lt;TextBlock Style="{StaticResource TextBlockStyle}"&gt;Hello World!&lt;/TextBlock&gt;
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Sablonok használata">
+      <ul>
+        <li></li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="ItemsControl vezérlő">
       <ul>
         <li></li>
       </ul>
