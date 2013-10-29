@@ -5,6 +5,7 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/shCore.js"></script>
   <script src="js/shBrushCSharp.js"></script>
+  <script src="js/shBrushXml.js"></script>
   <script src="js/lecture.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
   <link href="css/shCore.css" rel="stylesheet" type="text/css"/>
@@ -23,7 +24,7 @@
         <div>$title$</div>
       </div>
       <div class="subtitle">
-        <div>7 - Windows Presentation Foundation</div>
+        <div>7 - WPF alapjai</div>
       </div>
       <div class="content">$content$</div>
     </div>
@@ -43,7 +44,275 @@
     <div class="slide" data-title="Mai óra tematikája - Mirõl is lesz szó?">
       <ul>
         <li>Ezen az órán megismerkedünk a <strong>Windows Presentation Foundation</strong> alapjaival, illetve egy kicsit a szemléletmódjával.</li>
+        <li>Bepillantást fogunk nyerni a <strong>XAML</strong> nyelv alapjaiba.</li>
+        <li>Megismerkedünk az Model-View-ViewModel architektúrával, milyen elõnyökkel jár, hogyan kapcsolódik a WPF-hez stb.</li>
+        <li>Végül pedig az adatkötés (data binding) alapjait fogjuk átnézni, ami a WPF egyik legtöbbet használt technikája</li>
       </ul>
+    </div>
+
+    <div class="slide" data-title="A XAML nyelv">
+      <ul>
+        <li>A <strong>XAML</strong> egy <strong>XML</strong> alapú deklaratív nyelv, aminek segítségével a programozó meghatározhatja az alkalmazás kinézetét. Segítségével stílusokat definiálhatunk, az alkalmazás logikai fáját építhetjük fel, erõforrásokat definiálhatunk. A fordító ezután a szöveges fájlból egy bináris változatot hoz létre (<a href="http://en.wikipedia.org/wiki/Binary_Application_Markup_Language">BAML</a>), amit késõbb a <strong>WPF</strong> felhasználja a megjelenítés során. </li>
+        <li>Ez a megközelítés már a webes világban többször bebizonyította, hogy egy járható útról van szó: XML alapú nyelv segítségével (<strong>HTML5/XAML</strong>) leírjuk az alkalmzás kinézetét, stílusokkal (<strong>CSS3/XAML</strong>) az egyéni igények szerint alakítjuk és a legvégén implementáljuk valamilyen nyelven (<strong>JavaScript/C#</strong>) az üzleti logikát.  </li>
+        <li><strong>"Hello World"</strong> program megvalósítása: </li>
+        <pre class="brush:xml">
+          &lt;Window x:Class="WpfApplication1.MainWindow"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  Title="MainWindow" Height="350" Width="525"&gt;
+              &lt;Grid&gt;
+                &lt;TextBlock&gt;Hello World!&lt;/TextBlock&gt;        
+              &lt;/Grid&gt;
+          &lt;/Window&gt;
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="XAML használata (1/2)">
+      <ul>
+        <li>Bármilyen WPF-es vezérlõt lehet példányosítani a <strong>XAML</strong> segítségével. Attribútumokon keresztül lehet beállítani a control-ok különbözõ tulajdonságait (<strong>Margin</strong>, <strong>(Min/Max)Width/(Min/Max)Height</strong>, <strong>Content</strong> stb.). Az attribútumok értékét mindig sztringliterál formájában adjuk meg, majd a WPF a <a href="http://msdn.microsoft.com/en-us/library/aa970913.aspx">típuskonverterek</a> segítségével feldolgozza azt.</li>
+        <pre class="brush:xml; highlight: 2">
+            &lt;Grid&gt;
+              &lt;TextBlock Foreground="Red" Text="Hello World!"&gt;&lt;/TextBlock&gt;
+            &lt;/Grid&gt;
+        </pre>
+        <li>Ha olyan típusú attribútumnak akarunk értéket adni, aminek az értékét nem lehet egyszerûen karaktersorozatként megadni, akkor az <strong>XML</strong> tag közé kell <a href="#" class="tooltip" data-tooltip="persze így sokkal többet kell írnunk ...">beágyaznunk</a> az értéket:</li>
+        <pre class="brush:xml; highlight:[4,7]">
+          &lt;Grid&gt;
+            &lt;TextBlock&gt;
+              &lt;TextBlock.Text&gt;
+                Hello World!
+              &lt;/TextBlock.Text&gt;
+              &lt;TextBlock.Foreground&gt;
+                &lt;SolidColorBrush Color="Red" /&gt;
+              &lt;/TextBlock.Foreground&gt;
+            &lt;/TextBlock&gt;
+          &lt;/Grid&gt;
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="XAML használata (2/2)">
+      <ul>
+        <li>XML-bõl ismert névtereket is használhatunk, ami a külsõ (általában saját) névtérbõl tudjuk elérni a vezérlõket (vagy bármilyen más .NET-beli osztályt). Névtereket bármelyik XML tag-ben lehet definiálni, ezért alapvetõen szabad kezet kapunk:</li>
+        <pre class="brush:xml; highlight: [1,3]">
+          &lt;TextBlock xmlns:system="clr-namespace:System;assembly=mscorlib"&gt;
+            &lt;TextBlock.Text&gt;
+              &lt;system:String&gt;Hello World!&lt;/system:String&gt;
+            &lt;/TextBlock.Text&gt;
+          &lt;/TextBlock&gt;
+        </pre>
+        <li>Úgynevezett <a href="http://msdn.microsoft.com/en-us/library/ms747254.aspx" class="tooltip" data-tooltip="nem tudom, hogy mi lehetne erre a megfelelõ magyar kifejezés... (katt katt ...)">markup extension</a>-ök segítségével az attribútumoknak dinamikusan is adhatunk értéket.  </li>
+        <pre class="brush:xml; highlight: 5">
+          &lt;Grid xmlns:system="clr-namespace:System;assembly=mscorlib"&gt;
+            &lt;Grid.Resources&gt;
+              &lt;system:String x:Key="Value"&gt;Hello World!&lt;/system:String&gt;
+            &lt;/Grid.Resources&gt;
+            &lt;TextBlock Text="{StaticResource Value}" /&gt;
+          &lt;/Grid&gt;
+        </pre>
+        <li><a href="http://msdn.microsoft.com/en-us/library/ms750950.aspx">StaticResource</a> segítségével az erõforrásokban (<strong>Resources</strong> tulajdonság) definiált elemekre hivatkozhatunk, de csak egyszer töltõdik be annak az értéke, míg a <a href="http://msdn.microsoft.com/en-us/library/ms748942.aspx">DynamicResource</a> már az objektum változásait is figyelemmel követi. Sajátokat is készíthetünk, egyszerûen úgy, hogy a <a href="http://msdn.microsoft.com/en-us/library/system.windows.markup.markupextension.aspx">MarkupExtension</a> osztályból származtatjuk a sajátunkat.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>[ Demo ]</h1>
+        <h2>Hello WPF!</h2>
+      </div>
+    </div>
+
+    <div class="slide" data-title="Az MVVM architektúra (1/2)">
+      <ul>
+        <a href="img/mvvm.png" class="image-link"><img src="img/mvvm.png" style="margin-left: 23%; padding-bottom: 20px;"></a>
+        <li>A <strong>Windows Forms</strong>-nál megismerkedtünk a <strong>Model-View</strong> architektúrával, ami kisebb alkalmazások esetében egy nagyon jól kezelhetõ megoldás, de nagyobb lélegzetvételû projektek esetében ez már kevés ... </li>
+        <li>A <strong>Model-View-Viewmodel</strong> továbbgondolja az elõzõ architektúrát és két réteg helyett háromra bontja azt. Az alapötlet az, hogy a <strong>modell</strong> rétegben hagyjuk meg a különbözõ adatszerkezeteinket, a <strong>nézetben</strong> definiáljuk az alkalmazásunk kinézet és a <strong>nézetmodell</strong> pedig arra szolgál, hogy az utóbbi két réteg között kapcsolatot létesítsen. Ide kerülnek az alkalmazás üzleti logikái, itt hozhatjuk kényelmes formára a nézet számára fontos adatokat, illetve tesztelhetõség szempontjából is nagyon jó megoldás.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Az MVVM architektúra (2/2)">
+      <ul>
+        <a href="img/mvvm.png" class="image-link"><img src="img/mvvm.png" style="margin-left: 23%; padding-bottom: 20px;"></a>
+        <li>Használhatnánk más architektúrákat is, de a <strong>Windows Presentation Foundation</strong> ezt az architektúrát támogatja.</li>
+        <li>A szerveroldali webprogramozásban például a <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model-View-Controller</a> felépítést használják, mert a sokéves tapasztalat azt mutatta, hogy ez vált be a legjobban.</li>
+        <li>A <strong>JavaFX</strong> pedig a <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter">Model-View-Presenter</a>-t (MVP) használja, ami ugyanúgy hasonló megközelítés, mint az MVVM. </li>
+        <li>Nemcsak a WPF használja ki az MVVM adta lehetõségeket, hanem a kliens oldali webprogramozásban is találhatunk ilyen technológiákat: ilyen például a <a href="http://knockoutjs.com/">Knockout</a>.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="ViewModelBase osztályunk (1/3)">
+      <ul>
+        <li>A nézetmodell rétegben lévõ objektumaink kicsit mások, mint amik a modell rétegben foglalnak helyet. Elõször is képesek szólni a nézetnek, hogy megváltozott az állapotuk, aminek segítségével a felület képes automatikusan frissülni. </li>
+        <li>Ahhoz, hogy ezt a tulajdonságot meg tudjuk valósítani, implementálnunk kell az osztályunkba az <a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged.aspx">INotifyPropertyChanged</a> interfészt. Ez egy nagyon könnyûsúlyú interfész, ami egy dolgot tud: képes szólni a <a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged.propertychanged.aspx">PropertyChanged</a> eseményén keresztül a feliratkozottaknak, hogy megváltozott az objektum belsõ állapota.</li>
+        <pre class="brush:csharp">
+          public interface INotifyPropertyChanged
+          {
+              event PropertyChangedEventHandler PropertyChanged;
+          }
+        </pre>
+        <li>Ezt viszont kényelmetlen lenne állandóan implementálnunk (nem beszélve arról, hogy ezzel kódot is duplikálunk jóformán), ezért ennek megoldására a gyakorlatban eyg absztrakt õsosztályt szoktak bevezetni, amit majd implementálni kell minden nézetmodell osztálynál. </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="ViewModelBase osztályunk (2/3)">
+      <ul>
+        <li>Maga az osztály: </li>
+      </ul>
+      <pre class="brush:csharp">
+        // Nézetmodellek absztrakt õsosztálya
+        public abstract class ViewModelBase : INotifyPropertyChanged
+        {
+            // Tulajdonság értékének megváltozása esetén lefutó esemény
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            // Tulajdonság értékének megváltoztatását jelzõ metódus
+            protected ViewModelBase OnPropertyChanged&lt;TPropertyType&gt;(Expression&lt;Func&lt;TPropertyType&gt;&gt; expression)
+            {
+                if (expression == null)
+                    throw new ArgumentNullException("expression");
+
+                return OnPropertyChanged(GetMemberNameFromExpression(expression));
+            }
+
+            // Tulajdonság értékének megváltoztatását jelzõ metódus
+            protected virtual ViewModelBase OnPropertyChanged(string propertyName)
+            {
+                PropertyChangedEventHandler handler = PropertyChanged;
+                if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+                return this;
+            }
+            
+            // Lekérdezi a lambdafüggvény
+            private string GetMemberNameFromExpression&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt; expression)
+            {
+                /* itt történik valami varázslat ... */
+            }
+        }
+      </pre>
+    </div>
+
+    <div class="slide" data-title="ViewModelBase osztályunk (3/3)">
+      <ul>
+        <li><strong>GetMemberNameFromExpression</strong> metódusunk: </li>
+        <pre class="brush:csharp">
+          // Lekérdezi a lambdafüggvény
+          private string GetMemberNameFromExpression&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt; expression) {
+              if (expression == null) throw new ArgumentException("Getting property name form expression is not supported for this type.");
+              var lambda = expression as LambdaExpression;  //Megnézzük, hogy felhasználó lambdafüggvényt adott-e át paraméterként
+              if (lambda == null) // ha nem akkor hibát dobunk
+                  throw new NotSupportedException("Getting property name form expression is not supported for this type.");
+              var memberExpression = lambda.Body as MemberExpression; //lekérjük a lambda kifejezésünk törzsét
+              if (memberExpression != null)
+                  return memberExpression.Member.Name;  // ha ez sikerül, akkor a Member.Name tulajdonság fogja tárolni a nevet
+              var unary = lambda.Body as UnaryExpression; //ha nem akkor tovább próbálkozunk
+              if (unary != null) {
+                  var member = unary.Operand as MemberExpression;
+                  if (member != null)
+                      return member.Member.Name;
+              }
+              throw new NotSupportedException("Getting property name form expression is not supported for this type.");
+          }
+        </pre>
+        <li>Használata: </li>
+        <pre class="brush:csharp">
+          public class PersonViewModel : ViewModelBase {
+              private string _Name;
+              public string Name {  
+                get { return _Name; } //a tulajdonság értékének a lekérése ugyanúgy történik
+                set {
+                  _Name = value;  //eltároljuk az értéket
+                  OnPropertyChanged(() => Name); //szólunk, hogy megváltozott a Name tulajdonság értéke  
+                }
+              }
+          }
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Adatkötés alapjai (1/2)">
+      <ul>
+        <li>Mivel három rétegbe szeparáltuk az alkalmazásunkat, ezért a rétegek közötti információcsere kicsit bonyolultabbá válik. Azt szeretnénk, hogy ha a nézet rétegben megváltozik valami adat, akkor az automatikusan frissüljön a mélyebben lévõ rétegekben is, illetve szeretnénk ezt fordítva is megoldani.</li>
+        <li>Az egyszerû értékadás, csak a változónk értékét állítja be, de nem tudjuk, hogy ez mikor történt! Szeretnénk egy olyan objektumot, ami képes értesíteni más objektumokat arról, hogy megváltozott az értéke. Lényegében ez az alapötlete az <a href="http://www.codeproject.com/Articles/6384/Observer-Pattern-in-NET">Observer</a> tervezési mintának.</li>
+        <a href="img/observer.GIF" class="image-link"><img src="img/observer.GIF" style="width: 44%; margin-left: 26%"></a>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Adatkötés alapjai (2/2)">
+      <ul>
+        <li>Hogyan is mûködik ez WPF-ben? Adatkötést általában a nézetmodell és a nézet közötti objektumok között létesítünk. Ezt a <strong>WPF</strong> a <a href="http://msdn.microsoft.com/en-us/library/system.windows.dependencyproperty.aspx">DependencyProperty</a> segítségével oldja meg, ami mindig a nézet oldalon van definiálva. </li>
+        <a href="img/databinding.png" class="image-link" style="margin-left: 25%"><img src="img/databinding.png"></a>        
+        <li>Ez viszont még nem elég, hiszen valahogy a kötést is definiálni kell. Ezt a <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.binding.aspx">Binding</a> osztály használatával érhetjük majd el. Legegyszerûbben a <a href="http://msdn.microsoft.com/en-us/library/ms750413.aspx">Binding Markup Extension</a> tudjuk használni:</li>
+        <pre class="brush:xml">
+          &lt;!-- Név kötése a címke tartalmához (Content) --&gt;
+          &lt;Label Content="{Binding Path=Name}"/&gt;
+          &lt;!-- Lehet röviden is: --&gt;
+          &lt;Label Content="{Binding Name}"/&gt;
+        </pre>
+        <li>Adatkötni csakis <a href="#" class="tooltip" data-tooltip="properties ...">tulajdonságokhoz</a> lehet kötni, azaz, függvényeket nem lehet velük meghívni. </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Binding osztály (1/2)">
+      <ul>
+        <li>
+          A WPF-ben a <strong>data binding</strong> egy nagyon erõs technika az információk frissítésére. Segítségével rengeteg mindent meg lehet fogalmazni a <strong>XAML</strong>-ön keresztül:  
+        </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.data.binding.source.aspx">Source: </a>Az adatkötés forrását tudjuk vele beállítani. Alapértelmezetten a <strong>DataContext</strong> objektumot állítja be a WPF.</li>
+        <pre class="brush:xml">
+          &lt;TextBlock Text="{Binding Path=Name, Source={StaticResource MyEmployee}}"/&gt;
+        </pre>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.data.binding.path.aspx">Path</a>: A <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.binding.path.aspx">Path</a> tulajdonságon keresztül lehet megadni a <strong>Source</strong>-en keresztül megkapott objektum mely tulajdonságához szeretnénk hozzákötni az adott attribútumot. Ha üresen hagyjuk, akkor magához az objektumhoz fogja kötni a kapcsolatot.</li>
+         <pre class="brush:xml">
+          &lt;!-- Név kötése a címke tartalmához (Content) --&gt;
+          &lt;TextBlock Text="{Binding Path=Name}"/&gt;
+        </pre>
+        <li>
+          <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.binding.updatesourcetrigger.aspx">UpdateSourceTrigger</a>: Explicite beállíthatjuk, hogy mikor frissüljenek az adataink. Lényegében három mód közül választhatunk: explicite mi hívjuk meg (<strong>Explicit</strong>), amikor elveszti a fókuszt a vezérlõ (<strong>LostFocus</strong>), illetve ha megváltozik a tulajdonság értéke (<strong>PropertyChanged</strong>).
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Binding osztály (2/2)">
+      <ul>
+        <li>
+          <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.binding.elementname.aspx">ElementName</a>: Ha szeretnénk valamelyik vezérlõ tulajdonságához hozzákötni egy másik vezérlõnk tulajdonságát, akkor ezt az ElementName-en keresztül tudjuk a legegyszerûbben megtenni úgy, hogy megadjuk a vezérlõ nevét. 
+        </li>
+        <pre class="brush:xml; highlight: 3">
+          &lt;!-- Név kötése a címke tartalmához (Content) --&gt;
+          &lt;TextBlock Text="Hello World" Name="HelloWorldText"/&gt;
+          &lt;Button Content="{Binding ElementName=HelloWorldText, Path=Text}" /&gt;
+        </pre>
+        <li>
+          <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.binding.mode.aspx">Mode</a>: Maga az adatkötés <a href="#" class="tooltip" data-tooltip="source to target irányt feltételezünk alapértelmezetten">többirányú</a> is lehet: egyirányú (<a href="http://msdn.microsoft.com/en-us/library/system.windows.data.bindingmode.aspx">OneWay</a>), egyszer frissülõ (<a href="http://msdn.microsoft.com/en-us/library/system.windows.data.bindingmode.aspx">OneTime</a>), kétirányú (<a href="http://msdn.microsoft.com/en-us/library/system.windows.data.bindingmode.aspx">TwoWay</a>) és egyirányú de fordított irányú (<a href="http://msdn.microsoft.com/en-us/library/system.windows.data.bindingmode.aspx">OneWayToSource</a>).
+        </li>
+        <li>
+          <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.binding.relativesource.aspx">RelativeSource</a>: Sok esetben gondot okozhat, hogy megfogalmazzuk melyik tulajdonsághoz szeretnénk kötni az objektumunkat. Ezt a problémát próbálja megkönnyíteni nekünk a <strong>RelativeSource</strong> tulajdonság. 
+        </li>
+         <pre class="brush:xml; highlight: 3">
+          &lt;Button Content="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" 
+                  Tag="Hello World!" /&gt;
+        </pre>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.data.binding.converter.aspx">Converter</a>: Vannak olyan <a href="#" class="tooltip" data-tooltip="és sajnos gyakori tud lenni ...">esetek</a>, hogy nem a megfelelõ formában kapjuk meg az adatot ahogy ki szeretnénk <a href="#" class="tooltip" data-tooltip="ami ugye a nézetmodell dolgának kellene lennie részben">iratni</a>. Erre valóak a különbözõ <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.ivalueconverter.aspx">IValueConverter</a> interfészt implementáló objektumok, amik a megkapott objektum értékét valamilyen logika alapján átkonvertálja (illetve visszakonvertálja). </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="RelativeSource tulajdonság">
+      <ul>
+        <li>
+          A <strong>WPF</strong> a <strong>RelativeSource</strong> tulajdonság segítségével egy nagyon erõs adatkötési lehetõséget ad a felhasználó kezébe. Segítségével finomhangolni tudjuk, hogy pontosan mely objektum értékét szeretnénk elérni. Sok esetben sokkal erõsebb, mint maga az <strong>ElementName</strong> adta lehetõség és egyben általánosabb is. 
+        </li>
+        <li>A <strong>RelativeSource</strong> osztály a XAML-ben egy <a href="http://msdn.microsoft.com/en-us/library/ms747254.aspx">markup extension</a>, azaz ugyanúgy kell használni, mint az adatkötést. Használata nagyon egyszerû. Képzeljük el, hogy az általunk készített XAML kód egy (logikai) fa és ennek megfelelõen kezdjünk el navigálni. </li>
+        <li><strong>Self</strong>: Ha saját magához a vezérlõnkhöz szeretnénk csatolni az adatkötést, akkor a <strong>Self</strong> értéket kell kiválasztanunk.</li>
+        <li><strong>FindAncestor</strong>: Akkor tudjuk használni, ha a logikai fán szeretnénk navigálni és a szülõ elemet akarunk keresni. </li>
+        <li><strong>TemplatedParent</strong>: A sablonok kicsit kilógnak az szülõ-gyerek hiearchiából, de lehetõség van, magára arra a vezérlõre is hivatkozni, akire az adott sablon vonatkozik. </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>[ Demo ]</h1>
+        <h2>DataBinding alapjai</h2>
+      </div>
     </div>
 
     <div class="slide" data-template="main">
