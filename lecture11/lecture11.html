@@ -85,13 +85,126 @@
     </div>
 
     <div class="slide" data-title="NUnit Testing Framework">
+      <a href="img/nunit.gif" class="image-link"><img src="img/nunit.gif" style="margin-left: 40%; margin-top: 15px; margin-bottom: 15px;"></a>
       <ul>
         <li>Rengeteg tesztelési keretrendszer áll rendelkezésünkre .NET-en belül, mi az <a href="http://www.nunit.org/">NUnit</a>-al fogunk kicsit közelebbről megismerkedni. Ez egy széleskörben alkalmazott könyvtár, aminek rengeteg
         előnye van: könnyen használható, kihasználja a C# adta nyelvi lehetőségeket, nagyon hasonlít a <a href="#" data-tooltip="Java-s unit testing framework" class="tooltip">JUnit</a>-ra. </li>
         <li>Telepíteni legegyszerűbben a Visual Studio csomagkezelő moduljával (<a href="http://www.nuget.org/">NuGet</a>) lehet, de közvetlenül a weboldaláról is lehet tölteni.</li>
         <li>
           Nagymértékben támaszkodik a .NET által nyújtott <a href="http://en.wikipedia.org/wiki/Attribute-oriented_programming">attribútum orientált programozásra</a>, ugyanis a tesztmetódusokat különböző attribútumokkal lehet megjelölni,
-          melyeket a keretrendszer futásidőben feldolgoz, és a neki megfelelő utasításokat hajtja végre. </li>
+          melyeket a keretrendszer futásidőben feldolgoz, és a neki megfelelő utasításokat hajtja végre.
+        </li>
+        <li>A Visual Studio-hoz van egy <a href="http://visualstudiogallery.msdn.microsoft.com/6ab922d0-21c0-4f06-ab5f-4ecd1fe7175d">NUnit Test Adapter</a> kiterjesztés, aminek a segítségével már a
+          <strong>Test Explorer</strong>-ből tudjuk futtatni az NUnit-ban írt tesztjeinket.  </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Attribútum orientált programozás">
+      <ul>
+        <li>
+          Lehetőség van C#-ban a típusokat, metódusokat, paramétereket különböző attribútumokkal (Java-ban annotációknak hívják őket) megjelölni. Ez (jelenleg) nem befolyásolják a forráskód feldolgozását fordítási időben,
+          egyedül csak futási időben változtathatják meg az objektumaink működését.
+        </li>
+        <li>
+          Használata nagyon egyszerű: ha valamilyen attribútummal meg akarunk jelölni egy osztályt, vagy metódust, akkor egyszerűen csak szögletes zárójelek közé beleírjuk az attribútum nevét, illetve ha szükség van rá, akkor
+          a megfelelő paramétereket:
+          <pre class="brush:csharp">
+            [SomeClassAttribute] //TestFixture attribútummal megjelölhetjük, akár az osztályunkat is
+            public class MyClass
+            {
+              //Test attribútummal megjelöljük a metódusunkat
+              [SomeMethodAttribute(Description="Some description")]
+              public void MyMethod()
+              {
+                // metódus implementációja
+              }
+            }
+          </pre>
+        </li>
+        <li>Az attribútummal megjelölt típusok használata semmiben sem tér el, a többitől:
+          <pre class="brush:csharp">
+            var my = new MyClass(); //ugyanúgy példányosítunk, mint bármilyen másik osztályt
+            my.MyMethod();  //és ugyanúgy használjuk a metódust is
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Hogyan dolgozzuk fel az attribútumokat?">
+      <ul>
+        <li>
+          Ha valamit megjelöltünk egy (akár saját) attribútummal, nem jelenti feltétlenül azt, hogy meg fog változni annak a viselkedése. Először is valamilyen módon fel kell tudnunk azt dolgozni.
+          Ezt a gyakorlatban <a href="http://msdn.microsoft.com/en-us/library/vstudio/f7ykdhsy.aspx">Reflection</a> segítségével tehetjük meg.
+        </li>
+        <li>
+          A <strong>reflection</strong>-nel futásidőben nyerhetünk ki adott objektumokból vagy típusokból típusinformációkat (szinte bármit): milyen tulajdonságai, metódusai, attribútumai vannak, milyen névtérben
+          helyezkedik el. Ha lehet ne használjuk túl gyakran, mert lassú technikáról van szó.
+          <pre class="brush:csharp">
+              static void Main(string[] args) {
+                  string text = "Hello World!";
+                  // lekérdezzük a 'text' változó típusinformációját
+                  Type typeOfText = text.GetType();
+
+                  //meghívjuk a 'text' változónkon a ToLower() nevű metódust
+                  var result = typeOfText.GetMethods()
+                                          .First(method => method.Name == "ToLower")
+                                          .Invoke(text, null);
+
+                  // Output: 'hello world!'
+                  Console.WriteLine(result);
+
+                  // kiírja nekünk a System.String osztály attribútumait
+                  foreach (var method in typeOfText.CustomAttributes
+                                                   .Select(attribute => attribute.AttributeType.Name))
+                      Console.WriteLine(method);
+              }
+          </pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Saját attribútumok definiálása">
+      <ul>
+        <li>
+          Nemcsak a beépített attribútumokat lehet használni, hanem mi is készíthetünk sajátokat, ha szükség van rá. Minden attribútum (meglepő módon) az
+          <a href="http://msdn.microsoft.com/en-us/library/system.attribute(v=vs.110).aspx">System.Attribute</a> absztrakt osztályból származik, így nekünk
+          is onnan kell származtatni a sajátunkat:
+        </li>
+        <pre class="brush:csharp">
+            // AttributeUsage attribútummal jelöljük, hogy hol szeretnénk használni
+            // a saját attribútumainkat
+            [AttributeUsage(AttributeTargets.Class |
+                            AttributeTargets.Struct,
+                            AllowMultiple = true)]
+            // az elnevezési konvenció az, hogy az attribútumok nevét
+            // Attribute suffix-al kell megjelölni, de a használatuknál
+            // ez már elhagyható: lásd MyClass osztály attribútumait
+            public class AuthorAttribute : Attribute
+            {
+                private string _Name;
+                public double Version { get; set; }
+                // Mint minden osztálynak, ennek is lehet konstruktora
+                public AuthorAttribute(string name)
+                {
+                    _Name = name;
+                    Version = 1.0;
+                }
+            }
+
+            [Author("Gipsz Jakab")]
+            [Author("Mekk Elek", Version = 0.1)]
+            public class MyClass
+            {
+               /* osztály implementációja */
+            }
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="NUnit használata">
+      <ul>
+        <li>Minden teszt metódusunkat (lehetőleg) saját teszt osztályokba helyezzük. Az NUnit alapvetően ezeket az attribútumokat használja a használathoz:</li>
+        <li><a href="http://nunit.org/index.php?p=testFixture&r=2.5">TestFixture</a>: </li>
       </ul>
     </div>
 
