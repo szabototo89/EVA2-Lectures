@@ -67,7 +67,31 @@
                 href="#" data-tooltip="angolul: unit testing" class="tooltip">egyégtesztelést</a>, <a href="#" class="tooltip" data-tooltip="angolul: integration testing">integrációs
           tesztelést</a>, <a href="#" data-tooltip="angolul: regression testing" class="tooltip">regressziós teszt</a> és <a href="#" data-tooltip="angolul: database testing" class="tooltip">adatbázis
           tesztelést</a> (nem teljes az itt felsorolt lista, de ezeket lehet hallani a legtöbbször). </li>
-        <li>A <strong>nem funkcionális tesztek</strong> a következők lehetnek: </li>
+        <li><strong>Nem funkcionális tesztelésnél</strong> olyan kérdésekre keressük a válaszokat, hogy nagyobb terhelésnél stabilan fog-e működni a programunk, mi történik akkor, ha a szükségesnél kevesebb
+          erőforrás áll rendelkezésre stb.
+          A <strong>nem funkcionális tesztek</strong> a következők lehetnek (teljesség igénye nélkül): <strong>load testing</strong>, <strong>performance
+          testing</strong>, <strong>scalability testing</strong>, <strong>stress testing</strong>, <strong>volume testing</strong> (sajnos ezekre nem igazán találtam szép magyar kifejezéseket). </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Egységtesztelés (unit testing)">
+      <ul>
+        <li>Ami szoftvertechnológia szempontból is érdekes lehet, az maga az egységtesztelés. Már szinte minden imperatív nyelvhez van valamilyen tesztelési keretrendszer: </li>
+        <li><strong>NUnit</strong>: .NET Framework alatt használt egyik leggyakoribb keretrendszer. Bővebben a következő dián ...</li>
+        <li><strong>JUnit</strong>: Ha Java-ban szeretnénk tesztelni, akkor a JUnit egy megfelelő eszköz lehet rá. Elterjedését és fontosságát jelzi, hogy mind az Eclipse, NetBeans és IntelliJ IDEA is már beépítetten támogatja.</li>
+        <li><strong>UnitTest++</strong>: C++-ban használt egyszerű, egységtesztelő keretrendszer. <a href="http://unittest-cpp.sourceforge.net/">Innen</a> le lehet tölteni.
+        </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="NUnit Testing Framework">
+      <ul>
+        <li>Rengeteg tesztelési keretrendszer áll rendelkezésünkre .NET-en belül, mi az <a href="http://www.nunit.org/">NUnit</a>-al fogunk kicsit közelebbről megismerkedni. Ez egy széleskörben alkalmazott könyvtár, aminek rengeteg
+        előnye van: könnyen használható, kihasználja a C# adta nyelvi lehetőségeket, nagyon hasonlít a <a href="#" data-tooltip="Java-s unit testing framework" class="tooltip">JUnit</a>-ra. </li>
+        <li>Telepíteni legegyszerűbben a Visual Studio csomagkezelő moduljával (<a href="http://www.nuget.org/">NuGet</a>) lehet, de közvetlenül a weboldaláról is lehet tölteni.</li>
+        <li>
+          Nagymértékben támaszkodik a .NET által nyújtott <a href="http://en.wikipedia.org/wiki/Attribute-oriented_programming">attribútum orientált programozásra</a>, ugyanis a tesztmetódusokat különböző attribútumokkal lehet megjelölni,
+          melyeket a keretrendszer futásidőben feldolgoz, és a neki megfelelő utasításokat hajtja végre. </li>
       </ul>
     </div>
 
