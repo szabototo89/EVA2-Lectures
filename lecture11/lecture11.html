@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eseményvezérelt alkalmazások fejlesztése 2 - Szabó Tamás &#169;</title>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/shCore.js"></script>
+  <script src="js/shBrushCSharp.js"></script>
+  <script src="js/shBrushXml.js"></script>
+  <script src="js/lecture.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  <link href="css/shCore.css" rel="stylesheet" type="text/css"/>
+  <link href="css/shCoreDefault.css" rel="stylesheet" type="text/css"/>
+  <link href="css/slides-800x600.css" rel="stylesheet" type="text/css" />
+
+  <script type="slide-template" id="main">
+    <div class="step slide main" data-x="$index*1500$">
+      $content$
+    </div>
+  </script>
+
+  <script type="slide-template" id="standard">
+    <div class="step slide" data-x="$index*1500$">
+      <div class="title">
+        <div>$title$</div>
+      </div>
+      <div class="subtitle">
+        <div>11 - Tesztelés</div>
+      </div>
+      <div class="content">$content$</div>
+    </div>
+  </script>
+
+</head>
+<!-- õû -->
+<body>
+  <div id="impress">
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
+        <h2>11. gyakorlat - Tesztelés .NET környezetben</h2>
+      </div>
+    </div>
+
+    <div class="slide" data-title="Miért is olyan fontos a tesztelés?">
+      <ul>
+        <li>
+          Napjainkra szinte már mindenhol megjelentek a szoftverrendszerek, amiket nap, mint nap használunk. Szoftverrendszerek működtetik az ipari gyártásokat,
+          járműveinket, telefonjainkat, irányítják pénzügyeinket, jelen vannak mindenütt. Ezért is lett egyre fontosabb, hogy minőségi és megbízható szoftverek
+          készüljenek.
+        </li>
+        <li>
+          A nagyobb szoftverfejlesztő vállalatoknak egyre fontosabbá vált az, hogy költséghatékonyan tudjanak biztonságos szoftvereket fejleszteni, úgy, hogy az állandóan változó igényekhez is
+          könnyen hozzá tudják igazítani a már meglévő (akár több százezer vagy millió soros!) kódbázist.
+        </li>
+        <li>Sajnos a legalaposabban megtervezett rendszerekben is lehetnek hibák, amiket valamilyen módon tesztelni kell. Nemhiába alakult egy teljes szakma ennek a feladatnak az elvégzéséhez.</li>
+        <li>Ezen az órán nem megyünk bele a tesztelés témakör részleteibe, csupán egy nagyon kis részét fogjuk áttekinteni, ami szoftvertechnológia szempontból is érdekes lehet.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Tesztelésről általában">
+      <ul>
+        <li>Ha tesztelésről beszélünk, akkor két nagyobb csoportba sorolhatjuk a tesztjeinket:
+          <strong>funkcionális</strong> és <strong>nem funkcionális tesztek</strong>. </li>
+        <li><strong>Funkcionális teszteknél</strong> a program működésére vagyunk elsősorban kíváncsiak. Az adott implementáció vajon megfelelően működik-e, azt az eredményt adja, amit mi elvárunk tőle,
+          megfelelően működik más komponensekkel stb...
+          <strong>Funkcionális tesztek</strong> közé sorolhatjuk az egyre többet hallott <a
+                href="#" data-tooltip="angolul: unit testing" class="tooltip">egyégtesztelést</a>, <a href="#" class="tooltip" data-tooltip="angolul: integration testing">integrációs
+          tesztelést</a>, <a href="#" data-tooltip="angolul: regression testing" class="tooltip">regressziós teszt</a> és <a href="#" data-tooltip="angolul: database testing" class="tooltip">adatbázis
+          tesztelést</a> (nem teljes az itt felsorolt lista, de ezeket lehet hallani a legtöbbször). </li>
+        <li>A <strong>nem funkcionális tesztek</strong> a következők lehetnek: </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>[ Köszönöm a figyelmet! ]</h1>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="user-interface" id="info">
+    <a href="http://sztrabi.web.elte.hu">Szabó Tamás</a> (<a href="mailto:sztrabi@inf.elte.hu">sztrabi@inf.elte.hu</a>) © <a href="http://people.inf.elte.hu/groberto/elte_eva2/index.html">Eseményvezérelt alkalmazások fejlesztése 2</a>
+  </div>
+
+  <div class="user-interface">
+    <div id="show-menu">Tartalomjegyzék ></div>
+    <ol id="menu-items" />
+  </div>
+  <script src="js/impress.js"></script>
+</body>
+</html>

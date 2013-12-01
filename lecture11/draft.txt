@@ -1,0 +1,6 @@
+3. gyakorlat: 
+	- Lambda functions
+	- var, dynamic, object
+	- extensions methods
+	- LINQ
+	- WinForms egyszerű vezérlők
