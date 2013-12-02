@@ -41,23 +41,31 @@
       </div>
     </div>
 
-    <div class="slide" data-title="Mai óra tematikája - Mirõl is lesz szó?">
+    <div class="slide" data-title="Offtopic: Reactive Programming">
       <ul>
-        <li>Ezen az órán megismerkedünk a <strong>Windows Presentation Foundation</strong> alapjaival, illetve egy kicsit a szemléletmódjával.</li>
+        <li>Nemrégen indult a <a href="http://www.coursera.org">Coursera</a>-n két online (ingyenes) kurzus:
+          <ul>
+            <li><a href="https://www.coursera.org/course/reactive">Principles of Reactive Programming</a></li>
+            <li><a href="https://www.coursera.org/course/progfun">Functional Programming Principles in Scala by Martin Odersky</a></li>
+          </ul>
+        </li>
+        <li>Aki szeretne megismerkedni a <strong>Scala</strong> nyelv alapjaival (illetve a funkcionális programozás alapelveit is szeretné újra átismételni), annak a második elõadás sorozatot ajánlom.</li>
+        <li>A <strong>Reactive Programming</strong> az aszinkronos programozást tudja nekünk nagyon leegyszerûsíteni, úgy, hogy maga a kódolvashatóság is megmarad. </li>
+        <li>A <strong>Reactive Programming</strong> pedig egy .NET-es technológiával is kapcsolatban van: ez lenne az Rx (Reactive Extensions). Rengeteg mindenre használható, GUI készítések tekintetében az eseményekre való reagálást lehet nagyon egyszerûen kezelni vele. Akit jobban érdekel a téma, az nézze meg az elsõ elõadás sorozatot, illetve elérhetõ az <strong>Rx</strong>-hez egy <a href="https://devportal.hu/Fajlok/Details.aspx?shareid=1&path=Konyvek%5CWindows+8+l%C3%A9p%C3%A9sr%C5%91l+l%C3%A9p%C3%A9sre%5CRx+-+Aszinkron+programoz%C3%A1s+magas+fokon.pdf">magyar nyelvû jegyzet</a> a <strong>devportal</strong>-ról.</li>
       </ul>
     </div>
 
     <div class="slide" data-title="Rétegek a WPF-ben">
       <ul>
-        <li>A <strong>WPF</strong>-ben a vezérlőket csak szülőelemekbe tudjuk helyezni. Ezek lehetnek olyan vezérlők, amik egy gyerekvezérlő megjelenítésére szolgálnak (<a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.contentcontrol.aspx">ContentControl</a>), esetleg egyszerre többre (<a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.itemscontrol.aspx">ItemsControl</a>), illetve rétegekbe (<a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.panel.aspx">Panel</a>) is helyezhetjük őket, amiknek segítségével valamilyen alakzatba rendezi azokat. A következő diákon ezekről a rétegekről (panelekről) lesz szó.</li>
-        <li>De honnan is tudja a <strong>WPF</strong>, hogy hogyan kell elhelyezni a vezérlőket egy adott elemen belül? Hiszen ahhoz, hogy minden pontosan illeszkedjen pár információra mindenképpen szüksége van. Először is tudnia kell, hogy az adott vezérlőnek pontosan mennyi helyre is lesz szüksége (<a href="http://msdn.microsoft.com/en-us/library/system.windows.uielement.measure.aspx">measure</a>). Ha ezek az információk összegyűltek, akkor jön a tényleges elhelyezése a vezérlőknek (<a href="http://msdn.microsoft.com/en-us/library/system.windows.uielement.arrange.aspx">arrange</a>), ahol már pontosan tudjuk, hogy mennyi hely áll rendelkezésre és ennek alapján kell kirajzolni az adott vezérlőt.</li>
-        <li>Az előbbi technikával akár már mi is egyszerűen készíthetünk saját készítésű rétegeket, egyszerűen csak úgy, hogy leszármaztatunk a <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.panel.aspx">Panel</a> osztályból, vagy a már meglévőkből. </li>
+        <li>A <strong>WPF</strong>-ben a vezérlõket csak szülõelemekbe tudjuk helyezni. Ezek lehetnek olyan vezérlõk, amik egy gyerekvezérlõ megjelenítésére szolgálnak (<a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.contentcontrol.aspx">ContentControl</a>), esetleg egyszerre többre (<a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.itemscontrol.aspx">ItemsControl</a>), illetve rétegekbe (<a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.panel.aspx">Panel</a>) is helyezhetjük õket, amiknek segítségével valamilyen alakzatba rendezi azokat. A következõ diákon ezekrõl a rétegekrõl (panelekrõl) lesz szó.</li>
+        <li>De honnan is tudja a <strong>WPF</strong>, hogy hogyan kell elhelyezni a vezérlõket egy adott elemen belül? Hiszen ahhoz, hogy minden pontosan illeszkedjen pár információra mindenképpen szüksége van. Elõször is tudnia kell, hogy az adott vezérlõnek pontosan mennyi helyre is lesz szüksége (<a href="http://msdn.microsoft.com/en-us/library/system.windows.uielement.measure.aspx">measure</a>). Ha ezek az információk összegyûltek, akkor jön a tényleges elhelyezése a vezérlõknek (<a href="http://msdn.microsoft.com/en-us/library/system.windows.uielement.arrange.aspx">arrange</a>), ahol már pontosan tudjuk, hogy mennyi hely áll rendelkezésre és ennek alapján kell kirajzolni az adott vezérlõt.</li>
+        <li>Az elõbbi technikával akár már mi is egyszerûen készíthetünk saját készítésû rétegeket, egyszerûen csak úgy, hogy leszármaztatunk a <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.panel.aspx">Panel</a> osztályból, vagy a már meglévõkbõl. </li>
       </ul>
     </div>
 
     <div class="slide" data-title="Rétegek a WPF-ben (Canvas)">
       <ul>
-        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.canvas.aspx">Canvas</a>: Talán az egyik legegyszerűbb panel, hiszen a felhasználó <a href="#" class="tooltip" data-tooltip="nem igazán pixel (sokkal inkább dpi), hiszen sok minden más is közrejátszik">pixel</a> pontosan adhatja meg, hogy éppen hol helyezkedjen el az adott vezérlő. Nem igazán szeretjük, hiszen valójában abszolút pozicionálás történik, ami teljesen ellentmond a <strong>WPF</strong> alapelveinek, ezért ha lehet csak nagyon speciális helyzetekben használjuk. A pozicionálásokat a <strong>Canvas.Left</strong> és <strong>Canvas.Top</strong> tulajdonságokon keresztül tehetjük meg: </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.canvas.aspx">Canvas</a>: Talán az egyik legegyszerûbb panel, hiszen a felhasználó <a href="#" class="tooltip" data-tooltip="nem igazán pixel (sokkal inkább dpi), hiszen sok minden más is közrejátszik">pixel</a> pontosan adhatja meg, hogy éppen hol helyezkedjen el az adott vezérlõ. Nem igazán szeretjük, hiszen valójában abszolút pozicionálás történik, ami teljesen ellentmond a <strong>WPF</strong> alapelveinek, ezért ha lehet csak nagyon speciális helyzetekben használjuk. A pozicionálásokat a <strong>Canvas.Left</strong> és <strong>Canvas.Top</strong> tulajdonságokon keresztül tehetjük meg: </li>
         <img src="img/canvas.png" style="margin-left: 27%">
         <pre class="brush:xml">
           &lt;Canvas&gt;
@@ -72,7 +80,7 @@
 
     <div class="slide" data-title="Rétegek a WPF-ben (StackPanel)">
       <ul>
-        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.stackpanel.aspx">StackPanel</a>: Egy másik nagyon egyszerű réteg, ami a gyerekelemeit egymásután veremszerűen helyezi el. Felsorolásokra nagyon jól használhat. Fontos megjegyezni, hogy az utolsó gyerek nem fogja kihasználni a rendelkezésére álló helyet. Az <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.stackpanel.orientation.aspx">Orientation</a> tulajdonságon keresztül kétféleképpen helyezhetjük el a gyerekeket a panelben: vízszintesen (<strong>Horizontal</strong>), illetve függőlegesen (<strong>Vertical</strong>). </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.stackpanel.aspx">StackPanel</a>: Egy másik nagyon egyszerû réteg, ami a gyerekelemeit egymásután veremszerûen helyezi el. Felsorolásokra nagyon jól használhat. Fontos megjegyezni, hogy az utolsó gyerek nem fogja kihasználni a rendelkezésére álló helyet. Az <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.stackpanel.orientation.aspx">Orientation</a> tulajdonságon keresztül kétféleképpen helyezhetjük el a gyerekeket a panelben: vízszintesen (<strong>Horizontal</strong>), illetve függõlegesen (<strong>Vertical</strong>). </li>
         <a href="img/stackpanel.jpg" class="image-link"><img src="img/stackpanel.jpg" style="margin-left: 35%; width: 25%"></a>
         <pre class="brush:xml">
           &lt;StackPanel&gt;
@@ -88,7 +96,7 @@
 
     <div class="slide" data-title="Rétegek a WPF-ben (DockPanel)">
       <ul>
-        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.dockpanel.aspx">DockPanel</a>: A <strong>DockPanel</strong> nevéhez hasonlóan dokkszerűen rendezi el az elemeket attól függően, hogy a vezérlő <strong>DockPanel.Dock</strong> tulajdonságának mit állítottunk be. Ennek megfelelően négy különböző irányba csoportosíthatjuk a gyerekelemeket: balra (<strong>Left</strong>), jobbra (<strong>Right</strong>), felülre (<strong>Top</strong>), illetve alulra (<strong>Bottom</strong>). Lehetőségünk beállítani a <strong>LastChildFill</strong> tulajdonságon keresztül azt is, hogy a legutolsó gyerek kitöltse a számára elérhető legnagyobb helyet. </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.dockpanel.aspx">DockPanel</a>: A <strong>DockPanel</strong> nevéhez hasonlóan dokkszerûen rendezi el az elemeket attól függõen, hogy a vezérlõ <strong>DockPanel.Dock</strong> tulajdonságának mit állítottunk be. Ennek megfelelõen négy különbözõ irányba csoportosíthatjuk a gyerekelemeket: balra (<strong>Left</strong>), jobbra (<strong>Right</strong>), felülre (<strong>Top</strong>), illetve alulra (<strong>Bottom</strong>). Lehetõségünk beállítani a <strong>LastChildFill</strong> tulajdonságon keresztül azt is, hogy a legutolsó gyerek kitöltse a számára elérhetõ legnagyobb helyet. </li>
         <a href="img/dockpanel.png" class="image-link"><img src="img/dockpanel.png" style="margin-left: 35%; width: 35%"></a>
         <pre class="brush:xml">
           &lt;DockPanel LastChildFill="True"&gt;
@@ -104,7 +112,7 @@
 
     <div class="slide" data-title="Rétegek a WPF-ben (Grid) (1/2)">
       <ul>
-        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.grid.aspx">Grid</a>: A <strong>Grid</strong> az egyik leggyakrabban használt panel a <strong>WPF</strong>-ben. Rendkívül széleskörben lehet alkalmazni és nagyon sok esetben szolgálhat segítségül. Használata nagyon egyszerű, a <strong>ColumnDefinitions</strong> és <strong>RowDefinitions</strong>-on keresztül állíthatjuk be, hogy hány sora és oszlopa legyen és mekkorák legyenek azok (itt meg lehet adni abszolút méreteket is, de a <strong>*</strong> literállal arányokat defininálhatunk közöttük). Ezzel még nem vagyunk készen, mert a gyerekelemeknél is be kell állítanunk a <strong>Grid.Row</strong> és <strong>Grid.Column</strong>-on keresztül, hogy hol helyezkedjenek el azok, míg a <strong>Grid.RowSpan</strong> és <strong>Grid.ColumnSpan</strong>-al azt állíthatjuk be, hogy hány soron és oszlopon keresztül "nyúljanak" át. </li>
+        <li><a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.grid.aspx">Grid</a>: A <strong>Grid</strong> az egyik leggyakrabban használt panel a <strong>WPF</strong>-ben. Rendkívül széleskörben lehet alkalmazni és nagyon sok esetben szolgálhat segítségül. Használata nagyon egyszerû, a <strong>ColumnDefinitions</strong> és <strong>RowDefinitions</strong>-on keresztül állíthatjuk be, hogy hány sora és oszlopa legyen és mekkorák legyenek azok (itt meg lehet adni abszolút méreteket is, de a <strong>*</strong> literállal arányokat defininálhatunk közöttük). Ezzel még nem vagyunk készen, mert a gyerekelemeknél is be kell állítanunk a <strong>Grid.Row</strong> és <strong>Grid.Column</strong>-on keresztül, hogy hol helyezkedjenek el azok, míg a <strong>Grid.RowSpan</strong> és <strong>Grid.ColumnSpan</strong>-al azt állíthatjuk be, hogy hány soron és oszlopon keresztül "nyúljanak" át. </li>
         <li>A <strong>ShowGridLines</strong> tulajdonság értékének igazra állításával vizuálissá tehetjük az oszlopok és sorok közötti elhelyezkedést, de ezt csak tervezéskor használjuk, kész kódnál sose!</li>
       </ul>
     </div>
@@ -132,16 +140,47 @@
       </pre>
     </div>
 
-    <div class="slide" data-title="Trigger-ek használata">
+    <div class="slide" data-title="Trigger-ek használata (1/2)">
       <ul>
-        <li></li>
+        <li>Vannak olyan esetek, amikor a vezérlõnek valamilyen felhasználói interakcióra, esetleg valamilyen érték megváltozására reagálnia kell. Ilyen ez a reagálás lehet üzleti logika szintû, vagy csak valamilyen design-beli változás. A <strong>trigger</strong>-ek az utóbbira adnak egy nagyon hasznos megoldást, amivel egyszerûen és elegánsan tudunk reagálni az állapotváltozásokra.</li>
+        <li>A <strong>trigger</strong>-ek használatának elve nagyon egyszerû. Ha megváltozik egy adott állapot értéke, akkor maga a kapcsoló, a neki átadott változásokat fogja végrehajtani az adott vezérlõn. Üzleti logika alkalmazására nem igazán való (de persze ezzel is lehet trükközni). </li>
+        <li>Minden vezérlõnek meg lehet határozni különbözõ <strong>trigger</strong>-eket, viszont ezekben az esetekben meg van kötve a kezünk, ugyanis csak <a href="http://msdn.microsoft.com/en-us/library/system.windows.eventtrigger.aspx">EventTrigger</a>-eket lehet definiálni (ezek olyan kapcsolók, amik egy adott eseményre figyelnek, és ha kiváltódik, akkor aktíválódik maga a kapcsoló is). Stílusoknak és sablonoknak viszont bármilyen típusú kapcsolót meg lehet adni. Gyakran használt trükk szokott lenni ezért, hogy a stíluson keresztül adjuk meg a vezérlõnek a <strong>trigger</strong>-t.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Trigger-ek használata (2/2)">
+      <ul>
+        <pre class="brush:xml">
+          &lt;Button Content="Ok"&gt;
+            &lt;!-- Sokszor bevett trükk, hogy stíluson keresztül adunk meg kapcsolót --&gt;
+            &lt;Button.Style&gt;
+              &lt;Style TargetType="Button"&gt;
+                &lt;Style.Triggers&gt;
+                  &lt;!-- Figyeljük az IsMouseOver tulajdonságot, ami ha igazra vált
+                  (azaz, ha a felhasználó ráment az egérrel a vezérlõnkre), akkor
+                  aktiválódjon a kapcsolónk
+                  --&gt;
+                  &lt;Trigger Property="IsMouseOver" Value="True"&gt;
+                    &lt;!-- 
+                      Ha aktiválódott, akkor megváltoztatjuk a Content tulajdonságunk értékét.
+                      Több Setter-t is definiálhatunk, ha azt szeretnénk.
+                    --&gt;
+                    &lt;Setter Property="Content" Value="Click on me!" /&gt;
+                  &lt;/Trigger&gt;
+                &lt;/Style.Triggers&gt;
+              &lt;/Style&gt;
+            &lt;/Button.Style&gt;
+          &lt;/Button&gt;
+        </pre>
+        <li>Ha nem az adott vezérlõnk tulajdonságát, akarjuk figyelni, akkor megtehetjük, hogy adatkötéssel akaszkadunk rá egy másik tulajdonság értékére. Erre a <a href="http://msdn.microsoft.com/en-us/library/system.windows.datatrigger.aspx">DataTrigger</a> típusú kapcsoló való. A <strong>Property</strong> tulajdonság helyett, a <strong>Binding</strong>-ot kell használni. </li>
+        <li>Ha több feltételünk lenne, akkor a <strong>Multi-</strong> prefixxel kezdõdõ kapcsolókat kell használnunk: <a href="http://msdn.microsoft.com/en-us/library/system.windows.multitrigger.aspx">MultiTrigger</a>, <a href="http://msdn.microsoft.com/en-us/library/system.windows.multidatatrigger.aspx">MultiDataTrigger</a>. </li>
       </ul>
     </div>
 
     <div class="slide" data-title="Stílusok">
       <ul>
-        <li>A <strong>WPF</strong> lehetőséget nyújt a felhasználónak arra, hogy a különböző vezérlőknek stílusokat definiálhasson. Ezzel a módszerrel az ugyanolyan típusú vezérlőknek közös tulajdonságokat állíthatunk be egységesen anélkül, hogy azokat külön-külön nekünk kellene beállítani. Így a kódbázisunkat sokkal könnyebben lehet karbantartani, nem beszélve arról, hogy kevesebb kódot kell felügyelnünk. </li>
-        <li>A stílusokkal szinte bármit be tudunk állítani: <a href="#" class="tooltip" data-tooltip="trigger">kapcsolókat</a>, <a href="#" class="tooltip" data-tooltip="setter-eken keresztül">tulajdonságokat</a>, eseményeket, így kellően nagy szabadságot élvezünk a használatuknál.</li>
+        <li>A <strong>WPF</strong> lehetõséget nyújt a felhasználónak arra, hogy a különbözõ vezérlõknek stílusokat definiálhasson. Ezzel a módszerrel az ugyanolyan típusú vezérlõknek közös tulajdonságokat állíthatunk be egységesen anélkül, hogy azokat külön-külön nekünk kellene beállítani. Így a kódbázisunkat sokkal könnyebben lehet karbantartani, nem beszélve arról, hogy kevesebb kódot kell felügyelnünk. </li>
+        <li>A stílusokkal szinte bármit be tudunk állítani: <a href="#" class="tooltip" data-tooltip="trigger">kapcsolókat</a>, <a href="#" class="tooltip" data-tooltip="setter-eken keresztül">tulajdonságokat</a>, eseményeket, így kellõen nagy szabadságot élvezünk a használatuknál.</li>
         <pre class="brush:xml">
         &lt;Style TargetType="Button"&gt;
           &lt;Setter Property="Cursor" Value="Hand" /&gt;
@@ -167,16 +206,16 @@
 
     <div class="slide" data-title="Stílusok használata">
       <ul>
-        <li>Stílusokat a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.aspx">Style</a> osztály példányosítával lehet definiálni. A stílusoknak meg kell adni a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.targettype.aspx">TargetType</a> tulajdonságon keresztül, hogy milyen típusú vezérlőkre szeretnénk alkalmazni azt. </li>
-        <li>Minden <a href="#" class="tooltip" data-tooltip="FrameworkElement osztály definiálja">vezérlőnek</a> van egy <a href="http://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.style.aspx">Style</a> nevű tulajdonsága, aminek ha értéket adunk, akkor a rendszer figyelembe veszi a stílusoknál megadott értékeket is.</li>
-        <li>Másik lehetőség, hogy nem explicite adjuk meg a stílusokat, hanem valamelyik szülőelem <strong>Resources</strong> erőforrásai között példányosítjuk. Ezenbelül is két lehetőségünk van: ha nem adunk meg kulcsot az stílusnak (mint erőforrásnak), akkor minden azonos típusú vezérlőre automatikusan érvényes lesz az adott stílus a fa gyermekei között (kivéve ha explicite nem állítottunk be neki egy másik stílust). Ha viszont megadunk, akkor csak a <strong>StaticResource/DynamicResource</strong> segítségével tudjuk elérni explicite. </li>
-        <li>Hogy minél kevesebb legyen a kód duplikáció, ezért lehetőség van arra, hogy a már meglévő stílusból örököltessünk tulajdonságokat, majd a meglévőket megváltoztassuk, illetve új tulajdonságértékeket állítsunk be. Ezt a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.basedon.aspx">BasedOn</a> tulajdonságon keresztül tudjuk megtenni.</li>
+        <li>Stílusokat a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.aspx">Style</a> osztály példányosítával lehet definiálni. A stílusoknak meg kell adni a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.targettype.aspx">TargetType</a> tulajdonságon keresztül, hogy milyen típusú vezérlõkre szeretnénk alkalmazni azt. </li>
+        <li>Minden <a href="#" class="tooltip" data-tooltip="FrameworkElement osztály definiálja">vezérlõnek</a> van egy <a href="http://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.style.aspx">Style</a> nevû tulajdonsága, aminek ha értéket adunk, akkor a rendszer figyelembe veszi a stílusoknál megadott értékeket is.</li>
+        <li>Másik lehetõség, hogy nem explicite adjuk meg a stílusokat, hanem valamelyik szülõelem <strong>Resources</strong> erõforrásai között példányosítjuk. Ezenbelül is két lehetõségünk van: ha nem adunk meg kulcsot az stílusnak (mint erõforrásnak), akkor minden azonos típusú vezérlõre automatikusan érvényes lesz az adott stílus a fa gyermekei között (kivéve ha explicite nem állítottunk be neki egy másik stílust). Ha viszont megadunk, akkor csak a <strong>StaticResource/DynamicResource</strong> segítségével tudjuk elérni explicite. </li>
+        <li>Hogy minél kevesebb legyen a kód duplikáció, ezért lehetõség van arra, hogy a már meglévõ stílusból örököltessünk tulajdonságokat, majd a meglévõket megváltoztassuk, illetve új tulajdonságértékeket állítsunk be. Ezt a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.basedon.aspx">BasedOn</a> tulajdonságon keresztül tudjuk megtenni.</li>
       </ul>
     </div>
 
     <div class="slide" data-title="Setter/EventSetter osztály (1/2)">
       <ul>
-        <li>A tulajdonságokat és eseményeket különböző <a href="http://msdn.microsoft.com/en-us/library/system.windows.setterbase.aspx">SetterBase</a> osztály leszármazottjaival lehet megadni a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.setters.aspx">Style.Setters</a> tulajdonságon keresztül.</li>
+        <li>A tulajdonságokat és eseményeket különbözõ <a href="http://msdn.microsoft.com/en-us/library/system.windows.setterbase.aspx">SetterBase</a> osztály leszármazottjaival lehet megadni a <a href="http://msdn.microsoft.com/en-us/library/system.windows.style.setters.aspx">Style.Setters</a> tulajdonságon keresztül.</li>
         <pre class="brush:xml">
           &lt;Style TargetType="TextBlock"&gt;
             &lt;Style.Setters&gt; 
@@ -190,7 +229,7 @@
             &lt;Setter Property="Background" Value="Red" /&gt;
           &lt;/Style&gt;
         </pre>
-        <li>A tulajdonságokat a <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.aspx">Setter</a> objektummokkal lehet beállítani. A <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.property.aspx">Property</a>-n keresztül kell megadni, hogy vezérlő mely tulajdonságát szeretnénk beállítani, míg a <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.value(v=vs.110).aspx">Value</a>-n keresztül tudjuk megadni a pontos értékét. Ha egy elnevezett vezérlőnek kell pontosan megadni az értéket, akkor a <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.targetname(v=vs.110).aspx">TargetName</a> tulajdonságnak kell értéket adni. Ez viszont csak a <strong>trigger</strong>-eknél használható, stílusoknál nem.</li>
+        <li>A tulajdonságokat a <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.aspx">Setter</a> objektummokkal lehet beállítani. A <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.property.aspx">Property</a>-n keresztül kell megadni, hogy vezérlõ mely tulajdonságát szeretnénk beállítani, míg a <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.value(v=vs.110).aspx">Value</a>-n keresztül tudjuk megadni a pontos értékét. Ha egy elnevezett vezérlõnek kell pontosan megadni az értéket, akkor a <a href="http://msdn.microsoft.com/en-us/library/system.windows.setter.targetname(v=vs.110).aspx">TargetName</a> tulajdonságnak kell értéket adni. Ez viszont csak a <strong>trigger</strong>-eknél használható, stílusoknál nem.</li>
         <li>Az <a href="http://msdn.microsoft.com/en-us/library/system.windows.eventsetter.aspx">EventSetter</a>-eken keresztül pedig az adott eseményekre iratkozhatunk fel. </li>
       </ul>
     </div>
@@ -200,7 +239,7 @@
         <li>Lássunk néhány példát a használatukhoz (<strong>MainWindow.xaml</strong>):</li>
         <pre class="brush:xml">
           &lt;Style TargetType="TextBlock" x:Key="TextBlockStyle"&gt;
-              &lt;Style.Setters&gt;
+            &lt;Style.Setters&gt;
               &lt;EventSetter Event="MouseDown" Handler="TextBlockMouseDown" /&gt;
               &lt;Setter Property="Foreground" Value="White" /&gt;
               &lt;Setter Property="Background"&gt;
@@ -221,25 +260,52 @@
               MessageBox.Show(textBlock.Text);
           }
         </pre>
-        <li>Ezekután már csak annyi a dolgunk hogy használjuk a stílusunkat az <a href="#" class="tooltip" data-tooltip="ebben az esetben a TextBlock-on">adott vezérlőn</a>. Ha a felhasználó rákattint a szövegre, akkor felbukkan egy ablak a <strong>Hello World</strong> szöveggel:</li>
+        <li>Ezekután már csak annyi a dolgunk hogy használjuk a stílusunkat az <a href="#" class="tooltip" data-tooltip="ebben az esetben a TextBlock-on">adott vezérlõn</a>. Ha a felhasználó rákattint a szövegre, akkor felbukkan egy ablak a <strong>Hello World</strong> szöveggel:</li>
         <pre class="brush:xml">
-          &lt;!-- Ahogy látható kívülről szinte nem látszik semmi se: --&gt;
+          &lt;!-- Ahogy látható kívülrõl szinte nem látszik semmi se: --&gt;
           &lt;TextBlock Style="{StaticResource TextBlockStyle}"&gt;Hello World!&lt;/TextBlock&gt;
         </pre>
       </ul>
     </div>
 
-    <div class="slide" data-title="Sablonok használata">
+    <div class="slide" data-title="Sablonok a WPF-ben">
       <ul>
-        <li>A <strong>WPF</strong>-ben az eddig megismert technológiáktól eltérően egyszerűen külön tudja választani a vezérlők megjelenítését a funkcionalitástól. Az erre képes vezérlőket <strong>lookless control</strong>-oknak nevezzük. </li>
-        <li>Miért jó ez nekünk? Egyszerűen azért, mert pusztán stílusok segítségével teljesen testreszabhatjuk a már meglévő vezérlőinket úgy, hogy annak a funkcionalitása nem változik meg. Így nincs szükség arra se, hogy új osztályokat hozzunk létre származtatással, vagy alacsonyszinten újrarajzoljuk az egészet csak azért, mert egy apró változtatást akartunk végezni rajta.</li>
+        <li>A <strong>WPF</strong>-ben az eddig megismert technológiáktól eltérõen egyszerûen külön tudja választani a vezérlõk megjelenítését a funkcionalitástól. Az erre képes vezérlõket <strong>lookless control</strong>-oknak nevezzük. </li>
+        <li>Miért jó ez nekünk? Egyszerûen azért, mert pusztán stílusok segítségével teljesen testreszabhatjuk a már meglévõ vezérlõinket úgy, hogy annak a funkcionalitása nem változik meg. Így nincs szükség arra se, hogy új osztályokat hozzunk létre származtatással, vagy alacsony szinten újrarajzoljuk az egészet csak azért, mert egy apró változtatást akartunk végezni rajta. Ezzel a szemlélettel hatalmas szabadságot kap a programozó a kezébe. </li>
+        <li>Ha egy vezérlõ sablonját szeretnénk megváltoztatni, akkor a <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.control.template.aspx">Template</a> tulajdonságnak kell egy új <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.controltemplate.aspx">ControlTemplate</a> objektumot beállítanunk. Ezen belül már bármilyen külcsínt definiálhatunk az adott vezérlõnek. </li>
       </ul>
     </div>
 
-    <div class="slide" data-title="ItemsControl vezérlő (1/3)">
+    <div class="slide" data-title="Sablonok használata">
       <ul>
-        <li>A különböző panelekkel sokmindent meg tudunk jeleníteni, de a legnagyobb probléma velük, hogy nem dinamikus elemek kezelésére lettek kitalálva (ettől függetlenül persze lehet azokra is használni). De erre van egy egyszerűbb és elegánsabb megoldás: ez pedig nem más, mint maga az <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.itemscontrol.aspx">ItemsControl</a> vezérlő (illetve a <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.listbox.aspx">ListBox</a> vezérlő, ami annyival tud többet, hogy a felsorolt elemeket ki is tudja választani a felhasználó). </li>
-        <li>Egyik legfontosabb tulajdonsága az <strong>ItemsSource</strong>, amin keresztül adhatjuk meg a vezérlőnek, hogy mely elemeket kell neki megjelenítenie. Tipikusan itt fogjuk összekötni a vezérlőt a nézetmodell megfelelő kollekciójával. </li>
+        <li>A <strong>ControlTemplate</strong>-nek mindig meg kell adni a <strong>TargetType</strong> tulajdonságán keresztül, hogy milyen típusú vezérlõnek szeretnénk megváltoztatni a külsejét.</li>
+        <li>Ha a sablonon belül szeretnénk adatkötést használni az adott vezérlõ valamelyik tulajdonságára, akkor a <strong>Binding</strong> helyett használhatjuk a <a href="http://msdn.microsoft.com/en-us/library/ms742882(v=vs.110).aspx">TemplateBinding</a> markup extension-t. </li>
+        <li>A <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.contentpresenter.aspx">ContentPresenter</a> vezérlõ segítségével lehet egyszerûen megjeleníteni a vezérlõ tartalmát (azaz a <strong>Content</strong> tulajdonságon keresztül beállított értéket).</li>
+        <pre class="brush:xml">
+          &lt;Button Content="OK"&gt;
+            &lt;Button.Template&gt; &lt;!-- A Template tulajdonságon keresztül állítjuk be az sablont --&gt;
+              &lt;ControlTemplate TargetType="Button"&gt;
+                &lt;!-- TemplateBinding segítségével érhetjük el a gombnak beállított háttérszínét --&gt;
+                &lt;Border CornerRadius="30"
+                        Background="{TemplateBinding Background}"&gt;
+                  &lt;!-- Binding-al is meg lehet tenni, de akkor a relatív elérést kell használnunk --&gt;
+                  &lt;Label VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         Foreground="{TemplateBinding Foreground}"
+                         FontSize="25"
+                         Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/&gt;
+                &lt;/Border&gt;
+              &lt;/ControlTemplate&gt;
+            &lt;/Button.Template&gt;
+          &lt;/Button&gt;
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="ItemsControl vezérlõ (1/3)">
+      <ul>
+        <li>A különbözõ panelekkel sokmindent meg tudunk jeleníteni, de a legnagyobb probléma velük, hogy nem dinamikus elemek kezelésére lettek kitalálva (ettõl függetlenül persze lehet azokra is használni). De erre van egy egyszerûbb és elegánsabb megoldás: ez pedig nem más, mint maga az <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.itemscontrol.aspx">ItemsControl</a> vezérlõ (illetve a <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.listbox.aspx">ListBox</a> vezérlõ, ami annyival tud többet, hogy a felsorolt elemeket ki is tudja választani a felhasználó). </li>
+        <li>Egyik legfontosabb tulajdonsága az <strong>ItemsSource</strong>, amin keresztül adhatjuk meg a vezérlõnek, hogy mely elemeket kell neki megjelenítenie. Tipikusan itt fogjuk összekötni a vezérlõt a nézetmodell megfelelõ kollekciójával. </li>
         <pre class="brush:xml">
           &lt;Grid xmlns:system="clr-namespace:System;assembly=mscorlib"&gt;
             &lt;Grid.Resources&gt;
@@ -257,9 +323,9 @@
       </ul>
     </div>
 
-    <div class="slide" data-title="ItemsControl vezérlő (2/3)">
+    <div class="slide" data-title="ItemsControl vezérlõ (2/3)">
       <ul>
-        <li>Az <strong>ItemTemplate</strong>-en kereszül lehet beállítani, hogy maguk az elemek hogyan jelenjenek meg a vezérlőben. Itt teljesen szabadjára engedhetjük a fantáziánkat és szinte bármit megalkothatunk, amire nekünk szükségünk van.</li>
+        <li>Az <strong>ItemTemplate</strong>-en kereszül lehet beállítani, hogy maguk az elemek hogyan jelenjenek meg a vezérlõben. Itt teljesen szabadjára engedhetjük a fantáziánkat és szinte bármit megalkothatunk, amire nekünk szükségünk van.</li>
         <a href="img/itemtemplate.png" class="image-link"><img src="img/itemtemplate.png" style="margin-left: 25%; width: 50%"></a>
         <pre class="brush:xml">
           &lt;ItemsControl ItemsSource="{StaticResource DataArray}"&gt;
@@ -273,13 +339,13 @@
       </ul>
     </div>
 
-    <div class="slide" data-title="ItemsControl vezérlő (3/3)">
+    <div class="slide" data-title="ItemsControl vezérlõ (3/3)">
       <ul>
-        <li>Nemcsak az elemek kirajzolását lehet beállítani, hanem magát azt is, hogy azok hogyan rendeződjenek a vezérlőn belül. Ezt pedig az <strong>ItemsPanel</strong> segítségével lehet beállítani. Már ezzel a két tulajdonsággal egy nagyon erős technikai megoldás kerülhet a kezeink közé.</li>
+        <li>Nemcsak az elemek kirajzolását lehet beállítani, hanem magát azt is, hogy azok hogyan rendezõdjenek a vezérlõn belül. Ezt pedig az <strong>ItemsPanel</strong> segítségével lehet beállítani. Már ezzel a két tulajdonsággal egy nagyon erõs technikai megoldás kerülhet a kezeink közé.</li>
         <a href="img/itemspanel.png" class="image-link"><img src="img/itemspanel.png" style="margin-left: 33%; width: 33%"></a>
         <pre class="brush:xml">
           &lt;ItemsControl ItemsSource="{StaticResource DataArray}"&gt;
-            &lt;!-- Itt állítjuk be az elemek elrendezését a vezérlőn belül ... --&gt;
+            &lt;!-- Itt állítjuk be az elemek elrendezését a vezérlõn belül ... --&gt;
             &lt;ItemsControl.ItemsPanel&gt;
               &lt;ItemsPanelTemplate&gt;
                 &lt;UniformGrid Rows="2" Columns="2" /&gt;
@@ -292,6 +358,16 @@
             &lt;/ItemsControl.ItemTemplate&gt;
           &lt;/ItemsControl&gt;
         </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Ajánlott szakirodalom">
+      <ul>
+        <li>Aki jobban belemélyülne a témába, akkor ezekbõl a könyvekbõl érdemes szemezgetni: </li>
+        <li><strong>Pro WPF 4.5 in C# Windows Presentation Foundation in .NET 4.5</strong> (Matthew MacDonald) - Apress (<a href="http://www.apress.com/microsoft/wpf/9781430243656">link</a>)</li>
+        <li><strong>WPF 4.5 Unleashed</strong> (Adam Nathan) - Sams Publishing (<a href="http://www.amazon.com/WPF-4-5-Unleashed-Adam-Nathan/dp/0672336979/ref=sr_1_1?ie=UTF8&qid=1383686687&sr=8-1&keywords=wpf">link</a>)</li>
+        <li><strong>Windows Presentation Foundation 4.5 Cookbook</strong> (Pavel Yosifovich) - Packt Publishing (<a href="http://www.amazon.com/Windows-Presentation-Foundation-4-5-Cookbook/dp/184968622X/ref=sr_1_4?ie=UTF8&qid=1383686687&sr=8-4&keywords=wpf">link</a>)</li>
+        <li><strong>WPF Control Development Unleashed: Building Advanced User Experiences</strong> (Pavan Podila, Kevin Scott Hoffman) - (<a href="http://www.amazon.com/WPF-Control-Development-Unleashed-Experiences/dp/0672330334/ref=sr_1_13?ie=UTF8&qid=1383686687&sr=8-13&keywords=wpf">link</a>)</li>
       </ul>
     </div>
 

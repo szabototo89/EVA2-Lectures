@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eseményvezérelt alkalmazások fejlesztése 2 - Szabó Tamás &#169;</title>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/shCore.js"></script>
+  <script src="js/shBrushCSharp.js"></script>
+  <script src="js/shBrushXml.js"></script>
+  <script src="js/lecture.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  <link href="css/shCore.css" rel="stylesheet" type="text/css"/>
+  <link href="css/shCoreDefault.css" rel="stylesheet" type="text/css"/>
+  <link href="css/slides-800x600.css" rel="stylesheet" type="text/css" />
+
+  <script type="slide-template" id="main">
+    <div class="step slide main" data-x="$index*1500$">
+      $content$
+    </div>
+  </script>
+
+  <script type="slide-template" id="standard">
+    <div class="step slide" data-x="$index*1500$">
+      <div class="title">
+        <div>$title$</div>
+      </div>
+      <div class="subtitle">
+        <div>11 - WinRT alapjai</div>
+      </div>
+      <div class="content">$content$</div>
+    </div>
+  </script>
+
+</head>
+<!-- ou -->
+<body>
+  <div id="impress">
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
+        <h2>11. gyakorlat - WinRT alapjai .NET környezetben</h2>
+      </div>
+    </div>
+
+    <div class="slide" data-title="Windows 8(.1) elozményei">
+      <ul>
+        <li>Napjainkra a PC-s világ szegmense a piacon elkezdett összezsugorodni, már egyre kevesebb otthoni számítógépet adnak el. Ez a mobil eszközök elterjedésének következménye, ami egyszerre jelentkezik a okostelefonoknál, tablet-eknél, illetve a különbözo hibrid megoldásoknál.</li>
+        <li>De nemcsak a hardverek iránti igények változtak meg, hanem a szoftverek oldaláról is nagy változások történtek. Sok szempontból kellett változniuk ahhoz, hogy implementálni lehessen ezekre az új eszközök: ergonómia szempontból fel kellett készíteni oket az új beviteli eszközök kezelésére, további optimalizálásra volt szükség ahhoz, hogy a kevésbé eros hardvereken is futni tudjanak, illetve energiahatékonyság szempontjából is hatékonyak legyenek.</li>
+        <li>Az <strong>Apple</strong> és a <strong>Google</strong> sikerét látva a <strong>Microsoft</strong> (sajnos eléggé késon ...), hogy belép a mobil eszközök piacára és a teljes termékkínálatát az új igényekhez próbálja igazítani. Ez sikerült is a <strong>Windows 8</strong> segítségével, ami bevezette az új <strong>Modern</strong> felhasználói felületet. </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Modern UI - tervezési irányelvek">
+      <ul>
+        <li>A <strong>Windows 8</strong>-al együtt egy elég szigorú tervezési irányvonalat adott ki a Microsoft ahhoz, hogy az eladásra szánt szoftverek kezelofelülete illeszkedjen a már meglévo operációs rendszerhez, ergonomikusan egyszeruen kezelheto legyen (leginkább mobileszközökön ...). Ezeket az irányelveket innen lehet elérni: <a href="http://design.windows.com">http://design.windows.com</a>, illetve <a href="https://www.google.hu/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&ved=0CEwQFjAC&url=http%3A%2F%2Fdownload.microsoft.com%2Fdownload%2FC%2F0%2FA%2FC0AEF0CC-B969-406D-989A-4CDAFDBB3F3C%2FWin8_UXG_GA.pdf&ei=RCmVUt7lI6qCyAOVtoGgCQ&usg=AFQjCNGV13_CEBH_t_9hbleroNJKOg5jFw&sig2=vc8D4kquumu4d1dU1tUWdw&bvm=bv.57155469,d.bGQ&cad=rja">innen</a>.</li>
+        <li>Lényegében öt alapelvet kell betartani minden Windows Store App fejlesztonek, ahhoz, hogy a követelményeknek megfeleljenek:</li>
+        <li><strong>Show pride in craftsmanship ("Legyünk büszkék a szaktudásunkra"):</strong> Ügyeljünk az alkalmazásunk megbízhatóságára és biztonságosságára, próbáljunk meg minél szélesebb rétegeket elérni a felhasználók körében, azaz legyen minél egyszerubb az alkalmásunk kezelése.</li>
+        <li><strong>Be fast and fluid ("Legyen gyors és gördülékeny"):</strong> Legyen a programunk felülete gyors (ezt nagyon komolyan is veszik), de könnyen kezelheto (egyszerre gesztusokkal, billentyuzettel vagy egérrel) és intuitív (hiszen szeretnénk ha a felhasználóink minden nap használnák). </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Modern UI - tervezési irányelvek">
+      <ul>
+        <li><strong>Be authentically digital ("Legyél hitelesen digitális??"): </strong> Ez az elv arra szeretne utalni, hogy próbáljunk meg kilépni a fizikai világ adta korlátokból. Használjuk ki teljesen a digitális tartalomban rejlo lehetoségeket: pl. egy hírolvasó app ne csak szöveget legyen képes megjeleníteni, hanem animációkat, videókat stb. </li>
+        <li><strong>Do more with less ("Tegyél többet kevesebbel"):</strong> Sokat tehetünk azzal, ha az applikáció design-ját minimálisra csökkentjük és kivesszük az olyan elemeket, amik elvonják a felhasználó figyelmét. Ezzel azt érhetjük el, hogy a felhasználó csak a tartalomra figyel, egybol megkapja a szükséges információt ezzel is idot takarítva meg. A mellékes funkciókat rejtsük el, és csak akkor jelenítsük meg oket, amikor a felhasználónak tényleg használni is akarja (pl. menüsor és <strong>AppBar</strong> közötti különbség).</li>
+        <li><strong>Win as one ("Gyozzünk egyként"): </strong>Csökkentsük a redudanciát a felületen is, muködjünk együtt más applikációkkal is, törökedjünk a konzisztenciára (támaszkodjunk a saját eszközeinkre, sablonjainkra stb.).</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Windows Runtime API">
+      <ul>
+        <li>A Windows két API-t kínál a Windows Store applikációk készítésére: a <strong>Windows Runtime (WinRT)</strong> és a <strong>Windows Library for JavaScript</strong>. A kurzus során az elobbivel fogunk megismerkedni és azon belül is maradunk a C# és XAML párosításánál. </li>
+        <li>A <strong>WinRT</strong> egyszerre támogatja a <strong>C++/CX</strong> (a Microsoft kiterjesztett C++ nyelve, amit direkt a WinRT programozására fejlesztettek ki), illetve a különbözo menedzselt nyelvekben úgymint a <strong>C#</strong> és a <strong>Visual Basic.NET</strong>. A <strong>Windows Library for JavaScript</strong> segítségével pedig <strong>JavaScript</strong> és <a href="http://www.typescriptlang.org/">TypeScript</a>-ben lehet applikációkat készíteni. </li>
+        <li>A WinRT elsodleges feladat, hogy leváltsa a már eléggé koros Win32 API-t. Egy másik nagy elonye az API-nak, hogy a managed nyelven írt programok végre közvetlenül képesek elérni az API szolgáltatásokat, illetve a programkódok már natívan futnak. Ezért is tudunk egyszerre C++-ban vagy C#-ban alkalmazást fejleszteni.</li>
+        <li>Ezeknek a változásoknak megfeleloen kicsit a háttérban kicsit máshogy futnak a .NET Framework alatt írt programjaink, ha WinRT API akarjuk használni.</li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Windows Store applikációk életciklusa">
+      <ul>
+        <li>Az asztali alkalmazásoktól eltéroen, más életciklussal muködnek a Windows Store alkalmazások. Ezt leginkább a sebesség és energiahatékonyság megorzése céljából vezették be: </li>
+        <a href="img/lifecycle.png" class="image-link"><img src="img/lifecycle.png" style="width: 75%; margin-left: 15%"></a>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Változások a WPF-hez képest">
+      <ul>
+        <li>Habár a két technológia nagyon hasonló (lényegében a WinRT a WPF továbbfejlesztett utódja), elég sok változás történt:</li>
+        <li>Legegyszerusítették lett az adatkötést. Jelenleg nincs lehetoség megmondani explicit, hogy mikor frissüljenek a kötött értékek.</li>
+        <li>A <strong>RelativeSource</strong> megadása is nagyon leegyszerusödött: csak önmagához (<strong>Self</strong>) és a sablon szülojéhez (<strong>TemplatedParent</strong>) lehet kötni, viszont a <strong>visual tree</strong>-n nem lehet lépkedni.</li>
+        <li>Nincsenek (egyelore) <strong>trigger</strong>-ek, így más trükkökkel és megoldásokkal kell a felhasználói interakciókra reagálni. Erre szerencsére a <strong>WinRTTriggers</strong> nevu könyvtár megoldást jelenthet: <a href="http://winrttriggers.codeplex.com/">http://winrttriggers.codeplex.com/</a></li>
+        <li>Mivel elég szigorú megkötések vannak az alkalmazások megjelenítésére, ezért a saját template-k se használódik ki annyira, mint a WPF-nél (persze ez csak szubjektív vélemény). </li>
+        <li>Ablakok helyett oldalak vannak definiálva a WinRT-ban, amik leginkább a webes világból ismertek. Ennek megfeleloen lehetoség van a lapok között is navigálni. </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Navigáció a WinRT-ben">
+      <ul>
+        <li>A Windows Store alkalmazások muködését legegyszerubb úgy felfogni, mint amik weboldalak lennének. Ablakok helyett úgynevezett <strong>Page</strong> objektumok vannak, amik között lehet navigálni. Ezzel egy hiearchiát kell felépítenünk a programunkon belül. Használata nagyon egyszeru (hacsak nem MVVM mintát használunk, mert ott kicsit bonyolódik a dolog): </li>
+        <strong>MainPage.xaml</strong>
+        <pre class="brush:xml">
+          &lt;Button Click="GoToInformationPage"
+                  Grid.Column="1"
+                  HorizontalAlignment="Right"
+                  Content="Információ" /&gt;
+        </pre>
+        <strong>MainPage.xaml.cs</strong>
+        <pre class="brush:csharp">
+            private void GoToInformationPage(object sender, RoutedEventArgs e)
+            {
+              //Lekérjük az aktuális frame-et
+              var frame = this.Frame;
+              //Majd elnavigálunk a nekik szükséges oldalra. 
+              //Látható, hogy nem referenciát kell átadnunk, hanem az oldalunknak a típusát
+              //Ez is jelzi azt, hogy az oldalon eddig tárolt állapotok (hacsak nem gondoskodunk róluk)
+              //el fognak veszni, és az adott Frame-ben egy új lap generálódik a memóriában:
+              //az ahova navigáltunk
+              frame.Navigate(typeof (InfoPage));
+            }
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Layoutok és új vezérlok a WinRT-ben">
+      <ul>
+        <li>A Microsoft által megadott tervezési irányvonalaknak megfeleloen kicsit változtak a rendelkezésünk álló layout-ok és vezérlok is. Jelenleg ezek a panelek hiányoznak a Windows Store életébol: DockPanel, UniformGrid (idovel remélhetoleg belekerülnek ...). Csak kivételes esetekben használjuk a Canvas-t, mivel az abszolút pozicionálás (amit o is használ), teljesen ellentmond a Microsoft irányelveivel. </li>
+        <li>Új vezérlok is jelentek meg, amik leginkább az ujjal történo vezérlést hivatottak megkönnyíteni. Fontos, hogy a Windows 8 és 8.1 között fejlesztoi szempontból nagyobb változások is történtek UI szinten: olyan új vezérlok jelentek meg, mint a <a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.hub.aspx">Hub</a>, <a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.flyout.aspx">Flyout</a>, <a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.menuflyout.aspx">MenuFlyout</a>.</li>
+        <li>A vezérloket ugyanúgy, mint <strong>WPF</strong>-ben <strong>XAML</strong> segítségével rendezhetjük el a felületen. A <strong>WinRT</strong> felfogható a <strong>WPF</strong> utódjának is, hiszen ugyanazok a fejlesztési elvek jelennek meg mindkettoben: válasszuk szét az alkalmazás megjelenítését és üzleti logikáját <strong>Model-View-ViewModel</strong> architektúra segítségével. Sajnos performancia meggondolások (és valószínuleg idohiány miatt), rengeteg <strong>WPF</strong>-ben látott lehetoség nem került implementációra, így a jól megszokott megoldások helyett kerüloutakon kell megoldani egyes dolgokat. </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Vezérlok - AppBar">
+      <ul>
+        <a href="img/appbar.png" class="image-link"><img src="img/appbar.png" style="width: 50%; margin-left: 25%"></a>
+        <li>Egy eszköztár, ami az alkalmazásspecifikus parancsokat tárolja. Gesztúrákkal, illetve billentyuzettel (Windows gomb + z) lehet elohívni. A menü leváltásra egy nagyon jó megoldás lehet.</li>
+        <pre class="brush:xml">
+          &lt;Page.BottomAppBar&gt;
+            &lt;AppBar x:Name="bottomAppBar" Padding="10,0,10,0"&gt;
+                &lt;Grid&gt;
+                    &lt;StackPanel Orientation="Horizontal" HorizontalAlignment="Left"&gt;
+                      &lt;Button Style="{StaticResource EditAppBarButtonStyle}" Click="Button_Click"/&gt;
+                      &lt;Button Style="{StaticResource RemoveAppBarButtonStyle}" Click="Button_Click"/&gt;
+                      &lt;Button Style="{StaticResource AddAppBarButtonStyle}" Click="Button_Click"/&gt;
+                    &lt;/StackPanel&gt;
+                    &lt;StackPanel Orientation="Horizontal" HorizontalAlignment="Right"&gt;
+                      &lt;Button Style="{StaticResource RefreshAppBarButtonStyle}" Click="Button_Click"/&gt;
+                      &lt;Button Style="{StaticResource HelpAppBarButtonStyle}" Click="Button_Click"/&gt;
+                    &lt;/StackPanel&gt;
+                &lt;/Grid&gt;
+            &lt;/AppBar&gt;
+          &lt;/Page.BottomAppBar&gt;
+        </pre>
+        <li>A Windows 8.1 újabb <strong>AppBar</strong> specifikus vezérlokkel egészült ki: <a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.appbarbutton.aspx">AppBarButton</a>, <a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.appbarseparator.aspx">AppBarSeparator</a>, <a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.appbartogglebutton.aspx">AppBarToggleButton</a></li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Vezérlok - FlipView (Windows 8.1)">
+      <ul>
+        <a href="img/flipview.png" class="image-link"><img src="img/flipview.png" style="width: 50%; margin-left: 25%"></a>
+        <li>A <strong>FlipView</strong> egy érdekes vezérlo. Több elemet (vezérlot) képes kezelni, de egyszerre csak egyet tud megjeleníteni. Leginkább képnézegetéssel szokták demózni, de nagyon sok mindenre használható: pl. különbözo lapok közötti "navigálásra", hiszen bármilyen vezérlot bele lehet tenni.</li>
+        <pre class="brush:xml">
+          &lt;FlipView x:Name="flipView1" SelectionChanged="FlipView_SelectionChanged"&gt;
+            &lt;Image Source="Assets/Logo.png" /&gt;
+            &lt;Image Source="Assets/SplashScreen.png" /&gt;
+            &lt;Image Source="Assets/SmallLogo.png" /&gt;
+          &lt;/FlipView&gt;
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Vezérlok - Flyout (Windows 8.1)">
+      <ul>
+        <a href="img/flyout.png" class="image-link"><img src="img/flyout.png" style="width: 66%; margin-left: 15%"></a>
+        <li>Újabb Windows 8.1-es vezérlo, aminek a szerepe az, hogy olyan üzeneteket jelenítsen meg vezérlokhöz, amik valamilyen felhasználói interakcióra várnak. Igazából a popup window-oknak egy alternatív megoldása Windows Store stílusban.</li>
+        <pre class="brush:xml">
+          &lt;Flyout&gt;
+              &lt;StackPanel&gt;
+                  &lt;TextBlock&gt;All items will be permanently removed from your cart.&lt;/TextBlock&gt;
+                  &lt;Button Click="DeleteConfirmation_Click"&gt;Empty my cart&lt;/Button&gt;
+              &lt;/StackPanel&gt;
+          &lt;/Flyout&gt;
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Vezérlok - Menu flyout (Windows 8.1)">
+      <ul>
+        <a href="img/menuflyout.jpg" class="image-link"><img src="img/menuflyout.jpg" style="width: 40%; margin-left: 30%"></a>
+        <li>Nemcsak egyszeru flyout van, hanem lehetoség van menüszeru elrendezésben is felsorolni a felhasználói interakciókat. </li>
+        <pre class="brush:xml">
+          &lt;MenuFlyout&gt;
+              &lt;MenuFlyoutItem Text="Reset" Click="Reset_Click"/&gt;
+              &lt;MenuFlyoutSeparator/&gt;
+              &lt;ToggleMenuFlyoutItem Text="Shuffle" 
+                                    IsChecked="{Binding IsShuffleEnabled, Mode=TwoWay}"/&gt;
+              &lt;ToggleMenuFlyoutItem Text="Repeat" 
+                                    IsChecked="{Binding IsRepeatEnabled, Mode=TwoWay}"/&gt;
+          &lt;/MenuFlyout&gt;
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Vezérlok - GridView">
+      <ul>
+        <a href="img/gridview.png" class="image-link"><img src="img/gridview.png" style="width: 66%; margin-left: 15%"></a>
+        <li>Egy <strong>ListBox</strong>-hoz hasonló megoldás, ahol az elemeket nem függolegesen, hanem vízszintesen rendezzük el, ezzel is kihasználva a szélesképernyos eszközeinket. A felhasználónak lehetosége van rá, hogy a felsorolt elemeket átrendezze, csoportosítsa, ami interaktívabbá teheti a felületünket. Hasonló megoldást láthatunk a Start képernyon.</li>
+        <pre class="brush:xml">
+          &lt;GridView x:Name="gridView1" SelectionChanged="GridView_SelectionChanged"&gt;
+              &lt;x:String&gt;Item 1&lt;/x:String&gt;
+              &lt;x:String&gt;Item 2&lt;/x:String&gt;
+          &lt;/GridView&gt;
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Vezérlok - ListView">
+      <ul>
+        <a href="img/listview.png" class="image-link"><img src="img/listview.png" style="height: 60%; margin-left: 45%"></a>
+        <li>A <strong>ListView</strong> a <strong>GridView</strong> és a <strong>ListBox</strong> párosításának feleltetheto meg, de vízszintes elrendezés helyett, inkább függolegesen helyezi el az elemeket. Nincs is lehetoség csoportosítani az elemeket, de ettol függetlenül a felhasználó még mindig újrarendezheti az elemeket. </li>
+        <pre class="brush:xml">
+          &lt;ListView x:Name="listView"&gt;
+              &lt;x:String&gt;Item 1&lt;/x:String&gt;
+              &lt;x:String&gt;Item 2&lt;/x:String&gt;
+          &lt;/ListView&gt;
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Vezérlok - Hub (Windows 8.1)">
+      <ul>
+        <a href="img/hub.png" class="image-link"><img src="img/hub.png" style="width: 40%; margin-left: 30%"></a>
+        <li>Talán a grafikus felületek tervezésének legnehezebb része, hogy hogyan rendezzük el a felületi elemeket úgy, hogy azok könnyen hozzáférhetoek lehessenek, de ne akadályozzák a felhasználó munkáját. A <strong>Hub</strong> erre kínál egy intuitív megoldást, úgy, hogy a képernyot vízszintesen különbözo szekciókra osztja (<strong>HubSection</strong>) és azokat modulárisan jeleníti meg. Ezzel a technikával kihasználjuk a képernyo teljes szélességét, és a lefele gördítés helyett oldalirányba történik az egész. Legjobb példa erre az <strong>Idojárás</strong> applikáció. </li>
+        <pre class="brush:xml">
+          &lt;Hub&gt;
+              &lt;HubSection&gt;
+                &lt;!--- Szekció tartalma --&gt;
+              &lt;/HubSection&gt;
+              &lt;HubSection&gt;
+                &lt;!--- Másik szekció tartalma --&gt;
+              &lt;/HubSection&gt;
+          &lt;/Hub&gt;
+        </pre>
+      </ul>
+    </div>
+
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>[ Demo - <a href="examples/ELTE.Trainings.Lecture10.TicTacToe.zip">Tic-Tac-Toe játék</a> ]</h1>
+      </div>
+    </div>
+
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>[ Köszönöm a figyelmet! ]</h1>
+      </div>
+    </div>
+  
+  </div>
+
+  <div class="user-interface" id="info">
+    <a href="http://sztrabi.web.elte.hu">Szabó Tamás</a> (<a href="mailto:sztrabi@inf.elte.hu">sztrabi@inf.elte.hu</a>) © <a href="http://people.inf.elte.hu/groberto/elte_eva2/index.html">Eseményvezérelt alkalmazások fejlesztése 2</a>
+  </div>
+
+  <div class="user-interface">
+    <div id="show-menu">Tartalomjegyzék ></div>
+    <ol id="menu-items" />
+  </div>
+  <script src="js/impress.js"></script>
+</body>
+</html>

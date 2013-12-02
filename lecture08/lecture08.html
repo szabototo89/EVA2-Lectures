@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eseményvezérelt alkalmazások fejlesztése 2 - Szabó Tamás &#169;</title>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/shCore.js"></script>
+  <script src="js/shBrushCSharp.js"></script>
+  <script src="js/shBrushXml.js"></script>
+  <script src="js/lecture.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  <link href="css/shCore.css" rel="stylesheet" type="text/css"/>
+  <link href="css/shCoreDefault.css" rel="stylesheet" type="text/css"/>
+  <link href="css/slides-800x600.css" rel="stylesheet" type="text/css" />
+
+  <script type="slide-template" id="main">
+    <div class="step slide main" data-x="$index*1500$">
+      $content$
+    </div>
+  </script>
+
+  <script type="slide-template" id="standard">
+    <div class="step slide" data-x="$index*1500$">
+      <div class="title">
+        <div>$title$</div>
+      </div>
+      <div class="subtitle">
+        <div>10 - Tesztelés</div>
+      </div>
+      <div class="content">$content$</div>
+    </div>
+  </script>
+
+</head>
+<!-- õû -->
+<body>
+  <div id="impress">
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>Eseményvezérelt alkalmazások fejlesztése 2.</h1>
+        <h2>10. gyakorlat - Szoftvertesztelés .NET környezetben</h2>
+      </div>
+    </div>
+
+    <div class="slide" data-title="Miért olyan fontos a tesztelés?">
+      <ul>
+        <li>A szoftverfejlesztés napjainkra merőben megváltozott a "régi időkhöz" képest. Sokkal fontosabb lett megbízható és biztonságos szoftvert fejleszteni, mint gyorsat, ugyanis a mostani hardverek teljesítménye mellett, a legtöbb esetben nem lehet észrevenni az optimalizálásból nyert előny (ez azért ipari környezetben nem teljesen igaz).</li>
+        <li>Jól látszódik a trendekből is ez az irány: <strong>C++</strong> helyett már grafikus alkalmazások írására <strong>C#</strong>-ot, <strong>Java</strong>-t vagy valamilyen webes technológiát használnak, aminek az alapja a <strong>Javascript</strong>(!). Az utóbbi egy interpretált script nyelv, míg az előbbiek managelt nyelvek, azaz sebesség szempontjából mindannyian hátrányban vannak.</li>
+        <li>A cél nagyon egyszerű: a <strong>felhasználó elégedettsége</strong>, amit úgy érhetünk el, ha azok a szolgáltatások, amiket nyújtunk megbízhatóak és (aránylag) gyorsak legyenek. Ahhoz, hogy ezeket elérjük a programjainkat valamilyen módon tesztelnünk kell. </li>
+        <li>A tesztelés segítségével nemcsak a minőségbeli problémákat javíthatjuk ki, hanem akár a fejlesztés költségeit is csökkenthetjük azáltal, hogy a hibákat időben észrevesszük és javítjuk. </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-title="Tesztelés .NET környezetben">
+      <ul>
+        <li>A tesztelés fontosságára a <strong>Microsoft</strong> szakemberei is rájöttek és a legújabb Visual Studio fejlesztőkörnyezetben már integrálták is a <strong>Test Explorer</strong>-t, amivel a felhasználó könnyen és gyorsan tud egységteszteket lefuttatni.</li>
+        <li>Rengeteg framework áll a programozó rendelkezésére: </li>
+      </ul>
+    </div>
+
+    <div class="slide" data-template="main">
+      <div class="centered">
+        <h1>[ Köszönöm a figyelmet! ]</h1>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="user-interface" id="info">
+    <a href="http://sztrabi.web.elte.hu">Szabó Tamás</a> (<a href="mailto:sztrabi@inf.elte.hu">sztrabi@inf.elte.hu</a>) © <a href="http://people.inf.elte.hu/groberto/elte_eva2/index.html">Eseményvezérelt alkalmazások fejlesztése 2</a>
+  </div>
+
+  <div class="user-interface">
+    <div id="show-menu">Tartalomjegyzék ></div>
+    <ol id="menu-items" />
+  </div>
+  <script src="js/impress.js"></script>
+</body>
+</html>
